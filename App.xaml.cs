@@ -11,7 +11,7 @@ namespace VictuzMobile
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new MainPageView));
+            return new Window(new MainTabbedPage());
         }
     }
 }

@@ -6,6 +6,6 @@
              x:Class="VictuzMobile.Views.MainPageView"
              x:DataType="vm:MainPageViewModel">
     <Grid>
-        
+        <Label Text="Main page" />
     </Grid>
 </ContentPage>
