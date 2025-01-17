@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class User
+    public class User : TableData
     {
-        public int Id { get; set; }
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;

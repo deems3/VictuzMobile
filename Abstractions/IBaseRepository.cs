@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace VictuzMobile.Abstractions
 {
-    internal class IBaseRepository
+    public interface IBaseRepository<T> : IDisposable where T : TableData, new()
     {
+        // Create/Update
+        void SaveEntity(T entity, bool recursive = false);
+
+        // Read One Entity
+        T? GetEntity(int id);
+
+        // Read All Entities
+        List<T> GetEntities();
+
+        // Delete Entity
+        void DeleteEntity(T entity);
     }
 }

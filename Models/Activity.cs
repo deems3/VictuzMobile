@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class Activity
+    public class Activity : TableData
     {
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public int MaxRegistrations { get; set; }
