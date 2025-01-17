@@ -34,4 +34,11 @@
             <views:SettingsView />
         </x:Arguments>
     </NavigationPage>
+
+    <NavigationPage Title="Database Test"
+            IconImageSource="settings.svg">
+        <x:Arguments>
+            <views:TestDatabaseView />
+        </x:Arguments>
+    </NavigationPage>
 </TabbedPage>

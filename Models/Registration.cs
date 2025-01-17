@@ -7,7 +7,7 @@ using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class Registration : TableData
+    public class Registration
     {
         public int UserId { get; set; }
         public User User { get; set; } = null!;

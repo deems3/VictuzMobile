@@ -6,133 +6,66 @@ using VictuzMobile.Models;
 namespace VictuzMobile
 
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : TableData, new()
+    public class BaseRepository<T> : IBaseRepository<T> where T : new()
     {
-        SQLiteConnection connection;
-        public string? StatusMessage { get; set; }
+        private readonly SQLiteAsyncConnection connection;
 
-        public BaseRepository()
+        public BaseRepository(DatabaseContext context)
         {
-            connection = new SQLiteConnection(Constants.DatabasePath, Constants.flags);
-            connection.CreateTable<T>();
-        }
-
-        /// <summary>
-        /// Save the given entity
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="recursive"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void SaveEntity(T entity, bool recursive = false)
-        {
-            try
-            {
-                try
-                {
-                    if (entity.Id != 0)
-                    {
-                        connection.UpdateWithChildren(entity);
-                    } else
-                    {
-                        connection.InsertWithChildren(entity);
-                    }  
-                }
-                catch (Exception ex)
-                {
-                    if (entity.Id != 0)
-                    {
-                        connection.Update(entity);
-                    } else
-                    {
-                        connection.Insert(entity);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = $"Error: {ex.Message}";
-            }
-        }
-
-        /// <summary>
-        /// Get the entity based on the given ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public T? GetEntity(int id)
-        {
-            try
-            {
-                T entity = new T();
-
-                try
-                {
-                    entity = connection.GetWithChildren<T>(id);
-                }
-                catch (Exception ex)
-                {
-                    entity = connection.Table<T>().FirstOrDefault(e => e.Id == id);
-                }
-
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = $"Error: {ex.Message}";
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Get a list of all entities
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public List<T> GetEntities()
-        {
-            try
-            {
-                List<T> entity = new List<T>();
-
-                try
-                {
-                    entity = connection.GetAllWithChildren<T>().ToList();
-                }
-                catch (Exception ex)
-                {
-                    entity = connection.Table<T>().ToList();
-                }
-
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = $"Error: {ex.Message}";
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Delete the given entity
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void DeleteEntity(T entity)
-        {
-            try
-            {
-                connection.Delete(entity, true);
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = $"Error: {ex.Message}";
-            }
+            connection = context.Connection;
+            context.CreateTableAsync<T>().Wait();
         }
 
         public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<T>?> GetAllAsync()
+        {
+            return await connection.Table<T>().ToListAsync();
+        }
+
+        public async Task<T?> GetByIdAsync(int id)
+        {
+            if (id <= 0)
+            {
+                return default;
+            }
+
+            try
+            {
+                return await connection.GetAsync<T>(id);
+            }
+            catch (Exception ex)
+            {
+                return default;
+            }
+        }
+
+        public async Task AddAsync(T entity)
+        {
+            try
+            {
+                await connection.InsertAsync(entity);
+            } catch (Exception ex)
+            {
+                string errorMessage = ex.Message;
+            }
+        }
+        public async Task UpdateAsync(T entity)
+        {
+            try
+            {
+                await connection.UpdateAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = ex.Message;
+            }
+        }
+
+        public Task DeleteByIdAsync(int id)
         {
             throw new NotImplementedException();
         }

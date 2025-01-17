@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,10 @@ using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class Location : TableData
+    public class Location
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Street { get; set; } = null!;
         public string Housenumber { get; set; } = null!;
         public string PostalCode { get; set; } = null!;

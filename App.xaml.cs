@@ -1,9 +1,15 @@
-﻿using VictuzMobile.Views;
+﻿using VictuzMobile.Models;
+using VictuzMobile.Views;
 
 namespace VictuzMobile
 {
     public partial class App : Application
     {
+        private static DatabaseContext _databaseContext;
+
+        public static DatabaseContext DatabaseContext =>
+            _databaseContext ??= new DatabaseContext();
+
         public App()
         {
             InitializeComponent();
