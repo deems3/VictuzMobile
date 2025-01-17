@@ -19,11 +19,18 @@ namespace VictuzMobile
         public void Dispose()
         {
             throw new NotImplementedException();
-        }
+                    }  
 
         public async Task<IEnumerable<T>?> GetAllAsync()
-        {
+                {
             return await connection.Table<T>().ToListAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
         }
 
         public async Task<T?> GetByIdAsync(int id)
@@ -33,25 +40,31 @@ namespace VictuzMobile
                 return default;
             }
 
-            try
-            {
+                try
+                {
                 return await connection.GetAsync<T>(id);
             }
             catch (Exception ex)
             {
                 return default;
             }
+
+            return null;
         }
 
         public async Task AddAsync(T entity)
-        {
-            try
             {
+                List<T> entity = new List<T>();
+
+                try
+                {
                 await connection.InsertAsync(entity);
             } catch (Exception ex)
             {
                 string errorMessage = ex.Message;
             }
+
+            return null;
         }
         public async Task UpdateAsync(T entity)
         {

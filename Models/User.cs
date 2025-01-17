@@ -8,7 +8,7 @@ using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class User
+    public class User : TableData
     {
         [PrimaryKey]
         public string Username { get; set; } = null!;

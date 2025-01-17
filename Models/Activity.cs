@@ -8,7 +8,7 @@ using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class Activity
+    public class Activity : TableData
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
