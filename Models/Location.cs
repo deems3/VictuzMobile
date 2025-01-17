@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VictuzMobile.Abstractions;
 
 namespace VictuzMobile.Models
 {
-    public class Location
+    public class Location : TableData
     {
-        public int Id { get; set; }
         public string Street { get; set; } = null!;
         public string Housenumber { get; set; } = null!;
         public string PostalCode { get; set; } = null!;

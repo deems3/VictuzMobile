@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using VictuzMobile.Models;
 
 namespace VictuzMobile
 {
@@ -18,6 +19,12 @@ namespace VictuzMobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<BaseRepository<Activity>>();
+            builder.Services.AddSingleton<BaseRepository<User>>();
+            builder.Services.AddSingleton<BaseRepository<Category>>();
+            builder.Services.AddSingleton<BaseRepository<Models.Location>>();
+            builder.Services.AddSingleton<BaseRepository<Registration>>();
+            builder.Services.AddSingleton<BaseRepository<Suggestion>>();
 
             return builder.Build();
         }

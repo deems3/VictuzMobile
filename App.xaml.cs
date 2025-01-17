@@ -1,4 +1,6 @@
-﻿namespace VictuzMobile
+﻿using VictuzMobile.Models;
+
+namespace VictuzMobile
 {
     public partial class App : Application
     {
