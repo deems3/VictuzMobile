@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VictuzMobile.App.Views.SettingsView"
              Title="SettingsView">
-    <Grid>
+    <VerticalStackLayout>
         <Label Text="Settings page" />
-    </Grid>
+        <Button Text="Open database viewer" Clicked="OpenDbViewer"/>
+    </VerticalStackLayout>
 </ContentPage>
