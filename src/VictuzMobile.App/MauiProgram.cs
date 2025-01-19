@@ -20,11 +20,10 @@ namespace VictuzMobile.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            var connectionDb = $"Filename={DatabaseHelpers.GetDatabasePath("mobile-app-casus.db")}";
+            var connectionDb = $"Filename={DatabaseHelpers.GetDatabasePath("mobile_app_casus.db")}";
 
             builder.Services.AddDbContext<DatabaseContext>(
-                options => options.UseSqlite($"Filename={connectionDb}", x => x.MigrationsAssembly(nameof(DatabaseConfig))));
-
+                options => options.UseSqlite(connectionDb));
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -35,13 +34,14 @@ namespace VictuzMobile.App
             using var scope = host.Services.CreateScope();
 
             // TODO, run migrations if any
-            //var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-            //var pendingMigrations = db.Database.GetPendingMigrations();
+            var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
 
-            //if (pendingMigrations.Any())
-            //{
-            //    db.Database.Migrate();
-            //}
+            var pendingMigrations = db.Database.GetPendingMigrations();
+
+            if (pendingMigrations.Any())
+            {
+                    db.Database.Migrate();
+            }
 
             return host;
         }

@@ -21,7 +21,6 @@ namespace VictuzMobile.DatabaseConfig
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
-            Database.Migrate();
         }
 
         // It is required to override this method when adding/removing migrations from class library
