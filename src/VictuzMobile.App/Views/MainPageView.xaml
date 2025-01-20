@@ -10,7 +10,7 @@
             Margin="5"
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            Stroke="Black"
+            Stroke="#0F8390"
             StrokeThickness="2">
 
             <Image Source="test.png"
@@ -24,7 +24,7 @@
             Margin="5"
             Grid.Row="1"
             Grid.Column="0"
-            Stroke="Black"
+            Stroke="#0F8390"
             StrokeThickness="2">
 
             <Image Source="test_twee.png"
@@ -38,7 +38,7 @@
             Margin="5"
             Grid.Row="1"
             Grid.Column="1"
-            Stroke="Black"
+            Stroke="#0F8390"
             StrokeThickness="2">
 
             <Image Source="test_drie.png"
