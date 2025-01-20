@@ -5,7 +5,8 @@
             xmlns:views="clr-namespace:VictuzMobile.App.Views"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.IsSwipePagingEnabled="False"
-            x:Class="VictuzMobile.MainTabbedPage">
+            x:Class="VictuzMobile.MainTabbedPage"
+            BackgroundColor=">
     
     
     <NavigationPage Title="Home"
