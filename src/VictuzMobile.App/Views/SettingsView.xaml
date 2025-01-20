@@ -3,8 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VictuzMobile.App.Views.SettingsView"
              Title="SettingsView">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="20">
         <Label Text="Settings page" />
+        <Grid
+            ColumnDefinitions="*, auto" RowDefinitions="*,*,*" RowSpacing="20" ColumnSpacing="20" Padding="15">
+            <Label 
+                Grid.Column="0" 
+                Text="Donkere modus" 
+                FontSize="18" />
+            <Switch
+                Grid.Column="1"
+                IsToggled="false" />
+            <Label 
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Push berichten" 
+                FontSize="18" />
+            <Switch
+                Grid.Column="1"
+                Grid.Row="1"
+                IsToggled="false" />
+            <Label 
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="Face-ID inlog" 
+                FontSize="18" />
+            <Switch
+                Grid.Column="1"
+                Grid.Row="2"
+                IsToggled="false" />
+        </Grid>
         <Button Text="Open database viewer" Clicked="OpenDbViewer"/>
     </VerticalStackLayout>
 </ContentPage>
