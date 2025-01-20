@@ -3,7 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VictuzMobile.App.Views.ActivitiesView"
              Title="ActivitiesView">
-    <Grid>
-        <Label Text="Activities page" />
-    </Grid>
+    <ScrollView>
+        <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, *" ColumnDefinitions="auto, *">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Ingeschreven activiteiten"
+                   FontSize="Large"
+                   TextDecorations="Underline"/>
+            <ImageButton Source="filter_icon.svg"
+                         x:Name="YourActivityFilterButton"
+                         Grid.Column="1"
+                         MaximumHeightRequest="25"
+                         MaximumWidthRequest="25"
+                         Clicked="YourActivityFilterButton_Clicked"/>
+
+            <Label Grid.Row="1"
+                   Text="Toon hier alle activiteiten"
+                   FontSize="Medium"/>
+
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Alle activiteiten"
+                   FontSize="Large"
+                   TextDecorations="Underline"/>
+            
+            <ImageButton Source="filter_icon.svg"
+                         x:Name="AllActivityFilterButton"
+                         Grid.Column="1"
+                         Grid.Row="2"
+                         MaximumHeightRequest="25"
+                         MaximumWidthRequest="25"
+                         Clicked="AllActivityFilterButton_Clicked"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Toon hier alle bestaande activiteiten"
+                   FontSize="Medium"/>
+
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Suggesties"
+                   FontSize="Large"
+                   TextDecorations="Underline"/>
+
+            <ImageButton Source="filter_icon.svg"
+                         x:Name="SuggestionActivityFilterButton"
+                         Grid.Column="1"
+                         Grid.Row="4"
+                         MaximumHeightRequest="25"
+                         MaximumWidthRequest="25"
+                         Clicked="SuggestionActivityFilterButton_Clicked"/>
+
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Text="Toon hier alle suggestieve activiteiten"
+                FontSize="Medium"/>
+        </Grid>
+
+    </ScrollView>
 </ContentPage>
