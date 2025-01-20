@@ -7,6 +7,7 @@
             android:TabbedPage.IsSwipePagingEnabled="False"
             x:Class="VictuzMobile.MainTabbedPage">
     
+    
     <NavigationPage Title="Home"
                     IconImageSource="home.svg">
         <x:Arguments>
