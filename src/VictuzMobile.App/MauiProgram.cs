@@ -29,21 +29,21 @@ namespace VictuzMobile.App
             builder.Logging.AddDebug();
 #endif
 
-            var host = builder.Build();
+            var app = builder.Build();
 
-            using var scope = host.Services.CreateScope();
+            using (var scope = app.Services.CreateScope()) {
 
-            // TODO, run migrations if any
-            var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
 
-            var pendingMigrations = db.Database.GetPendingMigrations();
+                var pendingMigrations = db.Database.GetPendingMigrations();
 
-            if (pendingMigrations.Any())
-            {
-                    db.Database.Migrate();
+                if (pendingMigrations.Any())
+                {
+                        db.Database.Migrate();
+                }
             }
 
-            return host;
+            return app;
         }
     }
 }
