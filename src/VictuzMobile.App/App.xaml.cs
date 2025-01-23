@@ -8,7 +8,6 @@ namespace VictuzMobile.App
         {
             InitializeComponent();
 
-            // Resolve Auth0Client from DI and pass it to MainPage
             var auth0Client = serviceProvider.GetRequiredService<Auth0Client>();
             MainPage = new NavigationPage(new MainPage(auth0Client));
         }
