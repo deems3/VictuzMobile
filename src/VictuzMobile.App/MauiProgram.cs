@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using Auth0.OidcClient;
+using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VictuzMobile.App.Helpers;
@@ -28,6 +29,17 @@ namespace VictuzMobile.App
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<MainPage>();
+
+            builder.Services.AddSingleton(new Auth0Client(new()
+            {
+                Domain = "dev-awmp00p4ykz2jar7.us.auth0.com",
+                ClientId = "3IdWRn9a92mNcsNKn7pPCBBOxoOJ3ohK",
+                RedirectUri = "myapp://callback/",
+                PostLogoutRedirectUri = "myapp://callback/",
+                Scope = "openid profile email"
+            }));
 
             var app = builder.Build();
 

@@ -7,6 +7,22 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+            
+            <StackLayout
+                x:Name="LoginView">
+                <Button 
+                    x:Name="LoginBtn"
+                    Text="Log In"
+                    SemanticProperties.Hint="Click to log in"
+                    Clicked="OnLoginClicked"
+                    HorizontalOptions="Center" />
+            </StackLayout>
+
+            <StackLayout
+                x:Name="HomeView"
+                IsVisible="false">
+            </StackLayout>
+            
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"
@@ -17,6 +33,11 @@
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+
+            <Button
+                x:Name="TestButton"
+                Text="Go to main program"
+                Clicked="TestButton_Clicked"/>
 
             <Button
                 x:Name="CounterBtn"
