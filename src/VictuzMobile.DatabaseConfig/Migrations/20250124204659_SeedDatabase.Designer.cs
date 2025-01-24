@@ -11,7 +11,7 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250124200524_SeedDatabase")]
+    [Migration("20250124204659_SeedDatabase")]
     partial class SeedDatabase
     {
         /// <inheritdoc />
@@ -270,7 +270,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             DisplayName = "Demi",
                             Email = "demi@example.com",
                             Limited = false,
-                            PasswordHash = "$2a$11$pk8iS0Jut9Fz4v5KVwwhRO8k1pzQIyAOPcGlNT1g.lCKEkzAGWdBK",
+                            PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq",
                             PhoneNumber = "123456789",
                             StudentNumber = 1234567,
                             Username = "demi"
@@ -281,7 +281,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             DisplayName = "Mees",
                             Email = "mees@example.com",
                             Limited = false,
-                            PasswordHash = "$2a$11$WFVuFuQkdkvxFgPUsEyp7.WtecNDjMa7Nq6R42UQ86N4S95cEVvtu",
+                            PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq",
                             PhoneNumber = "123456789",
                             StudentNumber = 2345678,
                             Username = "mees"
@@ -292,7 +292,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             DisplayName = "Bas",
                             Email = "bas@example.com",
                             Limited = false,
-                            PasswordHash = "$2a$11$xqE1cRKYAKkGYgukKkHKyecXK4f3KnjSHR.XyUXwRkG/IrSRCRa3S",
+                            PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq",
                             PhoneNumber = "123456789",
                             StudentNumber = 3456789,
                             Username = "bas"
@@ -303,7 +303,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             DisplayName = "Finn",
                             Email = "finn@example.com",
                             Limited = false,
-                            PasswordHash = "$2a$11$aZtmeJNzLygERN6MF.8tn.RiI75W6TSJWVSVWbJ44aKnRWaaYtqqa",
+                            PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq",
                             PhoneNumber = "123456789",
                             StudentNumber = 4567890,
                             Username = "finn"

@@ -56,6 +56,9 @@
                     BackgroundColor="Gray" />
             </Grid>
 
+            <Entry IsPassword="False" x:Name="UsernameInput" Placeholder="Username" />
+            <Entry IsPassword="True" x:Name="PasswordInput" Placeholder="Password"/>
+
             <Button
                 x:Name="TestButton"
                 Text="Continue logged out"

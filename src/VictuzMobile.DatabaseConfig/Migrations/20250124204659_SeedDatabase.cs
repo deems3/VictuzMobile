@@ -34,10 +34,10 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                 columns: new[] { "Id", "DisplayName", "Email", "Limited", "PasswordHash", "PhoneNumber", "StudentNumber", "SuggestionId", "Username" },
                 values: new object[,]
                 {
-                    { 1, "Demi", "demi@example.com", false, "$2a$11$pk8iS0Jut9Fz4v5KVwwhRO8k1pzQIyAOPcGlNT1g.lCKEkzAGWdBK", "123456789", 1234567, null, "demi" },
-                    { 2, "Mees", "mees@example.com", false, "$2a$11$WFVuFuQkdkvxFgPUsEyp7.WtecNDjMa7Nq6R42UQ86N4S95cEVvtu", "123456789", 2345678, null, "mees" },
-                    { 3, "Bas", "bas@example.com", false, "$2a$11$xqE1cRKYAKkGYgukKkHKyecXK4f3KnjSHR.XyUXwRkG/IrSRCRa3S", "123456789", 3456789, null, "bas" },
-                    { 4, "Finn", "finn@example.com", false, "$2a$11$aZtmeJNzLygERN6MF.8tn.RiI75W6TSJWVSVWbJ44aKnRWaaYtqqa", "123456789", 4567890, null, "finn" }
+                    { 1, "Demi", "demi@example.com", false, "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq", "123456789", 1234567, null, "demi" },
+                    { 2, "Mees", "mees@example.com", false, "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq", "123456789", 2345678, null, "mees" },
+                    { 3, "Bas", "bas@example.com", false, "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq", "123456789", 3456789, null, "bas" },
+                    { 4, "Finn", "finn@example.com", false, "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq", "123456789", 4567890, null, "finn" }
                 });
 
             migrationBuilder.InsertData(

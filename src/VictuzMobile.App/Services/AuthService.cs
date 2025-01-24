@@ -22,5 +22,10 @@ namespace VictuzMobile.App.Services
             // If the password is correct, return the user, otherwise return null
             return passwordVerified ? user : null;
         }
+
+        public User? GetUser(int id)
+        {
+            return context.Users.Find(id);
+        }
     }
 }

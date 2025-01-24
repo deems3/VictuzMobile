@@ -31,10 +31,10 @@ namespace VictuzMobile.DatabaseConfig
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Username = "demi", DisplayName = "Demi", Email = "demi@example.com", PhoneNumber = "123456789", StudentNumber = 1234567, PasswordHash = AuthHelper.GeneratePaswordHash("welkom01") },
-                new User { Id = 2, Username = "mees", DisplayName = "Mees", Email = "mees@example.com", PhoneNumber = "123456789", StudentNumber = 2345678, PasswordHash = AuthHelper.GeneratePaswordHash("welkom01") },
-                new User { Id = 3, Username = "bas", DisplayName = "Bas", Email = "bas@example.com", PhoneNumber = "123456789", StudentNumber = 3456789, PasswordHash = AuthHelper.GeneratePaswordHash("welkom01") },
-                new User { Id = 4, Username = "finn", DisplayName = "Finn", Email = "finn@example.com", PhoneNumber = "123456789", StudentNumber = 4567890, PasswordHash = AuthHelper.GeneratePaswordHash("welkom01") }
+                new User { Id = 1, Username = "demi", DisplayName = "Demi", Email = "demi@example.com", PhoneNumber = "123456789", StudentNumber = 1234567, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" },
+                new User { Id = 2, Username = "mees", DisplayName = "Mees", Email = "mees@example.com", PhoneNumber = "123456789", StudentNumber = 2345678, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" },
+                new User { Id = 3, Username = "bas", DisplayName = "Bas", Email = "bas@example.com", PhoneNumber = "123456789", StudentNumber = 3456789, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" },
+                new User { Id = 4, Username = "finn", DisplayName = "Finn", Email = "finn@example.com", PhoneNumber = "123456789", StudentNumber = 4567890, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" }
             );
 
 
