@@ -6,7 +6,13 @@ public partial class MainPageView : ContentPage
 {
 	public MainPageView()
 	{
-		InitializeComponent();
-		BindingContext = new MainPageViewModel();
+        InitializeComponent();
+        GenerateFact();
+        BindingContext = new MainPageViewModel();
+    }
+
+    private async void GenerateFact()
+    {
+        FactLabel.Text = await FactAPIVM.GetRandomFact();
     }
 }
