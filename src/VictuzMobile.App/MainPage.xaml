@@ -7,31 +7,58 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            
+
+            <Image
+                Source="victuz.png"
+                HeightRequest="250"
+                WidthRequest="250"/>
+
             <StackLayout
                 x:Name="LoginView">
                 <Button 
                     x:Name="LoginBtn"
-                    Text="Log In"
+                    Text="Log in or register with 0Auth"
                     SemanticProperties.Hint="Click to log in"
-                    Clicked="OnLoginClicked"
-                    HorizontalOptions="Center" />
+                    Clicked="OnLoginClicked"/>
             </StackLayout>
 
             <StackLayout
                 x:Name="HomeView"
                 IsVisible="false">
             </StackLayout>
-            
-            <Label
-                Text="Temp login page"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
 
+            <Grid 
+                ColumnDefinitions="*,Auto,*"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                Margin="10">
+
+                <BoxView 
+                    Grid.Column="0"
+                    HeightRequest="1"
+                    VerticalOptions="Center"
+                    BackgroundColor="Gray" />
+
+
+                <Label 
+                    Grid.Column="1"
+                    Text="OR"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="10,0" /> 
+
+                <BoxView 
+                    Grid.Column="2"
+                    HeightRequest="1"
+                    VerticalOptions="Center"
+                    BackgroundColor="Gray" />
+            </Grid>
 
             <Button
                 x:Name="TestButton"
-                Text="Go to main program"
+                Text="Continue logged out"
                 Clicked="TestButton_Clicked"/>
 
             <Button
