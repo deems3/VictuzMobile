@@ -56,8 +56,13 @@
                     BackgroundColor="Gray" />
             </Grid>
 
-            <Entry IsPassword="False" x:Name="UsernameInput" Placeholder="Username" />
-            <Entry IsPassword="True" x:Name="PasswordInput" Placeholder="Password"/>
+            <Entry IsPassword="False" Text="{Binding Username}" x:Name="UsernameInput" Placeholder="Username" />
+            <Entry IsPassword="True" Text="{Binding Password}" x:Name="PasswordInput" Placeholder="Password"/>
+
+            <Button
+                x:Name="LoginButton"
+                Text="Login"
+                Clicked="LoginUsernamePassword"/>
 
             <Button
                 x:Name="TestButton"

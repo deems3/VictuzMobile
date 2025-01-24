@@ -3,6 +3,7 @@ using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VictuzMobile.App.Helpers;
+using VictuzMobile.App.Services;
 using VictuzMobile.DatabaseConfig;
 
 namespace VictuzMobile.App
@@ -29,6 +30,7 @@ namespace VictuzMobile.App
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddScoped<AuthService>();
 
             builder.Services.AddSingleton<MainPage>();
 
@@ -40,6 +42,7 @@ namespace VictuzMobile.App
                 PostLogoutRedirectUri = "myapp://callback/",
                 Scope = "openid profile email"
             }));
+
 
             var app = builder.Build();
 

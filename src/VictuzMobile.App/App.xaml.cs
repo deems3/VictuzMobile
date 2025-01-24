@@ -1,4 +1,5 @@
 ﻿using Auth0.OidcClient;
+using VictuzMobile.App.Services;
 
 namespace VictuzMobile.App
 {
@@ -9,7 +10,8 @@ namespace VictuzMobile.App
             InitializeComponent();
 
             var auth0Client = serviceProvider.GetRequiredService<Auth0Client>();
-            MainPage = new NavigationPage(new MainPage(auth0Client));
+            var authService = serviceProvider.GetRequiredService<AuthService>();
+            MainPage = new NavigationPage(new MainPage(auth0Client, authService));
         }
     }
 }

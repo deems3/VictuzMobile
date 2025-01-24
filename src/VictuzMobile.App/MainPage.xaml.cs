@@ -1,17 +1,25 @@
 ﻿using Auth0.OidcClient;
 using SQLiteBrowser;
 using VictuzMobile.App.Helpers;
+using VictuzMobile.App.Services;
 
 namespace VictuzMobile.App
 {
     public partial class MainPage : ContentPage
     {
         private readonly Auth0Client auth0Client;
+        private readonly AuthService authService;
 
-        public MainPage(Auth0Client client)
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        public MainPage(Auth0Client client, AuthService authenticationService)
         {
             InitializeComponent();
             auth0Client = client;
+            authService = authenticationService;
+            SecureStorageService.ClearCurrentUserId();
+            BindingContext = this;
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -36,6 +44,21 @@ namespace VictuzMobile.App
 
         private void TestButton_Clicked(object sender, EventArgs e)
         {
+            Application.Current.MainPage = new MainTabbedPage();
+        }
+
+        private async void LoginUsernamePassword(object sender, EventArgs e)
+        {
+            var user = authService.Authenticate(Username, Password);
+
+            if (user == null)
+            {
+                await DisplayAlert("Error", "unknown credentials", "Ok");
+                return;
+            }
+
+            await SecureStorageService.StoreUserId(user.Id);
+
             Application.Current.MainPage = new MainTabbedPage();
         }
     }

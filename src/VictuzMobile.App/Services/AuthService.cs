@@ -1,4 +1,5 @@
-﻿using VictuzMobile.DatabaseConfig;
+﻿using System.Data.Entity;
+using VictuzMobile.DatabaseConfig;
 using VictuzMobile.DatabaseConfig.Models;
 
 namespace VictuzMobile.App.Services
@@ -17,7 +18,7 @@ namespace VictuzMobile.App.Services
             }
 
             // Verify the given password against the stored password hash for the user
-            var passwordVerified = BCrypt.Net.BCrypt.EnhancedVerify(password, user.PasswordHash);
+            var passwordVerified = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 
             // If the password is correct, return the user, otherwise return null
             return passwordVerified ? user : null;
