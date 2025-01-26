@@ -55,7 +55,8 @@ namespace VictuzMobile.App
             using (var scope = app.Services.CreateScope()) {
 
                 var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-                db.Database.EnsureDeleted();
+                // Uncomment this when app crashes due to a seeding issue.
+                //db.Database.EnsureDeleted();
                 var pendingMigrations = db.Database.GetPendingMigrations();
 
                 if (pendingMigrations.Any())
