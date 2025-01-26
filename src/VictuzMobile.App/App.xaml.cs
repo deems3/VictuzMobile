@@ -11,7 +11,8 @@ namespace VictuzMobile.App
 
             var auth0Client = serviceProvider.GetRequiredService<Auth0Client>();
             var authService = serviceProvider.GetRequiredService<AuthService>();
-            MainPage = new NavigationPage(new MainPage(auth0Client, authService));
+            var mainTabbedPage = serviceProvider.GetRequiredService<MainTabbedPage>();
+            MainPage = new NavigationPage(new MainPage(auth0Client, authService, mainTabbedPage));
         }
     }
 }

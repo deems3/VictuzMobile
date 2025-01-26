@@ -1,18 +1,47 @@
+using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using VictuzMobile.App.ViewModels;
+using VictuzMobile.DatabaseConfig;
+using VictuzMobile.DatabaseConfig.Models;
 
 namespace VictuzMobile.App.Views;
 
 public partial class MainPageView : ContentPage
 {
-	public MainPageView()
-	{
+    public MainPageViewModel ViewModel { get; set; }
+    private const string ImageNotFoundUrl = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=";
+
+    public MainPageView(DatabaseContext context) {
         InitializeComponent();
+
+        ViewModel = new MainPageViewModel();
+
+        var activities = context.Activities.Where(a => a.StartDate >= DateTime.Now)
+            .OrderBy(a => a.StartDate)
+            .Take(3)
+            .ToList();
+
+        ViewModel.UpcomingActivities = new ObservableCollection<Activity>(activities);
+
         GenerateFact();
-        BindingContext = new MainPageViewModel();
+        InitializeActivities();
+
+        BindingContext = ViewModel;
     }
 
     private async void GenerateFact()
     {
-        FactLabel.Text = await FactAPIVM.GetRandomFact();
+        ViewModel.Fact = await FactAPIVM.GetRandomFact();
+    }
+
+    private void InitializeActivities()
+    {
+        var first = ViewModel.UpcomingActivities.ElementAtOrDefault(0);
+        var second = ViewModel.UpcomingActivities.ElementAtOrDefault(1);
+        var third = ViewModel.UpcomingActivities.ElementAtOrDefault(2);
+
+        firstActivity.Source = first?.ImageURL ?? ImageNotFoundUrl;
+        secondActivity.Source = second?.ImageURL ?? ImageNotFoundUrl;
+        thirdActivity.Source = third?.ImageURL ?? ImageNotFoundUrl;
     }
 }

@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:VictuzMobile.App.ViewModels"
              x:Class="VictuzMobile.App.Views.MainPageView"
              x:DataType="vm:MainPageViewModel">
-    
+
     <VerticalStackLayout
         Margin="15"
         Spacing="15">
@@ -17,11 +17,11 @@
                     Stroke="#0F8390"
                     StrokeThickness="2">
 
-                <Image Source="test.png"
-                               MaximumHeightRequest="100"
-                               MaximumWidthRequest="100"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                <ImageButton x:Name="firstActivity" 
+                             Source="test.png"
+                             MinimumHeightRequest="100"
+                             MinimumWidthRequest="100"
+                             Aspect="AspectFill"/>
             </Border>
 
             <Border
@@ -31,11 +31,10 @@
                     Stroke="#0F8390"
                     StrokeThickness="2">
 
-                <Image Source="test_twee.png"
-                               MaximumHeightRequest="100"
-                               MaximumWidthRequest="100"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                <ImageButton x:Name="secondActivity" Source="test_twee.png"
+                               MinimumHeightRequest="100"
+                                MinimumWidthRequest="100"
+                                Aspect="AspectFill"/>
             </Border>
 
             <Border
@@ -45,11 +44,10 @@
                     Stroke="#0F8390"
                     StrokeThickness="2">
 
-                <Image Source="test_drie.png"
-                               MaximumHeightRequest="100"
-                               MaximumWidthRequest="100"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                <ImageButton x:Name="thirdActivity" Source="test_drie.png"
+                            MinimumHeightRequest="100"
+                            MinimumWidthRequest="100"
+                            Aspect="AspectFill"/>
             </Border>
 
             <Border
@@ -67,7 +65,7 @@
                     Text="Toon hier alle mededelingen"/>
         </Grid>
 
-        
+
         <!-- Fun fact labels -->
         <Label
             Text="Random fun fact:"
@@ -77,7 +75,7 @@
             x:Name="FactLabel"
             Margin="0,-5,0,10"
             FontAttributes="Italic" 
-            Text="Generating fact..."/>
+            Text="{Binding Fact}"/>
 
     </VerticalStackLayout>
 
