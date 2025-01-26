@@ -11,8 +11,8 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250126184450_RemoveSeededActivities")]
-    partial class RemoveSeededActivities
+    [Migration("20250126191243_UpdateSeededActivityDates")]
+    partial class UpdateSeededActivityDates
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,47 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.HasDiscriminator().HasValue("Activity");
 
                     b.UseTphMappingStrategy();
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "Kom voetballen",
+                            EndDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg",
+                            LocationId = 1,
+                            MaxRegistrations = 22,
+                            Name = "Voetbal Toernooi",
+                            OrganiserId = 2,
+                            StartDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            Description = "Leer hoe jij je eigen AI kunt maken",
+                            EndDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg",
+                            LocationId = 1,
+                            MaxRegistrations = 6,
+                            Name = "Omgaan met AI",
+                            OrganiserId = 1,
+                            StartDate = new DateTime(2025, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            Description = "Klei je eigen technische tool",
+                            EndDate = new DateTime(2025, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg",
+                            LocationId = 1,
+                            MaxRegistrations = 10,
+                            Name = "Kleien",
+                            OrganiserId = 3,
+                            StartDate = new DateTime(2025, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.Category", b =>
