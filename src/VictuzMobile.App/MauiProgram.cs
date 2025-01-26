@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using VictuzMobile.App.Helpers;
 using VictuzMobile.App.Services;
+using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
 
 namespace VictuzMobile.App
@@ -33,6 +34,11 @@ namespace VictuzMobile.App
             builder.Services.AddScoped<AuthService>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainPageView>();
+            builder.Services.AddSingleton<ProfileView>();
+            builder.Services.AddSingleton<SettingsView>();
+            builder.Services.AddSingleton<ActivitiesView>();
+            builder.Services.AddSingleton<MainTabbedPage>();
 
             builder.Services.AddSingleton(new Auth0Client(new()
             {
@@ -49,7 +55,6 @@ namespace VictuzMobile.App
             using (var scope = app.Services.CreateScope()) {
 
                 var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-
                 var pendingMigrations = db.Database.GetPendingMigrations();
 
                 if (pendingMigrations.Any())

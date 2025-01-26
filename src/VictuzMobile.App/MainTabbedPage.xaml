@@ -7,32 +7,4 @@
             android:TabbedPage.IsSwipePagingEnabled="False"
             x:Class="VictuzMobile.MainTabbedPage">
     
-    <NavigationPage Title="Home"
-                    IconImageSource="home.svg">
-        <x:Arguments>
-            <views:MainPageView />
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Activities"
-                IconImageSource="activities.svg">
-        <x:Arguments>
-            <views:ActivitiesView />
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Profile"
-                IconImageSource="profile.svg">
-        <x:Arguments>
-            <views:ProfileView />
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage Title="Settings"
-                IconImageSource="settings.svg">
-        <x:Arguments>
-            <views:SettingsView />
-        </x:Arguments>
-    </NavigationPage>
-
 </TabbedPage>

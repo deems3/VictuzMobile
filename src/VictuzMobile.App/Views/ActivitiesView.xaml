@@ -35,10 +35,46 @@
                          MaximumWidthRequest="25"
                          Clicked="AllActivityFilterButton_Clicked"/>
 
-            <Label Grid.Row="3"
-                   Grid.Column="0"
-                   Text="Toon hier alle bestaande activiteiten"
-                   FontSize="Medium"/>
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+                <CollectionView x:Name="AllActivitiesCollectionView" 
+                                ItemsSource="{Binding AllActivities}"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" 
+                                         VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="#0F8390"
+                                    StrokeThickness="2">
+                                <Grid HeightRequest="100">
+                                    <!-- Background Image -->
+                                    <Image Source="{Binding ImageURL}" 
+                                           Aspect="AspectFill"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand" />
+
+                                    <!-- Transparent Overlay -->
+                                    <BoxView Color="#60000000"/>
+
+                                        <!-- Centered Text -->
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="24"
+                                           TextColor="White"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" />
+                                </Grid>
+                            </Border>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
 
             <Label Grid.Row="4"
                    Grid.Column="0"

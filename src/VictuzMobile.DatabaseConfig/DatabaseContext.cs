@@ -50,9 +50,9 @@ namespace VictuzMobile.DatabaseConfig
             );
 
             modelBuilder.Entity<Activity>().HasData(
-                new Activity { Id = 1, CategoryId = 1, Name = "Voetbal Toernooi", Description = "Kom voetballen", LocationId = 1, StartDate = DateTime.Parse("01-04-2024"), EndDate = DateTime.Parse("01-04-2024"), OrganiserId = 2, MaxRegistrations = 22, ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg" },
-                new Activity { Id = 2, CategoryId = 2, Name = "Omgaan met AI", Description = "Leer hoe jij je eigen AI kunt maken", LocationId = 1, StartDate = DateTime.Parse("03-04-2024"), EndDate = DateTime.Parse("03-04-2024"), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg" },
-                new Activity { Id = 3, CategoryId = 3, Name = "Kleien", Description = "Klei je eigen technische tool", LocationId = 1, StartDate = DateTime.Parse("03-05-2024"), EndDate = DateTime.Parse("03-05-2024"), OrganiserId = 3, MaxRegistrations = 10, ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg" }
+                new Activity { Id = 1, CategoryId = 1, Name = "Voetbal Toernooi", Description = "Kom voetballen", LocationId = 1, StartDate = DateTime.Parse("01-04-2025"), EndDate = DateTime.Parse("01-04-2025"), OrganiserId = 2, MaxRegistrations = 22, ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg" },
+                new Activity { Id = 2, CategoryId = 2, Name = "Omgaan met AI", Description = "Leer hoe jij je eigen AI kunt maken", LocationId = 1, StartDate = DateTime.Parse("03-04-2025"), EndDate = DateTime.Parse("03-04-2025"), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg" },
+                new Activity { Id = 3, CategoryId = 3, Name = "Kleien", Description = "Klei je eigen technische tool", LocationId = 1, StartDate = DateTime.Parse("03-05-2025"), EndDate = DateTime.Parse("03-05-2025"), OrganiserId = 3, MaxRegistrations = 10, ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg" }
             );
 
             base.OnModelCreating(modelBuilder);

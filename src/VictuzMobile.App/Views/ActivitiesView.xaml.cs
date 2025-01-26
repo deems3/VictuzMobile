@@ -1,10 +1,23 @@
+using System.Collections.ObjectModel;
+using VictuzMobile.App.ViewModels;
+using VictuzMobile.DatabaseConfig;
+using VictuzMobile.DatabaseConfig.Models;
+
 namespace VictuzMobile.App.Views;
 
 public partial class ActivitiesView : ContentPage
 {
-    public ActivitiesView()
+    public ActivitiesViewViewModel ViewModel { get; set; } = new();
+    public ActivitiesView(DatabaseContext context)
     {
         InitializeComponent();
+        
+        ViewModel.AllActivities = new ObservableCollection<Activity>(context.Activities
+            .Where(a => a.StartDate >= DateTime.Now)
+            .OrderBy(a => a.StartDate)
+            .ToList());
+
+        BindingContext = ViewModel;
     }
 
     private void YourActivityFilterButton_Clicked(object sender, EventArgs e)
