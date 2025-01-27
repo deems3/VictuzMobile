@@ -14,8 +14,7 @@ public partial class MainTabbedPage : TabbedPage
         ActivitiesView activitiesView,
         ProfileView profileView,
         SettingsView settingsView
-    )
-    {
+    ) {
         InitializeComponent();
         _mainPageView = mainPageView;
         _activitiesView = activitiesView;

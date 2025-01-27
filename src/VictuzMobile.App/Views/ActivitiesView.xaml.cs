@@ -7,11 +7,13 @@ namespace VictuzMobile.App.Views;
 
 public partial class ActivitiesView : ContentPage
 {
-    public ActivitiesViewViewModel ViewModel { get; set; } = new();
+    public ActivitiesViewViewModel ViewModel { get; set; }
     public ActivitiesView(DatabaseContext context)
     {
         InitializeComponent();
-        
+
+        ViewModel = new ActivitiesViewViewModel(Navigation);
+
         ViewModel.AllActivities = new ObservableCollection<Activity>(context.Activities
             .Where(a => a.StartDate >= DateTime.Now)
             .OrderBy(a => a.StartDate)
