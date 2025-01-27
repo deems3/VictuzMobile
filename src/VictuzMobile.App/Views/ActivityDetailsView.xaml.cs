@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using VictuzMobile.App.ViewModels;
 using VictuzMobile.DatabaseConfig;
 
@@ -7,7 +8,7 @@ public partial class ActivityDetailsView : ContentPage
 {
 	ActivityDetailsViewModel ViewModel { get; set; }
 
-    public ActivityDetailsView(DatabaseContext? context, int id)
+    public ActivityDetailsView(DatabaseContext context, int id)
 	{
 		InitializeComponent();
 
@@ -15,6 +16,8 @@ public partial class ActivityDetailsView : ContentPage
 
         ViewModel.Activity = context.Activities
             .Where(a => a.Id == id)
+            .Include(a => a.Organiser)
+            .Include(a => a.Location)
             .FirstOrDefault();
 
         BindingContext = ViewModel;

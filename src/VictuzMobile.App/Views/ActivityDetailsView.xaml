@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:VictuzMobile.App.Views"
              x:Class="VictuzMobile.App.Views.ActivityDetailsView"
              Title=" ">
     
     <VerticalStackLayout>
         <Label x:Name="ActivityTitleLabel" Text="{Binding Activity.Name}"/>
-        <Image x:Name="ActivityImage" />
-        <Label x:Name="ActivityNameLabel" />
-        <Label x:Name="ActivityDescriptionLabel" />
-        <Label x:Name="ActivityOrganiserLabel" />
-        <Label x:Name="ActivityLocationLabel" />
-        <Label x:Name="ActivityMaxRegistrations" />
+        <Image x:Name="ActivityImage" Source="{Binding Activity.ImageURL}" />
+        <Label x:Name="ActivityNameLabel" Text="{Binding Activity.Name}" />
+        <Label x:Name="ActivityDescriptionLabel" Text="{Binding Activity.Description}" />
+        <Label x:Name="ActivityOrganiserLabel" Text="{Binding Activity.Organiser.DisplayName}" />
+        <Label x:Name="ActivityLocationLabel" Text="{Binding Activity.Location}"/>
+        <Label x:Name="ActivityMaxRegistrations" Text="{Binding Activity.MaxRegistration, StringFormat='Maximaal {0} deelnemers'}"/>
 
-        <Button x:Name="ManageActivityBtn" Text="Beheren" />
-        <Button x:Name="RegisterForActivityBtn" Text="Inschrijven" />
+        <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivityDetailsView}}, Path=BindingContext.NavigateToManagePageCommand}"/>
+        <Button x:Name="RegisterForActivityBtn" Text="Inschrijven" Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivityDetailsView}}, Path=BindingContext.RegisterForActivityCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
