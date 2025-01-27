@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using VictuzMobile.DatabaseConfig;
+﻿using VictuzMobile.DatabaseConfig;
 using VictuzMobile.DatabaseConfig.Models;
 
 namespace VictuzMobile.App.Services
