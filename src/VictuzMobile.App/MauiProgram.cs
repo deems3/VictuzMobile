@@ -2,10 +2,12 @@
 using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 using VictuzMobile.App.Helpers;
 using VictuzMobile.App.Services;
 using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
+
 
 namespace VictuzMobile.App
 {
@@ -16,6 +18,7 @@ namespace VictuzMobile.App
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseLocalNotification()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {

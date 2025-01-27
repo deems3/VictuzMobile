@@ -15,6 +15,7 @@
         <Label x:Name="ActivityMaxRegistrations" Text="{Binding Activity.MaxRegistration, StringFormat='Maximaal {0} deelnemers'}"/>
 
         <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivityDetailsView}}, Path=BindingContext.NavigateToManagePageCommand}"/>
-        <Button x:Name="RegisterForActivityBtn" Text="Inschrijven" Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivityDetailsView}}, Path=BindingContext.RegisterForActivityCommand}"/>
+        <Button x:Name="RegisterForActivityBtn" Text="Inschrijven" Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivityDetailsView}}, Path=BindingContext.RegisterForActivityCommand}" 
+                Clicked="RegisterForActivity_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>
