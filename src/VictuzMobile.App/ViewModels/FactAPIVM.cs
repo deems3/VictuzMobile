@@ -19,11 +19,11 @@ namespace VictuzMobile.App.ViewModels
                 var json = await response.Content.ReadAsStringAsync();
                 var fact = JsonConvert.DeserializeObject<Fact>(json);
 
-                return fact == null ? "Could not generate random fact" : fact.text;
+                return fact == null ? "Could not generate random fact, do you have internet access?" : fact.text;
             }
             catch (Exception) // bijvoorbeeld als er geen internet is
             {
-                return "Could not generate random fact";
+                return "No internet connection available: try again later !";
             }
         }
     }

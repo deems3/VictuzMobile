@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:VictuzMobile.App.Views"
              x:Class="VictuzMobile.App.Views.ActivitiesView"
              Title="ActivitiesView">
     <ScrollView>
@@ -51,10 +52,13 @@
                                     StrokeThickness="2">
                                 <Grid HeightRequest="100">
                                     <!-- Background Image -->
-                                    <Image Source="{Binding ImageURL}" 
-                                           Aspect="AspectFill"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="FillAndExpand" />
+                                    <ImageButton
+                                        Source="{Binding ImageURL}" 
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivitiesView}}, Path=BindingContext.NavigateToActivityCommand}"
+                                        CommandParameter="{Binding Id}" />
 
                                     <!-- Transparent Overlay -->
                                     <BoxView Color="#60000000"/>

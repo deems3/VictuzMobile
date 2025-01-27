@@ -1,18 +1,26 @@
 ﻿using Auth0.OidcClient;
+using Microsoft.Extensions.DependencyInjection;
 using VictuzMobile.App.Services;
 
 namespace VictuzMobile.App
 {
     public partial class App : Application
     {
+        IServiceProvider _serviceProvider;
+
         public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            var auth0Client = serviceProvider.GetRequiredService<Auth0Client>();
-            var authService = serviceProvider.GetRequiredService<AuthService>();
-            var mainTabbedPage = serviceProvider.GetRequiredService<MainTabbedPage>();
-            MainPage = new NavigationPage(new MainPage(auth0Client, authService, mainTabbedPage));
+            _serviceProvider = serviceProvider;
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var auth0Client = _serviceProvider.GetRequiredService<Auth0Client>();
+            var authService = _serviceProvider.GetRequiredService<AuthService>();
+            var mainTabbedPage = _serviceProvider.GetRequiredService<MainTabbedPage>();
+            return new Window(new NavigationPage(new MainPage(auth0Client, authService, mainTabbedPage)));
         }
     }
 }
