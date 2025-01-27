@@ -9,5 +9,12 @@
         public string Province { get; set; } = null!;
         public string City { get; set; } = null!;
         public string Country { get; set; } = null!;
+        public string? CustomText { get; set; } = null;
+
+        override public string ToString()
+        {
+            return $"{Street} {Housenumber}, {PostalCode} {City}, {Province}, {Country}, {CustomText}";
+        }
     }
+
 }
