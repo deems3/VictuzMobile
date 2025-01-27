@@ -1,3 +1,5 @@
+using DatabaseConfig.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using VictuzMobile.App.ViewModels;
 using VictuzMobile.DatabaseConfig;
@@ -17,6 +19,12 @@ public partial class ActivitiesView : ContentPage
         ViewModel.AllActivities = new ObservableCollection<Activity>(context.Activities
             .Where(a => a.StartDate >= DateTime.Now)
             .OrderBy(a => a.StartDate)
+            .ToList());
+
+        ViewModel.Suggestions = new ObservableCollection<Suggestion>(context.Suggestions
+            .Where(s => s.StartDate >= DateTime.Now)
+            .OrderBy(s => s.StartDate)
+            .Include(s => s.LikedByUsers)
             .ToList());
 
         BindingContext = ViewModel;

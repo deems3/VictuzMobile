@@ -1,4 +1,6 @@
-﻿namespace VictuzMobile.DatabaseConfig.Models
+﻿using DatabaseConfig.Models;
+
+namespace VictuzMobile.DatabaseConfig.Models
 {
     public class User
     {
@@ -12,6 +14,7 @@
         public ICollection<Registration> Registrations { get; set; } = [];
         public bool Limited { get; set; }
         public UserRole Role { get; set; } = UserRole.User;
+        public ICollection<Suggestion> LikedSuggestions { get; set; } = new List<Suggestion>();
     }
 
     public enum UserRole

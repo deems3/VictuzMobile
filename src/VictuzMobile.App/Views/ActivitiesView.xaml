@@ -94,11 +94,74 @@
                          MaximumWidthRequest="25"
                          Clicked="SuggestionActivityFilterButton_Clicked"/>
 
-            <Label
-                Grid.Row="5"
-                Grid.Column="0"
-                Text="Toon hier alle suggestieve activiteiten"
-                FontSize="Medium"/>
+            <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                <CollectionView x:Name="SuggestionsCollectionView" 
+                    ItemsSource="{Binding Suggestions}"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" 
+                             VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="#0F8390" StrokeThickness="2">
+                                <Grid HeightRequest="150">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="50"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ImageButton
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Source="{Binding ImageURL}" 
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"/>
+
+                                    <BoxView Color="#60000000" 
+                                             Grid.ColumnSpan="3"
+                                             Grid.Row="0" 
+                                             Grid.Column="0"/>
+
+                                    <Label Text="{Binding Name}"
+                                           Grid.Row="0" 
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="3"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="24"
+                                           TextColor="White"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" />
+
+                                    <ImageButton Source="like_icon.svg" 
+                                                 WidthRequest="50" 
+                                                 HorizontalOptions="End" 
+                                                 Grid.Row="1" Grid.Column="1"
+                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivitiesView}}, Path=BindingContext.LikeSuggestionCommand}"
+                                                 CommandParameter="{Binding Id}" 
+                                                 />
+                                    <Label Grid.Row="1" 
+                                           Grid.Column="0" 
+                                           HorizontalOptions="End" 
+                                           VerticalOptions="Center" 
+                                           Text="{Binding LikedByUsers.Count}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </Grid>
 
     </ScrollView>
