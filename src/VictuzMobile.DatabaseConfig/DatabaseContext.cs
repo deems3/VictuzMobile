@@ -57,6 +57,23 @@ namespace VictuzMobile.DatabaseConfig
                 new Activity { Id = 3, CategoryId = 3, Name = "Kleien", Description = "Klei je eigen technische tool", LocationId = 1, StartDate = DateTime.Parse("03-05-2025"), EndDate = DateTime.Parse("03-05-2025"), OrganiserId = 3, MaxRegistrations = 10, ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg" }
             );
 
+            // Manually define relationship with the Users table
+            modelBuilder.Entity<Suggestion>()
+                 .HasOne(s => s.Organiser)
+                 .WithMany()
+                 .HasForeignKey(s => s.OrganiserId);
+
+            // Explicitly define many to many relationship
+            modelBuilder.Entity<Suggestion>()
+                .HasMany(s => s.LikedByUsers)
+                .WithMany(u => u.LikedSuggestions)
+                .UsingEntity(j => j.ToTable("SuggestionLikes"));
+
+            modelBuilder.Entity<Suggestion>().HasData(
+                new Suggestion { Id = 1, CategoryId = 3, Name = "Cybersecurity", Description = "Leer hoe jij je eigen netwerk kunt beveiligen", LocationId = 1, StartDate = DateTime.Parse("01-03-2025"), EndDate = DateTime.Parse("01-03-2025"), OrganiserId = 2, MaxRegistrations = 10, ImageURL = "cybersecurity.jpg" },
+                new Suggestion { Id = 2, CategoryId = 4 , Name = "Robots programmeren", Description = "Programmeer je eigen robot", LocationId = 1, StartDate = DateTime.Parse("03-03-2025"), EndDate = DateTime.Parse("03-03-2025"), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "robot_suggestion.jpg" }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
     }

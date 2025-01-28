@@ -41,7 +41,7 @@ namespace VictuzMobile.App
 
         private async void OpenDbBrowser(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DatabaseBrowserPage(DatabaseHelpers.GetDatabasePath("mobile-app-casus.db")));
+            await Navigation.PushAsync(new DatabaseBrowserPage(DatabaseHelpers.GetDatabasePath("mobile_app_casus.db")));
         }
 
         private void TestButton_Clicked(object sender, EventArgs e)
