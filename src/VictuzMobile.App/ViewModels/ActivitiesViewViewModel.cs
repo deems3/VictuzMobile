@@ -38,7 +38,7 @@ namespace VictuzMobile.App.ViewModels
 
         private async void NavigateToActivity(int id)
         {
-            await _navigation.PushAsync(new ActivityDetailsView(_context, id));
+            await _navigation.PushAsync(new ActivityDetailsView(id));
         }
 
         private async void LikeSuggestion(int id)
