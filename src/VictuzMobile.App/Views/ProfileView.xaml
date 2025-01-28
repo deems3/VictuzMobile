@@ -7,7 +7,7 @@
     
     
     <VerticalStackLayout>
-        <toolkit:AvatarView 
+		<toolkit:AvatarView
             Text="PFP"
             HorizontalOptions="Center"
             VerticalOptions="Start"
@@ -20,6 +20,16 @@
             CornerRadius="1000"
             ImageSource="placeholderpfp.png"
             />
+        
+        <Button
+            x:Name="QRButton"
+            Clicked="QRButton_Clicked"
+            Text="qr"
+            HorizontalOptions="Center"
+            WidthRequest="300"
+            CornerRadius="20"
+            Margin="0,20,0,5"/>
+        
         <Entry
             Placeholder="Voornaam"
             Margin="0,50,0,0"

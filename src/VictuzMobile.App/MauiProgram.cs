@@ -6,6 +6,7 @@ using VictuzMobile.App.Helpers;
 using VictuzMobile.App.Services;
 using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
+using ZXing.Net.Maui.Controls;
 
 namespace VictuzMobile.App
 {
@@ -17,6 +18,7 @@ namespace VictuzMobile.App
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
