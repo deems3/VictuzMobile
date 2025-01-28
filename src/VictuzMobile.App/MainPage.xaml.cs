@@ -11,8 +11,8 @@ namespace VictuzMobile.App
         private readonly AuthService authService;
         private readonly MainTabbedPage mainTabbedPage;
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
 
         public MainPage(Auth0Client client, AuthService authenticationService, MainTabbedPage page)
         {
@@ -20,8 +20,10 @@ namespace VictuzMobile.App
             auth0Client = client;
             authService = authenticationService;
             mainTabbedPage = page;
-            SecureStorageService.ClearCurrentUserId();
+            //SecureStorageService.ClearCurrentUserId();
             BindingContext = this;
+
+            CheckAuthenticationStatus();
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -59,9 +61,19 @@ namespace VictuzMobile.App
                 return;
             }
 
-            await SecureStorageService.StoreUserId(user.Id);
+            await SecureStorageService.StoreUser(user.Id);
 
             Application.Current.MainPage = mainTabbedPage;
+        }
+
+        private async void CheckAuthenticationStatus()
+        {
+            bool isAuthenticated = await SecureStorageService.GetAuthenticationStatus();
+
+            if (isAuthenticated)
+            {
+                Application.Current.MainPage = mainTabbedPage;
+            }
         }
     }
 
