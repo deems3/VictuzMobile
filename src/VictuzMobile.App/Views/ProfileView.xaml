@@ -5,5 +5,6 @@
              Title="ProfileView">
     <Grid>
         <Label Text="Profile page" />
+        <Button x:Name="LogoutBtn" Text="Log out" Clicked="LogoutBtn_Clicked" BackgroundColor="Red"/>
     </Grid>
 </ContentPage>
