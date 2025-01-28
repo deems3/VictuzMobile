@@ -21,4 +21,8 @@ public partial class ProfileView : ContentPage
 
         InitializeComponent();
     }
+    private void OnDeletion_Clicked(object sender, EventArgs e)
+    {
+       DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
+    }
 }

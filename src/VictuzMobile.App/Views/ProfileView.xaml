@@ -57,16 +57,17 @@
         
         <Button 
             HorizontalOptions="Center"
-            WidthRequest="300"
+            WidthRequest="225"
             CornerRadius="20"
             Margin="0,5,0,5"
             Text="Wachtwoord resetten"
             />
         
         <Button 
+            Clicked="OnDeletion_Clicked"
             HorizontalOptions="Center"
             BackgroundColor="#FF6B6B"
-            WidthRequest="300"
+            WidthRequest="225"
             CornerRadius="20"
             Margin="0,5,0,5"
             Text="Account verwijderen"
