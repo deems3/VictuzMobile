@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VictuzMobile.DatabaseConfig;
 
@@ -10,9 +11,11 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250128083806_updatePendingMigrationsFix")]
+    partial class updatePendingMigrationsFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -69,13 +72,13 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             Id = 1,
                             CategoryId = 3,
                             Description = "Leer hoe jij je eigen netwerk kunt beveiligen",
-                            EndDate = new DateTime(2025, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "cybersecurity.jpg",
                             LocationId = 1,
                             MaxRegistrations = 10,
                             Name = "Cybersecurity",
                             OrganiserId = 2,
-                            StartDate = new DateTime(2025, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
