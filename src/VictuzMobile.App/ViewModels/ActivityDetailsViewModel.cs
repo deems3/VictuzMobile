@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VictuzMobile.App.Services;
 using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
 using VictuzMobile.DatabaseConfig.Models;
@@ -31,6 +32,7 @@ namespace VictuzMobile.App.ViewModels
                 .Where(a => a.Id == id)
                 .Include(a => a.Organiser)
                 .Include(a => a.Location)
+                .Include(a => a.Registration)
                 .FirstOrDefault();
         }
 
@@ -45,6 +47,21 @@ namespace VictuzMobile.App.ViewModels
             //  if not, register for activity.
             //  if yes, unregister for activity.
             // send back result to user by pop-up message.
+            var userId = await SecureStorageService.GetCurrentUserId();
+            if (Activity == null || userId == null)
+            {
+                return;
+            }
+
+            foreach (var registration in Activity?.Registration)
+            {
+                if (registration.UserId == userId)
+                {
+                    _context?.Registrations.Remove(registration);
+                    await _context.SaveChangesAsync();
+                    return;
+                }
+            }
         }
     }
 }
