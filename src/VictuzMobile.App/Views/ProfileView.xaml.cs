@@ -1,4 +1,6 @@
 using CommunityToolkit.Maui.Views;
+using Auth0.OidcClient;
+using VictuzMobile.App.Services;
 
 namespace VictuzMobile.App.Views;
 
@@ -21,8 +23,19 @@ public partial class ProfileView : ContentPage
 
         InitializeComponent();
     }
+    
     private void OnDeletion_Clicked(object sender, EventArgs e)
     {
        DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
+    }
+    
+    private void LogoutBtn_Clicked(object sender, EventArgs e)
+    {
+        var auth0Client = IPlatformApplication.Current?.Services.GetRequiredService<Auth0Client>();
+        var authService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
+        var mainTabbedPage = IPlatformApplication.Current?.Services.GetRequiredService<MainTabbedPage>();
+
+        SecureStorageService.ClearCurrentUser();
+		    Window.Page = new MainPage(auth0Client, authService, mainTabbedPage);
     }
 }
