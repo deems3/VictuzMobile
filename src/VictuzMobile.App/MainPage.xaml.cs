@@ -48,7 +48,7 @@ namespace VictuzMobile.App
 
         private void TestButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = mainTabbedPage;
+            Window.Page = mainTabbedPage;
         }
 
         private async void LoginUsernamePassword(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace VictuzMobile.App
 
             await SecureStorageService.StoreUser(user.Id);
 
-            Application.Current.MainPage = mainTabbedPage;
+            Window.Page = mainTabbedPage;
         }
 
         private async void CheckAuthenticationStatus()
@@ -72,7 +72,7 @@ namespace VictuzMobile.App
 
             if (isAuthenticated)
             {
-                Application.Current.MainPage = mainTabbedPage;
+                Window.Page = mainTabbedPage;
             }
         }
     }
