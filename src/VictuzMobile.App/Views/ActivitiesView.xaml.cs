@@ -1,9 +1,5 @@
-using DatabaseConfig.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.ObjectModel;
 using VictuzMobile.App.ViewModels;
 using VictuzMobile.DatabaseConfig;
-using VictuzMobile.DatabaseConfig.Models;
 
 namespace VictuzMobile.App.Views;
 

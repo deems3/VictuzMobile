@@ -4,7 +4,7 @@ namespace VictuzMobile.App.Views;
 
 public partial class ManageActivityView : ContentPage
 {
-	ManageActivityViewModel ViewModel { get; set; }
+	public ManageActivityViewModel ViewModel { get; set; }
 
 	private int activityId;
 
@@ -14,7 +14,7 @@ public partial class ManageActivityView : ContentPage
 
 		InitializeComponent();
 
-		ViewModel = new(Navigation, id);
+		ViewModel = new ManageActivityViewModel(Navigation, id);
         BindingContext = ViewModel;
     }
 }

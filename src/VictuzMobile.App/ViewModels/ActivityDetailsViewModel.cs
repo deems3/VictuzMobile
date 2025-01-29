@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Maui.Alerts;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ namespace VictuzMobile.App.ViewModels
         public ICommand NavigateToManagePageCommand { get; }
         public ICommand RegisterForActivityCommand { get; }
         public ICommand CreateNewLocationCommand { get; }
+        public ICommand SaveActivityCommand { get; }
         public Activity? Activity { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -59,6 +61,7 @@ namespace VictuzMobile.App.ViewModels
             NavigateToManagePageCommand = new Command<int>(NavigateToManagePage);
             RegisterForActivityCommand = new Command(RegisterForActivity);
             CreateNewLocationCommand = new Command(CreateNewLocation);
+            SaveActivityCommand = new Command(SaveActivity);
 
             activityId = id;
 
@@ -130,6 +133,21 @@ namespace VictuzMobile.App.ViewModels
             // show modal page to create a new location
             // not implemented for now.
             await Application.Current.MainPage.DisplayAlert("ERROR", "This functionality is currently not implemented.", "OK");
+        }
+
+        private async void SaveActivity()
+        {
+            if (_context == null || Activity == null)
+            {
+                return;
+            }
+
+            _context.Activities.Update(Activity);
+            await _context.SaveChangesAsync();
+
+            var toast = Toast.Make("Activity saved successfully.", textSize:20);
+            await toast.Show();
+            await _navigation.PopModalAsync();
         }
 
         public void OnPropertyChanged(string propertyName)

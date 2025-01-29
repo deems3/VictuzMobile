@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Maui.Alerts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,11 @@ using VictuzMobile.DatabaseConfig;
 
 namespace VictuzMobile.App.ViewModels
 {
-    class ManageActivityViewModel
+    public class ManageActivityViewModel
     {
-        public ICommand EditActivityCommand;
-        public ICommand RegistrationListCommand;
-        public ICommand SendMessageCommand;
+        public ICommand EditActivityCommand { get; }
+        public ICommand RegistrationListCommand { get; }
+        public ICommand SendMessageCommand { get; }
 
         private int activityId;
 
@@ -34,19 +35,25 @@ namespace VictuzMobile.App.ViewModels
         private async void EditActivity()
         {
             // navigate back to the activity details page with edit mode enabled
-            await _navigation.PushAsync(new ActivityDetailsView(activityId, true));
+            await _navigation.PushModalAsync(new ActivityDetailsView(activityId, true));
         }
 
         private async void RegistrationList()
         {
             // retrieve registrations from database
             // open modalpage with registrations
+
+            await _navigation.PushModalAsync(new RegistrationsView(activityId));
         }
 
         private async void SendMessage()
         {
             // open a prompt to send a message
             // send message to all registered users by push notification (only for current user since this is a demo)
+
+            string message = await Application.Current.MainPage.DisplayPromptAsync("Verstuur bericht", "Vul hier je bericht in.");
+
+            await Application.Current.MainPage.DisplayAlert("Bericht van organisator:", message, "OK");
         }
     }
 }

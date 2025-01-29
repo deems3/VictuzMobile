@@ -27,10 +27,10 @@ public partial class ActivityDetailsView : ContentPage
 
         SetButtonsFormat();
 
-        //if (editmode)
-        //{
-        //    EnableEditMode();
-        //}
+        if (editmode)
+        {
+            EnableEditMode();
+        }
     }
 
     private async void SetButtonsFormat()
@@ -76,23 +76,27 @@ public partial class ActivityDetailsView : ContentPage
         }
     }
 
-    //private void EnableEditMode()
-    //{
-    //    ActivityTitleLabel.IsVisible = false;
-    //    ActivityTitleEntry.IsVisible = true;
+    private void EnableEditMode()
+    {
+        ActivityNameLabel.Text = "Activiteit naam";
+        ActivityNameEntry.IsVisible = true;
 
-    //    ActivityNameLabel.IsVisible = false;
-    //    ActivityNameEntry.IsVisible = true;
+        ActivityDescriptionLabel.Text = "Beschrijving";
+        ActivityDescriptionEntry.IsVisible = true;
 
-    //    ActivityDescriptionLabel.IsVisible = false;
-    //    ActivityDescriptionEntry.IsVisible = true;
+        ActivityOrganiserLabel.IsVisible = false;
 
-    //    ActivityLocationLabel.IsVisible = false;
-    //    ActivityLocationPicker.IsVisible = true;
-    //    CreateNewLocationBtn.IsVisible = true;
+        ActivityLocationLabel.Text = "Locatie";
+        ActivityLocationPicker.IsVisible = true;
+        CreateNewLocationBtn.IsVisible = true;
 
-    //    ActivityMaxRegistrations.IsVisible = false;
-    //    ActivityMaxRegistrationsEntry.IsVisible = true;
+        ActivityMaxRegistrations.Text = "Max deelnemers";
+        ActivityMaxRegistrationsEntry.IsVisible = true;
 
-    //}
+        ManageActivityBtn.IsVisible = false;
+        SaveActivityBtn.IsVisible = true;
+
+        RegisterForActivityBtn.IsVisible = false;
+
+    }
 }
