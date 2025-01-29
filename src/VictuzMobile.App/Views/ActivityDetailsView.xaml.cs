@@ -9,11 +9,15 @@ namespace VictuzMobile.App.Views;
 public partial class ActivityDetailsView : ContentPage
 {
     private readonly AuthService? AuthService;
+    private readonly DatabaseContext? DatabaseContext;
+    private readonly int activityId;
     ActivityDetailsViewModel ViewModel { get; set; }
 
     public ActivityDetailsView(int id)
 	{
         AuthService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
+        DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
+        activityId = id;
 
         InitializeComponent();
 
@@ -21,10 +25,10 @@ public partial class ActivityDetailsView : ContentPage
 
         BindingContext = ViewModel;
 
-        SetButtonsVisibility();
+        SetButtonsFormat();
     }
 
-    private async void SetButtonsVisibility()
+    private async void SetButtonsFormat()
     {
         int? userId = await SecureStorageService.GetCurrentUserId();
         User? user = AuthService?.GetUser((int)userId);
@@ -51,6 +55,19 @@ public partial class ActivityDetailsView : ContentPage
         {
             ManageActivityBtn.IsVisible = true;
             ManageActivityBtn.IsEnabled = true;
+        }
+
+        if (DatabaseContext is not null)
+        {
+            int registered = await DatabaseContext.Registrations
+                .Where(r => r.ActivityId == activityId && r.UserId == userId)
+                .CountAsync();
+
+            if (registered > 0)
+            {
+                ViewModel.RegisterBtnText = "Uitschrijven";
+                ViewModel.RegisterBtnColor = Colors.Red;
+            }
         }
     }
 }
