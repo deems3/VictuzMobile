@@ -4,7 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="VictuzMobile.App.Views.ProfileView"
              Title="Jouw profiel">
-
+  
     <ScrollView>
         <VerticalStackLayout>
             <toolkit:AvatarView 
@@ -21,6 +21,16 @@
                 ImageSource="placeholderpfp.png"
             />
             
+            <Button
+              x:Name="QRButton"
+              Clicked="QRButton_Clicked"
+              ImageSource="qr_code_icon"
+              HorizontalOptions="Center"
+              CornerRadius="20"
+              WidthRequest="80"
+              Margin="0,20,0,0"
+            />
+          
             <Entry
                 Placeholder="Voornaam"
                 Margin="0,50,0,0"

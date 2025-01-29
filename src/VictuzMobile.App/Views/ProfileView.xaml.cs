@@ -38,4 +38,9 @@ public partial class ProfileView : ContentPage
         SecureStorageService.ClearCurrentUser();
 		    Window.Page = new MainPage(auth0Client, authService, mainTabbedPage);
     }
+
+    private async void QRButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ProfileQRView());
+    }
 }
