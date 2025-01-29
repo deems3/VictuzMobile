@@ -11,8 +11,8 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250127190026_SaveMigration")]
-    partial class SaveMigration
+    [Migration("20250129173417_initialSetup")]
+    partial class initialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
 
-            modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.Activity", b =>
+            modelBuilder.Entity("DatabaseConfig.Models.Suggestion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,9 +33,94 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageURL")
                         .IsRequired()
-                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MaxRegistrations")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OrganiserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("OrganiserId");
+
+                    b.ToTable("Suggestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 3,
+                            Description = "Leer hoe jij je eigen netwerk kunt beveiligen",
+                            EndDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageURL = "cybersecurity.jpg",
+                            LocationId = 1,
+                            MaxRegistrations = 10,
+                            Name = "Cybersecurity",
+                            OrganiserId = 2,
+                            StartDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 4,
+                            Description = "Programmeer je eigen robot",
+                            EndDate = new DateTime(2026, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageURL = "robot_suggestion.jpg",
+                            LocationId = 1,
+                            MaxRegistrations = 6,
+                            Name = "Robots programmeren",
+                            OrganiserId = 1,
+                            StartDate = new DateTime(2026, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("SuggestionUser", b =>
+                {
+                    b.Property<int>("LikedByUsersId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LikedSuggestionsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LikedByUsersId", "LikedSuggestionsId");
+
+                    b.HasIndex("LikedSuggestionsId");
+
+                    b.ToTable("SuggestionLikes", (string)null);
+                });
+
+            modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EndDate")
@@ -71,49 +156,45 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.ToTable("Activities");
 
-                    b.HasDiscriminator().HasValue("Activity");
-
-                    b.UseTphMappingStrategy();
-
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CategoryId = 1,
                             Description = "Kom voetballen",
-                            EndDate = new DateTime(2025, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg",
                             LocationId = 1,
                             MaxRegistrations = 22,
                             Name = "Voetbal Toernooi",
                             OrganiserId = 2,
-                            StartDate = new DateTime(2025, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
                             Description = "Leer hoe jij je eigen AI kunt maken",
-                            EndDate = new DateTime(2025, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg",
                             LocationId = 1,
                             MaxRegistrations = 6,
                             Name = "Omgaan met AI",
                             OrganiserId = 1,
-                            StartDate = new DateTime(2025, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 3,
                             Description = "Klei je eigen technische tool",
-                            EndDate = new DateTime(2025, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg",
                             LocationId = 1,
                             MaxRegistrations = 10,
                             Name = "Kleien",
                             OrganiserId = 3,
-                            StartDate = new DateTime(2025, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -213,12 +294,20 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.Property<int>("ActivityId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("SuggestionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
+
+                    b.HasIndex("SuggestionId");
 
                     b.HasIndex("UserId");
 
@@ -256,16 +345,11 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.Property<int>("StudentNumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SuggestionId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SuggestionId");
 
                     b.ToTable("Users");
 
@@ -346,9 +430,44 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
             modelBuilder.Entity("DatabaseConfig.Models.Suggestion", b =>
                 {
-                    b.HasBaseType("VictuzMobile.DatabaseConfig.Models.Activity");
+                    b.HasOne("VictuzMobile.DatabaseConfig.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasDiscriminator().HasValue("Suggestion");
+                    b.HasOne("VictuzMobile.DatabaseConfig.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VictuzMobile.DatabaseConfig.Models.User", "Organiser")
+                        .WithMany()
+                        .HasForeignKey("OrganiserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Organiser");
+                });
+
+            modelBuilder.Entity("SuggestionUser", b =>
+                {
+                    b.HasOne("VictuzMobile.DatabaseConfig.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("LikedByUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseConfig.Models.Suggestion", null)
+                        .WithMany()
+                        .HasForeignKey("LikedSuggestionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.Activity", b =>
@@ -386,6 +505,10 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DatabaseConfig.Models.Suggestion", null)
+                        .WithMany("Registration")
+                        .HasForeignKey("SuggestionId");
+
                     b.HasOne("VictuzMobile.DatabaseConfig.Models.User", "User")
                         .WithMany("Registrations")
                         .HasForeignKey("UserId")
@@ -397,11 +520,9 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.User", b =>
+            modelBuilder.Entity("DatabaseConfig.Models.Suggestion", b =>
                 {
-                    b.HasOne("DatabaseConfig.Models.Suggestion", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("SuggestionId");
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.Activity", b =>
@@ -412,11 +533,6 @@ namespace VictuzMobile.DatabaseConfig.Migrations
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.User", b =>
                 {
                     b.Navigation("Registrations");
-                });
-
-            modelBuilder.Entity("DatabaseConfig.Models.Suggestion", b =>
-                {
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }
