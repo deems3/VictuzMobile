@@ -17,5 +17,5 @@ Add-Migration <name>
 ```
 3.1 If you get an error stating that you have multiple versions of EntityFramework installed enter the following instead:
 ```powershell
-EntityFrameworkCoore\Add-Migration <name>
+EntityFrameworkCore\Add-Migration <name>
 ```
