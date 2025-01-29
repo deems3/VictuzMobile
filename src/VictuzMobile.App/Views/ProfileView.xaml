@@ -4,83 +4,85 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="VictuzMobile.App.Views.ProfileView"
              Title="Jouw profiel">
-    
-    
-    <VerticalStackLayout>
-        <toolkit:AvatarView 
-            Text="PFP"
-            HorizontalOptions="Center"
-            VerticalOptions="Start"
-            HeightRequest="300"
-            WidthRequest="300"
-            Margin="0,5,0,0"
-            BackgroundColor="Black"
-            BorderColor="#D6B17D"
-            BorderWidth="7"
-            CornerRadius="1000"
-            ImageSource="placeholderpfp.png"
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <toolkit:AvatarView 
+                Text="PFP"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="300"
+                WidthRequest="300"
+                Margin="0,5,0,0"
+                BackgroundColor="Black"
+                BorderColor="#D6B17D"
+                BorderWidth="7"
+                CornerRadius="1000"
+                ImageSource="placeholderpfp.png"
             />
-        <Entry
-            Placeholder="Voornaam"
-            Margin="0,50,0,0"
-            HorizontalOptions="Center"
-            WidthRequest="300"
-            HorizontalTextAlignment="Start"
-            TextColor="Black"
+            
+            <Entry
+                Placeholder="Voornaam"
+                Margin="0,50,0,0"
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                HorizontalTextAlignment="Start"
+                TextColor="Black"
             />
 
-        <Entry
-            Placeholder="Achternaam"
-            Margin="0,10,0,0"
-            HorizontalOptions="Center"
-            WidthRequest="300"
-            HorizontalTextAlignment="Start"
-            TextColor="Black"
+            <Entry
+                Placeholder="Achternaam"
+                Margin="0,10,0,0"
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                HorizontalTextAlignment="Start"
+                TextColor="Black"
             />
 
-        <Entry
-            Placeholder="E-mail adres"
-            Margin="0,10,0,0"
-            HorizontalOptions="Center"
-            WidthRequest="300"
-            HorizontalTextAlignment="Start"
-            TextColor="Black"
+            <Entry
+                Placeholder="E-mail adres"
+                Margin="0,10,0,0"
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                HorizontalTextAlignment="Start"
+                TextColor="Black"
             />
 
-        <Button 
-            HorizontalOptions="Center"
-            WidthRequest="300"
-            CornerRadius="20"
-            Margin="0,40,0,5"
-            Text="Bekijk voorgestelde activiteiten"
-            />
-        
-        <Button 
-            HorizontalOptions="Center"
-            WidthRequest="225"
-            CornerRadius="20"
-            Margin="0,5,0,5"
-            Text="Wachtwoord resetten"
-            />
-        
-        <Button 
-            Clicked="OnDeletion_Clicked"
-            HorizontalOptions="Center"
-            BackgroundColor="#FF6B6B"
-            WidthRequest="225"
-            CornerRadius="20"
-            Margin="0,5,0,5"
-            Text="Account verwijderen"
-            />
-        <Button 
-            Clicked="LogoutBtn_Clicked"
-            HorizontalOptions="Center"
-            BackgroundColor="#FF6B6B"
-            WidthRequest="225"
-            CornerRadius="20"
-            Margin="0,5,0,5"
-            Text="Uitloggen"
+            <Button 
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                CornerRadius="20"
+                Margin="0,40,0,5"
+                Text="Bekijk voorgestelde activiteiten"
             />
 
-    </VerticalStackLayout>
+            <Button 
+                HorizontalOptions="Center"
+                WidthRequest="225"
+                CornerRadius="20"
+                Margin="0,5,0,5"
+                Text="Wachtwoord resetten"
+            />
+
+            <Button 
+                Clicked="OnDeletion_Clicked"
+                HorizontalOptions="Center"
+                BackgroundColor="#FF6B6B"
+                WidthRequest="225"
+                CornerRadius="20"
+                Margin="0,5,0,5"
+                Text="Account verwijderen"
+            />
+            <Button 
+                Clicked="LogoutBtn_Clicked"
+                HorizontalOptions="Center"
+                BackgroundColor="#FF6B6B"
+                WidthRequest="225"
+                CornerRadius="20"
+                Margin="0,5,0,5"
+                Text="Uitloggen"
+            />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

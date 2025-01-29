@@ -13,7 +13,7 @@ public partial class ActivityDetailsView : ContentPage
     private readonly int activityId;
     ActivityDetailsViewModel ViewModel { get; set; }
 
-    public ActivityDetailsView(int id)
+    public ActivityDetailsView(int id, bool editmode=false)
 	{
         AuthService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
         DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
@@ -21,11 +21,16 @@ public partial class ActivityDetailsView : ContentPage
 
         InitializeComponent();
 
-		ViewModel = new(Navigation, id);
+		ViewModel = new(Navigation, id, editmode);
 
         BindingContext = ViewModel;
 
         SetButtonsFormat();
+
+        if (editmode)
+        {
+            EnableEditMode();
+        }
     }
 
     private async void SetButtonsFormat()
@@ -69,5 +74,29 @@ public partial class ActivityDetailsView : ContentPage
                 ViewModel.RegisterBtnColor = Colors.Red;
             }
         }
+    }
+
+    private void EnableEditMode()
+    {
+        ActivityNameLabel.Text = "Activiteit naam";
+        ActivityNameEntry.IsVisible = true;
+
+        ActivityDescriptionLabel.Text = "Beschrijving";
+        ActivityDescriptionEntry.IsVisible = true;
+
+        ActivityOrganiserLabel.IsVisible = false;
+
+        ActivityLocationLabel.Text = "Locatie";
+        ActivityLocationPicker.IsVisible = true;
+        CreateNewLocationBtn.IsVisible = true;
+
+        ActivityMaxRegistrations.Text = "Max deelnemers";
+        ActivityMaxRegistrationsEntry.IsVisible = true;
+
+        ManageActivityBtn.IsVisible = false;
+        SaveActivityBtn.IsVisible = true;
+
+        RegisterForActivityBtn.IsVisible = false;
+
     }
 }
