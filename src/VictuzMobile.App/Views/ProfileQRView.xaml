@@ -12,6 +12,7 @@
             HorizontalOptions="Center" />
         
         <zxing:BarcodeGeneratorView
+            x:Name="QrCodeGenerator"
             Format="QrCode"
             Value="username"
             HeightRequest="200"
