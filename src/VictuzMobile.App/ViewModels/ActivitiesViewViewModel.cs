@@ -1,5 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.Content;
+using AndroidX.Lifecycle;
+using CommunityToolkit.Mvvm.ComponentModel;
 using DatabaseConfig.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,8 +19,10 @@ namespace VictuzMobile.App.ViewModels
 {
     public partial class ActivitiesViewViewModel : ObservableObject
     {
-        public ObservableCollection<Activity> AllActivities { get; set; } = [];
-
+        [ObservableProperty]
+        public ObservableCollection<Activity> allActivities = [];
+        [ObservableProperty]
+        public ObservableCollection<Activity> registeredActivities = [];
         [ObservableProperty]
         public ObservableCollection<Suggestion> suggestions = [];
 
@@ -34,11 +39,13 @@ namespace VictuzMobile.App.ViewModels
             LikeSuggestionCommand = new Command<int>(LikeSuggestion);
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
+
+            PopulateCollections();
         }
 
         private async void NavigateToActivity(int id)
         {
-            await _navigation.PushAsync(new ActivityDetailsView(_context, id));
+            await _navigation.PushAsync(new ActivityDetailsView(id));
         }
 
         private async void LikeSuggestion(int id)
@@ -76,6 +83,28 @@ namespace VictuzMobile.App.ViewModels
             // Update the suggestion in place to trigger a re-render of the collection
             var index = Suggestions.IndexOf(suggestionToLike);
             Suggestions[index] = suggestionToLike;
+        }
+
+        private async void PopulateCollections()
+        {
+            int? userId = await SecureStorageService.GetCurrentUserId();
+
+            RegisteredActivities = new ObservableCollection<Activity>(await _context.Activities
+                .Include(a => a.Registration)
+                .Where(a => a.StartDate >= DateTime.Now && a.Registration.Any(r => r.UserId == userId))
+                .OrderBy(a => a.StartDate)
+                .ToListAsync());
+
+            AllActivities = new ObservableCollection<Activity>(await _context.Activities
+                .Where(a => a.StartDate >= DateTime.Now)
+                .OrderBy(a => a.StartDate)
+                .ToListAsync());
+
+            Suggestions = new ObservableCollection<Suggestion>(await _context.Suggestions
+                .Where(s => s.StartDate >= DateTime.Now)
+                .OrderBy(s => s.StartDate)
+                .Include(s => s.LikedByUsers)
+                .ToListAsync());
         }
     }
 }

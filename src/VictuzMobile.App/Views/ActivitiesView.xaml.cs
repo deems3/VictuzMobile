@@ -16,17 +16,6 @@ public partial class ActivitiesView : ContentPage
 
         ViewModel = new ActivitiesViewViewModel(Navigation);
 
-        ViewModel.AllActivities = new ObservableCollection<Activity>(context.Activities
-            .Where(a => a.StartDate >= DateTime.Now)
-            .OrderBy(a => a.StartDate)
-            .ToList());
-
-        ViewModel.Suggestions = new ObservableCollection<Suggestion>(context.Suggestions
-            .Where(s => s.StartDate >= DateTime.Now)
-            .OrderBy(s => s.StartDate)
-            .Include(s => s.LikedByUsers)
-            .ToList());
-
         BindingContext = ViewModel;
     }
 
