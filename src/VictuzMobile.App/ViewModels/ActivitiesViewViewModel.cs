@@ -83,7 +83,7 @@ namespace VictuzMobile.App.ViewModels
             Suggestions[index] = suggestionToLike;
         }
 
-        private async void PopulateCollections()
+        public async Task PopulateCollections()
         {
             int? userId = await SecureStorageService.GetCurrentUserId();
 
@@ -102,6 +102,17 @@ namespace VictuzMobile.App.ViewModels
                 .Where(s => s.StartDate >= DateTime.Now)
                 .OrderBy(s => s.StartDate)
                 .Include(s => s.LikedByUsers)
+                .ToListAsync());
+        }
+
+        public async Task PopulateRegisteredActivities()
+        {
+            int? userId = await SecureStorageService.GetCurrentUserId();
+
+            RegisteredActivities = new ObservableCollection<Activity>(await _context.Activities
+                .Include(a => a.Registration)
+                .Where(a => a.StartDate >= DateTime.Now && a.Registration.Any(r => r.UserId == userId))
+                .OrderBy(a => a.StartDate)
                 .ToListAsync());
         }
     }

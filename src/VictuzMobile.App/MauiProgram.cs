@@ -35,12 +35,12 @@ namespace VictuzMobile.App
 #endif
             builder.Services.AddScoped<AuthService>();
 
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<MainPageView>();
-            builder.Services.AddSingleton<ProfileView>();
-            builder.Services.AddSingleton<SettingsView>();
-            builder.Services.AddSingleton<ActivitiesView>();
-            builder.Services.AddSingleton<MainTabbedPage>();
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainPageView>();
+            builder.Services.AddTransient<ProfileView>();
+            builder.Services.AddTransient<SettingsView>();
+            builder.Services.AddTransient<ActivitiesView>();
+            builder.Services.AddTransient<MainTabbedPage>();
 
             builder.Services.AddSingleton(new Auth0Client(new()
             {
