@@ -8,5 +8,7 @@
 
         public int ActivityId { get; set; }
         public Activity Activity { get; set; } = null!;
+
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
     }
 }

@@ -3,18 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:VictuzMobile.App.Views"
              x:Class="VictuzMobile.App.Views.ActivityDetailsView"
-             Title=" ">
+             Title="">
     
     <VerticalStackLayout>
         <Label x:Name="ActivityTitleLabel" Text="{Binding Activity.Name}"/>
-        <Image x:Name="ActivityImage" Source="{Binding Activity.ImageURL}" />
-        <Label x:Name="ActivityNameLabel" Text="{Binding Activity.Name}" />
-        <Label x:Name="ActivityDescriptionLabel" Text="{Binding Activity.Description}" />
-        <Label x:Name="ActivityOrganiserLabel" Text="{Binding Activity.Organiser.DisplayName}" />
-        <Label x:Name="ActivityLocationLabel" Text="{Binding Activity.Location}"/>
-        <Label x:Name="ActivityMaxRegistrations" Text="{Binding Activity.MaxRegistration, StringFormat='Maximaal {0} deelnemers'}"/>
 
-        <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding NavigateToManagePageCommand}"/>
+        <Image x:Name="ActivityImage" Source="{Binding Activity.ImageURL}" />
+        
+        <Label x:Name="ActivityNameLabel" Text="{Binding Activity.Name}" />
+        <Entry x:Name="ActivityNameEntry" Text="{Binding Activity.Name}" IsVisible="False"/>
+
+        <Label x:Name="ActivityDescriptionLabel" Text="{Binding Activity.Description}" />
+        <Entry x:Name="ActivityDescriptionEntry" Text="{Binding Activity.Description}" IsVisible="False" />
+
+        <Label x:Name="ActivityOrganiserLabel" Text="{Binding Activity.Organiser.DisplayName}" />
+        
+        <Label x:Name="ActivityLocationLabel" Text="{Binding Activity.Location}"/>
+        <Picker x:Name="ActivityLocationPicker" Title="Locatie" ItemsSource="{Binding ActivityLocations}" IsVisible="False" />
+        <Button x:Name="CreateNewLocationBtn" Text="Nieuwe locatie" Command="{Binding CreateNewLocationCommand}" IsVisible="False" />
+
+        <Label x:Name="ActivityMaxRegistrations" Text="{Binding Activity.MaxRegistrations, StringFormat='Maximaal {0} deelnemers'}"/>
+        <Entry x:Name="ActivityMaxRegistrationsEntry" Keyboard="Numeric" Text="{Binding Activity.MaxRegistrations}" IsVisible="False" />
+
+        <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding NavigateToManagePageCommand}" CommandParameter="{Binding Activity.Id}"/>
         <Button x:Name="RegisterForActivityBtn" Text="{Binding RegisterBtnText}" Command="{Binding RegisterForActivityCommand}" BackgroundColor="{Binding RegisterBtnColor}"/>
+        <Button x:Name="SaveActivityBtn" Text="Save" Command="{Binding SaveActivityCommand}" IsVisible="False"/>
     </VerticalStackLayout>
 </ContentPage>

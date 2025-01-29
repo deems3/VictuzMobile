@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VictuzMobile.App.Views.RegistrationsView"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout Margin="5">
+        <ScrollView>
+            
+            <CollectionView ItemsSource="{Binding Registrations}">
+                
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Border Stroke="Black" StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10,10,10,10" />
+                                </Border.StrokeShape>
+                                
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding User.DisplayName}" />
+                                    <Label Text="{Binding RegistrationDate, StringFormat='Geregistreerd: {0}'}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
+        </ScrollView>
+
+        <Button x:Name="CloseBtn" Text="Close" Clicked="CloseBtn_Clicked" Margin="5"/>
+    </VerticalStackLayout>
+</ContentPage>
