@@ -18,6 +18,8 @@
                          MaximumWidthRequest="25"
                          Clicked="YourActivityFilterButton_Clicked"/>
 
+            <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
+
             <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
                 <CollectionView
                     ItemsSource="{Binding RegisteredActivities}"

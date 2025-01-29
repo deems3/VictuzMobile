@@ -25,7 +25,7 @@
         <Label x:Name="ActivityMaxRegistrations" Text="{Binding Activity.MaxRegistrations, StringFormat='Maximaal {0} deelnemers'}"/>
         <Entry x:Name="ActivityMaxRegistrationsEntry" Keyboard="Numeric" Text="{Binding Activity.MaxRegistrations}" IsVisible="False" />
 
-        <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding NavigateToManagePageCommand}" CommandParameter="{Binding Activity.Id}"/>
+        <Button x:Name="ManageActivityBtn" Text="Beheren" Command="{Binding NavigateToManagePageCommand}" CommandParameter="{Binding Activity.Id}" IsVisible="False"/>
         <Button x:Name="RegisterForActivityBtn" Text="{Binding RegisterBtnText}" Command="{Binding RegisterForActivityCommand}" BackgroundColor="{Binding RegisterBtnColor}"/>
         <Button x:Name="SaveActivityBtn" Text="Save" Command="{Binding SaveActivityCommand}" IsVisible="False"/>
     </VerticalStackLayout>

@@ -20,7 +20,6 @@ namespace VictuzMobile.App
             auth0Client = client;
             authService = authenticationService;
             mainTabbedPage = page;
-            //SecureStorageService.ClearCurrentUserId();
             BindingContext = this;
 
             CheckAuthenticationStatus();

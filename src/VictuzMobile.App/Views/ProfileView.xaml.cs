@@ -24,9 +24,14 @@ public partial class ProfileView : ContentPage
         InitializeComponent();
     }
     
-    private void OnDeletion_Clicked(object sender, EventArgs e)
+    private async void OnDeletion_Clicked(object sender, EventArgs e)
     {
-       DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
+       bool confirm = await DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
+
+       if (confirm)
+        {
+            await DisplayAlert("ERROR", "Functionality not implemented yet", "OK");
+        }
     }
     
     private void LogoutBtn_Clicked(object sender, EventArgs e)
@@ -36,7 +41,9 @@ public partial class ProfileView : ContentPage
         var mainTabbedPage = IPlatformApplication.Current?.Services.GetRequiredService<MainTabbedPage>();
 
         SecureStorageService.ClearCurrentUser();
-		    Window.Page = new MainPage(auth0Client, authService, mainTabbedPage);
+
+        Navigation.PopToRootAsync();
+        Window.Page = new MainPage(auth0Client, authService, mainTabbedPage);
     }
 
     private async void QRButton_Clicked(object sender, EventArgs e)
