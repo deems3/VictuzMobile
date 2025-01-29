@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using VictuzMobile.App.Services;
 
 namespace VictuzMobile.App.ViewModels
@@ -17,10 +12,16 @@ namespace VictuzMobile.App.ViewModels
             get => _IsDarkModeEnabled;
             set
             {
-                _IsDarkModeEnabled = _IsAutomaticThemeEnabled ? false : value; // always disable dark mode if automatic theme is enabled otherwise set the value
-                OnPropertyChanged();
+                if (IsAutomaticThemeEnabled) // when automatic theme is enabled, dark mode is always disabled.
+                {
+                    _IsDarkModeEnabled = false;
+                } else
+                {
+                    _IsDarkModeEnabled = value;
+                    Application.Current.UserAppTheme = _IsDarkModeEnabled ? AppTheme.Dark : AppTheme.Light;
+                }
 
-                Application.Current.UserAppTheme = _IsDarkModeEnabled ? AppTheme.Dark : AppTheme.Light;
+                OnPropertyChanged();
                 Task.Run(() => SecureStorageService.SetDarkMode(_IsDarkModeEnabled)); // Save the state to secure storage in a background thread so it can still be run async.
             }
         }
@@ -33,13 +34,13 @@ namespace VictuzMobile.App.ViewModels
                 _IsAutomaticThemeEnabled = value;
                 OnPropertyChanged();
 
-                if (_IsAutomaticThemeEnabled) // If automatic theme is enabled, disable dark mode
+                if (_IsAutomaticThemeEnabled && _IsDarkModeEnabled) // If automatic theme is enabled, disable dark mode
                 {
                     IsDarkModeEnabled = false;
                 }
 
                 // if automatic theme is enabled, set the theme to unspecified otherwise light, since dark mode is always disabled while automatic theme is enabled
-                Application.Current.UserAppTheme = _IsAutomaticThemeEnabled ? AppTheme.Unspecified: AppTheme.Light;
+                Application.Current.UserAppTheme = _IsAutomaticThemeEnabled ? AppTheme.Unspecified : AppTheme.Light;
 
                 Task.Run(() => SecureStorageService.SetAutomaticThemeMode(_IsAutomaticThemeEnabled));
             }
@@ -55,8 +56,8 @@ namespace VictuzMobile.App.ViewModels
 
         private async void GetStates()
         {
-            IsDarkModeEnabled = await SecureStorageService.GetDarkMode();
             IsAutomaticThemeEnabled = await SecureStorageService.GetAutomaticThemeMode();
+            IsDarkModeEnabled = await SecureStorageService.GetDarkMode();
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
