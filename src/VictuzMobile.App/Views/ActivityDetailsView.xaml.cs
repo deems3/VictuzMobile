@@ -13,7 +13,7 @@ public partial class ActivityDetailsView : ContentPage
     private readonly int activityId;
     ActivityDetailsViewModel ViewModel { get; set; }
 
-    public ActivityDetailsView(int id)
+    public ActivityDetailsView(int id, bool editmode=false)
 	{
         AuthService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
         DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
@@ -21,11 +21,16 @@ public partial class ActivityDetailsView : ContentPage
 
         InitializeComponent();
 
-		ViewModel = new(Navigation, id);
+		ViewModel = new(Navigation, id, editmode);
 
         BindingContext = ViewModel;
 
         SetButtonsFormat();
+
+        //if (editmode)
+        //{
+        //    EnableEditMode();
+        //}
     }
 
     private async void SetButtonsFormat()
@@ -70,4 +75,24 @@ public partial class ActivityDetailsView : ContentPage
             }
         }
     }
+
+    //private void EnableEditMode()
+    //{
+    //    ActivityTitleLabel.IsVisible = false;
+    //    ActivityTitleEntry.IsVisible = true;
+
+    //    ActivityNameLabel.IsVisible = false;
+    //    ActivityNameEntry.IsVisible = true;
+
+    //    ActivityDescriptionLabel.IsVisible = false;
+    //    ActivityDescriptionEntry.IsVisible = true;
+
+    //    ActivityLocationLabel.IsVisible = false;
+    //    ActivityLocationPicker.IsVisible = true;
+    //    CreateNewLocationBtn.IsVisible = true;
+
+    //    ActivityMaxRegistrations.IsVisible = false;
+    //    ActivityMaxRegistrationsEntry.IsVisible = true;
+
+    //}
 }

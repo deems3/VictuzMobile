@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VictuzMobile.DatabaseConfig;
 
@@ -10,9 +11,11 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250129124548_updateDates")]
+    partial class updateDates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -61,7 +64,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("OrganiserId");
 
-                    b.ToTable("Suggestions", (string)null);
+                    b.ToTable("Suggestions");
 
                     b.HasData(
                         new
@@ -151,7 +154,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("OrganiserId");
 
-                    b.ToTable("Activities", (string)null);
+                    b.ToTable("Activities");
 
                     b.HasData(
                         new
@@ -207,7 +210,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -267,7 +270,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Locations");
 
                     b.HasData(
                         new
@@ -305,7 +308,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Registrations", (string)null);
+                    b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.User", b =>
@@ -345,7 +348,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new

@@ -1,6 +1,4 @@
-﻿using Android.Content;
-using AndroidX.Lifecycle;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
 using System;

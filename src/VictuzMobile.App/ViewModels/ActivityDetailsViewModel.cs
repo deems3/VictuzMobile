@@ -1,11 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using VictuzMobile.App.Services;
 using VictuzMobile.App.Views;
@@ -18,6 +13,7 @@ namespace VictuzMobile.App.ViewModels
     {
         public ICommand NavigateToManagePageCommand { get; }
         public ICommand RegisterForActivityCommand { get; }
+        public ICommand CreateNewLocationCommand { get; }
         public Activity? Activity { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -35,7 +31,7 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
-        public Color RegisterBtnColor
+        public Color? RegisterBtnColor
         {
             get
             {
@@ -48,25 +44,37 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
+        public IList<DatabaseConfig.Models.Location> ActivityLocations { get; set; } // not observable at the moment.
+
         private DatabaseContext? _context;
         private readonly INavigation _navigation;
         private string _RegisterBtnText = "Inschrijven";
         private Color? _RegisterBtnColor = (Color?)Application.Current?.Resources["YellowBlue"];
+        private int activityId;
 
-        public ActivityDetailsViewModel(INavigation navigation, int id)
+        public ActivityDetailsViewModel(INavigation navigation, int id, bool _editmode=false)
         {
             _context = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
             _navigation = navigation;
             NavigateToManagePageCommand = new Command<int>(NavigateToManagePage);
             RegisterForActivityCommand = new Command(RegisterForActivity);
+            CreateNewLocationCommand = new Command(CreateNewLocation);
 
+            activityId = id;
 
-            Activity = _context?.Activities
-                .Where(a => a.Id == id)
+            GetActivityDetails();
+        }
+
+        private async void GetActivityDetails()
+        {
+            Activity = await _context.Activities
+                .Where(a => a.Id == activityId)
                 .Include(a => a.Organiser)
                 .Include(a => a.Location)
                 .Include(a => a.Registration)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
+
+            ActivityLocations = await _context.Locations.ToListAsync();
         }
 
         private async void NavigateToManagePage(int id)
@@ -82,39 +90,46 @@ namespace VictuzMobile.App.ViewModels
             // send back result to user by pop-up message
 
             var userId = await SecureStorageService.GetCurrentUserId();
-            if (Activity == null || userId == null)
+            if (Activity == null || userId == null || _context == null)
             {
                 return;
             }
 
-            foreach (var registration in Activity?.Registration)
+            var registration = await _context.Registrations
+                .FirstOrDefaultAsync(r => r.ActivityId == Activity.Id && r.UserId == userId);
+
+            if (registration != null)
             {
-                if (registration.UserId == userId)
-                {
-                    _context?.Registrations.Remove(registration);
-                    await _context.SaveChangesAsync();
+                _context.Registrations.Remove(registration);
+                await _context.SaveChangesAsync();
 
-                    RegisterBtnText = "Inschrijven";
-                    RegisterBtnColor = (Color?)Application.Current?.Resources["YellowBlue"];
+                RegisterBtnText = "Inschrijven";
+                RegisterBtnColor = (Color?)Application.Current?.Resources["YellowBlue"];
 
-                    // Couldn't find a way to display an alert without using the obsolete Application.Current.Mainpage method. Only other way was to create an entire new service.
-                    await Application.Current.MainPage.DisplayAlert("Success", "You have unregistered for this activity.", "OK");
-                    return;
-                }
+                await Application.Current.MainPage.DisplayAlert("Success", "You have unregistered for this activity.", "OK");
             }
-
-            _context?.Registrations.Add(new Registration()
+            else
             {
-                UserId = (int)userId,
-                ActivityId = Activity.Id
-            });
+                _context.Registrations.Add(new Registration()
+                {
+                    UserId = (int)userId,
+                    ActivityId = Activity.Id
+                });
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-            RegisterBtnText = "Uitschrijven";
-            RegisterBtnColor = Colors.Red;
+                RegisterBtnText = "Uitschrijven";
+                RegisterBtnColor = Colors.Red;
 
-            await Application.Current.MainPage.DisplayAlert("Success", "You have successfully registered for this activity.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Success", "You have successfully registered for this activity.", "OK");
+            }
+        }
+
+        private async void CreateNewLocation()
+        {
+            // show modal page to create a new location
+            // not implemented for now.
+            await Application.Current.MainPage.DisplayAlert("ERROR", "This functionality is currently not implemented.", "OK");
         }
 
         public void OnPropertyChanged(string propertyName)
