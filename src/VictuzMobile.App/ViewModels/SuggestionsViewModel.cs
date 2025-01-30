@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -23,6 +24,8 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
+        public List<DatabaseConfig.Models.Location> SuggestionLocations { get; set; } = [];
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand SaveSuggestionCommand { get; }
@@ -30,6 +33,7 @@ namespace VictuzMobile.App.ViewModels
         public ICommand CreateNewLocationCommand { get; }
         public ICommand LikeSuggestionCommand { get; }
         public ICommand RefreshSuggestionCommand { get; }
+        public ICommand CreateSuggestionCommand { get; }
 
         private readonly DatabaseContext? DatabaseContext;
         private readonly INavigation _navigation;
@@ -50,6 +54,17 @@ namespace VictuzMobile.App.ViewModels
             RefreshSuggestionCommand = new Command(RefreshSuggestion);
 
             GetSuggestion();
+        }
+
+        public SuggestionsViewModel(INavigation navigation)
+        {
+            DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
+            _navigation = navigation;
+
+            CreateSuggestionCommand = new Command(async () => await CreateSuggestion());
+            CreateNewLocationCommand = new Command(CreateNewLocation);
+
+            CreateEmptySuggestion();
         }
 
         private async void GetSuggestion()
@@ -77,6 +92,8 @@ namespace VictuzMobile.App.ViewModels
             }
 
             Suggestion = suggestion;
+
+            await RetrieveLocations();
         }
 
         private async void SaveSuggestion()
@@ -152,6 +169,7 @@ namespace VictuzMobile.App.ViewModels
                 DatabaseContext.Suggestions.Update(Suggestion);
                 await DatabaseContext.SaveChangesAsync();
                 await toast.Show();
+                OnPropertyChanged(nameof(Suggestion));
                 return;
             }
 
@@ -162,6 +180,65 @@ namespace VictuzMobile.App.ViewModels
         private void RefreshSuggestion()
         {
             OnPropertyChanged(nameof(Suggestion));
+        }
+
+        private async void CreateEmptySuggestion()
+        {
+            var userId = await SecureStorageService.GetCurrentUserId();
+
+            if (userId == null)
+            {
+                var toast = Toast.Make("Failed to create new suggestion (no userid)", textSize: 20);
+                await toast.Show();
+                return;
+            }
+
+            Suggestion = new Suggestion()
+            {
+                Name = "New suggestion",
+                Description = "Description",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                MaxRegistrations = 10,
+                OrganiserId = (int)userId,
+                LocationId = 1,
+                CategoryId = 1,
+                ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg"
+            };
+
+            await RetrieveLocations();
+        }
+
+        private async Task CreateSuggestion()
+        {
+            if (DatabaseContext == null || Suggestion == null)
+            {
+                var toast = Toast.Make("Failed to retrieve database or suggestion", textSize: 20);
+                await toast.Show();
+                return;
+            }
+
+            try
+            {
+                await DatabaseContext.Suggestions.AddAsync(Suggestion);
+                await DatabaseContext.SaveChangesAsync();
+            }
+            catch (Exception ex) {}
+
+            await Application.Current.MainPage.DisplayAlert("ERROR", "Creating suggestions is not functional at the moment", "OK");
+            await _navigation.PopAsync();
+        }
+
+        private async Task RetrieveLocations()
+        {
+            if (DatabaseContext == null)
+            {
+                var toast = Toast.Make("Failed to retrieve database for locations", textSize: 20);
+                await toast.Show();
+                return;
+            }
+
+            SuggestionLocations = new(await DatabaseContext.Locations.ToListAsync());
         }
 
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

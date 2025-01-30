@@ -40,7 +40,7 @@ namespace VictuzMobile.App.ViewModels
             NavigateToActivityCommand = new Command<int>(NavigateToActivity);
             NavigateToSuggestionCommand = new Command<int>(NavigateToSuggestion);
             LikeSuggestionCommand = new Command<int>(LikeSuggestion);
-            AddNewSuggestionCommand = new Command(NavigateToNewSuggestion);
+            AddNewSuggestionCommand = new Command(async () => await NavigateToNewSuggestion());
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
 
@@ -129,10 +129,12 @@ namespace VictuzMobile.App.ViewModels
                 .ToListAsync());
         }
 
-        private async void NavigateToNewSuggestion()
+        private async Task NavigateToNewSuggestion()
         {
-            var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
-            await toast.Show();
+            //var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
+            //await toast.Show();
+
+            await _navigation.PushAsync(new SuggestionView()); // Navigate to the SuggestionView without an id to create a new suggestion
         }
     }
 }

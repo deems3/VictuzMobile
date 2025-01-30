@@ -6,6 +6,8 @@
     <VerticalStackLayout>
         <Image x:Name="SuggestionImage" Source="{Binding Suggestion.ImageURL}" />
 
+        <Button x:Name="TakePictureBtn" Text="📷" HorizontalOptions="Center" CornerRadius="20" WidthRequest="60" IsVisible="False" Command="{Binding TakePictureCommand}" />
+
         <Label x:Name="SuggestionNameLabel" Text="{Binding Suggestion.Name}" />
         <Entry x:Name="SuggestionNameEntry" Text="{Binding Suggestion.Name}" IsVisible="False"/>
 
@@ -36,5 +38,6 @@
         <Button x:Name="EditSuggestionBtn" Text="Edit" Command="{Binding EditSuggestionCommand}" IsVisible="False"/>
         <Button x:Name="SaveSuggestionBtn" Text="Save" Command="{Binding SaveSuggestionCommand}" IsVisible="False"/>
         <Button x:Name="RefreshSuggestionBtn" Text="Refresh" Command="{Binding RefreshSuggestionCommand}" IsVisible="False"/>
+        <Button x:Name="CreateSuggestionBtn" Text="Create" Command="{Binding CreateSuggestionCommand}" IsVisible="False"/>
     </VerticalStackLayout>
 </ContentPage>
