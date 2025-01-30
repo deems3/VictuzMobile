@@ -18,8 +18,7 @@ public partial class ActivityQRScanView : ContentPage
 
     private void cameraBarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
     {
-        {
-            var first = e.Results?.FirstOrDefault();
+        var first = e.Results?.FirstOrDefault();
 
             if (first is null)
                 return;
