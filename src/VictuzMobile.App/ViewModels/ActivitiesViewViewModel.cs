@@ -44,7 +44,10 @@ namespace VictuzMobile.App.ViewModels
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
 
-            PopulateCollections();
+            Task.Run(async () =>
+            {
+                await PopulateCollections();
+            });
         }
 
         private async void NavigateToActivity(int id)
@@ -109,7 +112,7 @@ namespace VictuzMobile.App.ViewModels
                 .ToListAsync());
 
             Suggestions = new ObservableCollection<Suggestion>(await _context.Suggestions
-                .Where(s => s.StartDate >= DateTime.Now)
+                .Where(s => s.StartDate.Date >= DateTime.Now.Date)
                 .OrderBy(s => s.StartDate)
                 .Include(s => s.LikedByUsers)
                 .ToListAsync());

@@ -63,7 +63,7 @@ namespace VictuzMobile.App
 
                 if (pendingMigrations.Any())
                 {
-                        db.Database.Migrate();
+                    db.Database.Migrate();
                 }
             }
 
