@@ -61,7 +61,7 @@
                         VerticalTextAlignment="Center"/>
                     <Switch
                         Grid.Column="1"
-                        IsToggled="false" />
+                        IsToggled="{Binding IsPushNotificationsEnabled}" />
                 </Grid>
             </Border>
 

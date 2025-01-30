@@ -1,3 +1,4 @@
+using Plugin.LocalNotification;
 using SQLiteBrowser;
 using VictuzMobile.App.Helpers;
 using VictuzMobile.App.ViewModels;

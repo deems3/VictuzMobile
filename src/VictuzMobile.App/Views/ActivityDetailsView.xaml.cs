@@ -3,6 +3,7 @@ using VictuzMobile.App.ViewModels;
 using VictuzMobile.DatabaseConfig;
 using VictuzMobile.App.Services;
 using VictuzMobile.DatabaseConfig.Models;
+using Plugin.LocalNotification;
 
 namespace VictuzMobile.App.Views;
 
@@ -97,6 +98,23 @@ public partial class ActivityDetailsView : ContentPage
         SaveActivityBtn.IsVisible = true;
 
         RegisterForActivityBtn.IsVisible = false;
+    }
 
+    private void OnRegisterClicked(object sender, EventArgs e)
+    {
+        var request = new NotificationRequest
+        {
+            NotificationId = 100,
+            Title = "Je bent ingeschreven.",
+            Subtitle = "Victuz",
+            Description = "Je hebt je succesvol ingeschreven voor een activiteit!",
+            BadgeNumber = 1,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddMicroseconds(1),
+                NotifyRepeatInterval = TimeSpan.FromDays(1),
+            }
+        };
+        LocalNotificationCenter.Current.Show(request);
     }
 }
