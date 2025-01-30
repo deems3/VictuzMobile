@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,6 +26,7 @@ namespace VictuzMobile.App.ViewModels
         public ObservableCollection<Suggestion> suggestions = [];
 
         public ICommand NavigateToActivityCommand { get; }
+        public ICommand NavigateToSuggestionCommand { get; }
         public ICommand LikeSuggestionCommand { get; }
         private readonly INavigation _navigation;
         private readonly DatabaseContext _context;
@@ -34,6 +36,7 @@ namespace VictuzMobile.App.ViewModels
         {
             _navigation = navigation;
             NavigateToActivityCommand = new Command<int>(NavigateToActivity);
+            NavigateToSuggestionCommand = new Command<int>(NavigateToSuggestion);
             LikeSuggestionCommand = new Command<int>(LikeSuggestion);
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
@@ -46,10 +49,14 @@ namespace VictuzMobile.App.ViewModels
             await _navigation.PushAsync(new ActivityDetailsView(id));
         }
 
+        private async void NavigateToSuggestion(int id)
+        {
+            await _navigation.PushAsync(new SuggestionView(id));
+        }
+
         private async void LikeSuggestion(int id)
         {
             var currentUserId = await SecureStorageService.GetCurrentUserId();
-
             if (currentUserId == null)
             {
                 return;
@@ -69,6 +76,7 @@ namespace VictuzMobile.App.ViewModels
             {
                 // Suggestion already liked, remove the like
                 suggestionToLike.LikedByUsers.Remove(user);
+
             }
             else
             {

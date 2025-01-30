@@ -137,14 +137,18 @@ namespace VictuzMobile.App.ViewModels
                 if (Suggestion.LikedByUsers.Any(u => u.Id == currentUserId))
                 {
                     Suggestion.LikedByUsers.Remove(user);
+                    toast = Toast.Make("Like removed", textSize: 20);
                 }
                 else
                 {
                     Suggestion.LikedByUsers.Add(user);
+                    toast = Toast.Make("Liked", textSize: 20);
                 }
 
                 DatabaseContext.Suggestions.Update(Suggestion);
                 await DatabaseContext.SaveChangesAsync();
+                await toast.Show();
+                OnPropertyChanged(nameof(Suggestion));
                 return;
             }
 
