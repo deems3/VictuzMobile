@@ -12,26 +12,20 @@
                    FontSize="Large"
                    TextDecorations="Underline"/>
 
-            <HorizontalStackLayout
-                Grid.Column="1"
-                HorizontalOptions="End"
-                Margin="0,0,5,0"
-                Spacing="5">
+            <ImageButton x:Name="YourActivityFilterButton"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         MaximumHeightRequest="25"
+                         MaximumWidthRequest="25"
+                         HorizontalOptions="End"
+                         Clicked="YourActivityFilterButton_Clicked">
+                <ImageButton.Source>
+                    <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                </ImageButton.Source>
+            </ImageButton>
 
-                <ImageButton x:Name="YourActivityFilterButton"
-                             MaximumHeightRequest="25"
-                             MaximumWidthRequest="25"
-                             Clicked="YourActivityFilterButton_Clicked">
-                    <ImageButton.Source>
-                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
-                    </ImageButton.Source>
-                </ImageButton>
-
-            </HorizontalStackLayout>
-
-            <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
-
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/> 
+            <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="RegisteredActivitiesSection" IsVisible="False">
                 <CollectionView
                     ItemsSource="{Binding RegisteredActivities}"
                     HorizontalOptions="FillAndExpand" 
@@ -81,23 +75,17 @@
                    FontSize="Large"
                    TextDecorations="Underline"/>
 
-            <HorizontalStackLayout
-                Grid.Column="1"
-                Grid.Row="2"
-                HorizontalOptions="End"
-                Margin="0,0,5,0"
-                Spacing="5">
-
-                <ImageButton x:Name="AllActivityFilterButton"
-                             MaximumHeightRequest="25"
-                             MaximumWidthRequest="25"
-                             Clicked="AllActivityFilterButton_Clicked">
-                    <ImageButton.Source>
-                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
-                    </ImageButton.Source>
-                </ImageButton>
-
-            </HorizontalStackLayout>
+            <ImageButton x:Name="AllActivityFilterButton"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         MaximumHeightRequest="25"
+                         MaximumWidthRequest="25"
+                         HorizontalOptions="End"
+                         Clicked="AllActivityFilterButton_Clicked">
+                <ImageButton.Source>
+                    <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                </ImageButton.Source>
+            </ImageButton>
 
             <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
                 <CollectionView x:Name="AllActivitiesCollectionView" 
@@ -173,7 +161,6 @@
                         <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
                     </ImageButton.Source>
                 </ImageButton>
-
             </HorizontalStackLayout>
 
 
