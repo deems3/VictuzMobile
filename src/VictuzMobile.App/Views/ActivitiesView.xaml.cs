@@ -13,7 +13,6 @@ public partial class ActivitiesView : ContentPage
         ViewModel = new ActivitiesViewViewModel(Navigation);
 
         BindingContext = ViewModel;
-
     }
 
     protected override async void OnAppearing()
@@ -21,7 +20,8 @@ public partial class ActivitiesView : ContentPage
         base.OnAppearing();
         await ViewModel.PopulateRegisteredActivities();
 
-        NoRegisteredActivitiesLabel.IsVisible = ViewModel.RegisteredActivities.Count == 0;
+        NoRegisteredActivitiesLabel.IsVisible = ViewModel.RegisteredActivities.Count > 0;
+        RegisteredActivitiesSection.IsVisible = ViewModel.RegisteredActivities.Count > 0;
     }
 
     private void YourActivityFilterButton_Clicked(object sender, EventArgs e)
