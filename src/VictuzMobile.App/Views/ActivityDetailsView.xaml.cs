@@ -98,6 +98,7 @@ public partial class ActivityDetailsView : ContentPage
         SaveActivityBtn.IsVisible = true;
 
         RegisterForActivityBtn.IsVisible = false;
+        ManageActivityBtn.IsVisible = false;
     }
 
     private void OnRegisterClicked(object sender, EventArgs e)
