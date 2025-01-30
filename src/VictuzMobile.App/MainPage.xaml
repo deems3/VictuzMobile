@@ -3,18 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VictuzMobile.App.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+    <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <Image
-                Source="victuz.png"
-                HeightRequest="250"
-                WidthRequest="250"/>
+        <!-- Grid for Events -->
+        <Grid>
+            <Image Source="victuz.png" HeightRequest="250" WidthRequest="250"/>
 
-            <StackLayout
-                x:Name="LoginView">
+            <StackLayout x:Name="LoginView">
                 <Button 
                     x:Name="LoginBtn"
                     Text="Log in or register with 0Auth"
@@ -22,59 +17,33 @@
                     Clicked="OnLoginClicked"/>
             </StackLayout>
 
-            <StackLayout
-                x:Name="HomeView"
-                IsVisible="false">
-            </StackLayout>
+            <StackLayout x:Name="HomeView" IsVisible="false"/>
+        </Grid>
 
-            <Grid 
-                ColumnDefinitions="*,Auto,*"
-                VerticalOptions="Center"
-                HorizontalOptions="Fill"
-                Margin="10">
+        <!-- Scrollable Messages Section -->
+        <ScrollView>
+            <VerticalStackLayout>
+                <Grid ColumnDefinitions="*,Auto,*" VerticalOptions="Center" HorizontalOptions="Fill" Margin="10">
+                    <BoxView Grid.Column="0" HeightRequest="1" VerticalOptions="Center" BackgroundColor="Gray" />
+                    <Label Grid.Column="1" Text="OR" FontSize="14" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" Margin="10,0"/>
+                    <BoxView Grid.Column="2" HeightRequest="1" VerticalOptions="Center" BackgroundColor="Gray" />
+                </Grid>
 
-                <BoxView 
-                    Grid.Column="0"
-                    HeightRequest="1"
-                    VerticalOptions="Center"
-                    BackgroundColor="Gray" />
+                <Entry IsPassword="False" Text="{Binding Username}" x:Name="UsernameInput" Placeholder="Username" />
+                <Entry IsPassword="True" Text="{Binding Password}" x:Name="PasswordInput" Placeholder="Password"/>
 
+                <Button x:Name="LoginButton" Text="Login" Clicked="LoginUsernamePassword"/>
+                <Button x:Name="TestButton" Text="Continue logged out" Clicked="TestButton_Clicked"/>
+                <Button x:Name="CounterBtn" Text="Open db browser" Clicked="OpenDbBrowser" HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+        </ScrollView>
 
-                <Label 
-                    Grid.Column="1"
-                    Text="OR"
-                    FontSize="14"
-                    TextColor="Gray"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Margin="10,0" /> 
-
-                <BoxView 
-                    Grid.Column="2"
-                    HeightRequest="1"
-                    VerticalOptions="Center"
-                    BackgroundColor="Gray" />
-            </Grid>
-
-            <Entry IsPassword="False" Text="{Binding Username}" x:Name="UsernameInput" Placeholder="Username" />
-            <Entry IsPassword="True" Text="{Binding Password}" x:Name="PasswordInput" Placeholder="Password"/>
-
-            <Button
-                x:Name="LoginButton"
-                Text="Login"
-                Clicked="LoginUsernamePassword"/>
-
-            <Button
-                x:Name="TestButton"
-                Text="Continue logged out"
-                Clicked="TestButton_Clicked"/>
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Open db browser" 
-                Clicked="OpenDbBrowser"
-                HorizontalOptions="Fill" />
+        <!-- Fun Fact Section at Bottom -->
+        <VerticalStackLayout>
+            <Label HorizontalOptions="Center" FontAttributes="Bold" Text="Random fun fact:"/>
+            <Label x:Name="FactLabel" FontAttributes="Italic" Text="{Binding Fact}" HorizontalOptions="Center"/>
         </VerticalStackLayout>
-    </ScrollView>
+
+    </VerticalStackLayout>
 
 </ContentPage>

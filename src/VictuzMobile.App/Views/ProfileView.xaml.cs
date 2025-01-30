@@ -50,4 +50,50 @@ public partial class ProfileView : ContentPage
     {
         await Navigation.PushAsync(new ProfileQRView());
     }
+    private void ToggleVoornaam(object sender, EventArgs e)
+    {
+        VoornaamLabel.IsVisible = !VoornaamLabel.IsVisible;
+        VoornaamEntry.IsVisible = !VoornaamEntry.IsVisible;
+
+        if (!VoornaamLabel.IsVisible)
+        {
+            VoornaamEntry.Text = VoornaamLabel.Text; // Vul entry met bestaande tekst
+        }
+        else
+        {
+            VoornaamLabel.Text = VoornaamEntry.Text; // Update label na edit
+        }
+    }
+
+    private void ToggleAchternaam(object sender, EventArgs e)
+    {
+        AchternaamLabel.IsVisible = !AchternaamLabel.IsVisible;
+        AchternaamEntry.IsVisible = !AchternaamEntry.IsVisible;
+
+        if (!AchternaamLabel.IsVisible)
+        {
+            AchternaamEntry.Text = AchternaamLabel.Text;
+        }
+        else
+        {
+            AchternaamLabel.Text = AchternaamEntry.Text;
+        }
+    }
+
+    private void ToggleEmail(object sender, EventArgs e)
+    {
+        EmailLabel.IsVisible = !EmailLabel.IsVisible;
+        EmailEntry.IsVisible = !EmailEntry.IsVisible;
+
+        if (!EmailLabel.IsVisible)
+        {
+            EmailEntry.Text = EmailLabel.Text;
+        }
+        else
+        {
+            EmailLabel.Text = EmailEntry.Text;
+        }
+    }
+
+
 }

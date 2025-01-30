@@ -6,7 +6,6 @@
              x:DataType="vm:MainPageViewModel">
 
     <Grid RowDefinitions="auto, auto, auto, *, auto" ColumnDefinitions="*">
-
         <!-- Activities in grid -->
         <Grid Grid.Row="0" RowDefinitions="auto, auto" ColumnDefinitions="*, *">
             <Border 
@@ -66,7 +65,7 @@
                        FontAttributes="Bold" 
                        Text="Titel medeling"/>
                 <Label FontSize="Small" 
-                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut arbeid en dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dit is een zeer pijnlijke beschuldiging van een voluptate velit esse cillum dolore eu fugiat nulla pariatur. De uitzondering is dat hij af en toe een niet-prodent is, maar schuldig is aan het verlaten van de taak."/>
+                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut arbeid en dolore magna aliqua."/>
             </VerticalStackLayout>
         </ScrollView>
 
@@ -77,13 +76,13 @@
             Grid.Row="3" 
             VerticalOptions="EndAndExpand" 
             Padding="0,10">
-            
+
             <Border 
             Grid.Row="1" 
             Stroke="#0F8390"
             StrokeThickness="1.5"
             Margin="15,5"/>
-            
+
             <Label 
                 HorizontalOptions="Center"
                 FontAttributes="Bold" 
@@ -95,7 +94,6 @@
                 Text="{Binding Fact}"
                 HorizontalOptions="Center"/>
         </VerticalStackLayout>
-
     </Grid>
 
 </ContentPage>
