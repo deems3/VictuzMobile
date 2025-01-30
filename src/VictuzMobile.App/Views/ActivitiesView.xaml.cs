@@ -38,4 +38,9 @@ public partial class ActivitiesView : ContentPage
     {
 
     }
+
+    private void QRScanBtn_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new ActivityQRScanView());
+    }
 }
