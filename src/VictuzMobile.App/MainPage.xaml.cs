@@ -9,17 +9,15 @@ namespace VictuzMobile.App
     {
         private readonly Auth0Client auth0Client;
         private readonly AuthService authService;
-        private readonly MainTabbedPage mainTabbedPage;
 
         public string? Username { get; set; }
         public string? Password { get; set; }
 
-        public MainPage(Auth0Client client, AuthService authenticationService, MainTabbedPage page)
+        public MainPage(Auth0Client client, AuthService authenticationService)
         {
             InitializeComponent();
             auth0Client = client;
             authService = authenticationService;
-            mainTabbedPage = page;
             BindingContext = this;
 
             CheckAuthenticationStatus();
@@ -40,16 +38,6 @@ namespace VictuzMobile.App
             }
         }
 
-        private async void OpenDbBrowser(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new DatabaseBrowserPage(DatabaseHelpers.GetDatabasePath("mobile_app_casus.db")));
-        }
-
-        private void TestButton_Clicked(object sender, EventArgs e)
-        {
-            Window.Page = mainTabbedPage;
-        }
-
         private async void LoginUsernamePassword(object sender, EventArgs e)
         {
             var user = authService.Authenticate(Username, Password);
@@ -62,7 +50,7 @@ namespace VictuzMobile.App
 
             await SecureStorageService.StoreUser(user.Id);
 
-            Window.Page = mainTabbedPage;
+            Window.Page = IPlatformApplication.Current.Services.GetRequiredService<MainTabbedPage>();
         }
 
         private async void CheckAuthenticationStatus()
@@ -71,7 +59,7 @@ namespace VictuzMobile.App
 
             if (isAuthenticated)
             {
-                Window.Page = mainTabbedPage;
+                Window.Page = IPlatformApplication.Current.Services.GetRequiredService<MainTabbedPage>();
             }
         }
     }

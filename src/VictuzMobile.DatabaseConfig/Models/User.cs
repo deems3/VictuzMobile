@@ -11,10 +11,11 @@ namespace VictuzMobile.DatabaseConfig.Models
         public string PhoneNumber { get; set; } = null!;
         public string DisplayName { get; set; } = null!;
         public int StudentNumber { get; set; }
+        public string? ProfileImage { get; set; } = null!;
         public ICollection<Registration> Registrations { get; set; } = [];
         public bool Limited { get; set; }
         public UserRole Role { get; set; } = UserRole.User;
-        public ICollection<Suggestion> LikedSuggestions { get; set; } = new List<Suggestion>();
+        public ICollection<Suggestion> LikedSuggestions { get; set; } = [];
     }
 
     public enum UserRole
