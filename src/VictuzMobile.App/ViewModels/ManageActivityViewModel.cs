@@ -15,6 +15,7 @@ namespace VictuzMobile.App.ViewModels
         public ICommand EditActivityCommand { get; }
         public ICommand RegistrationListCommand { get; }
         public ICommand SendMessageCommand { get; }
+        public ICommand ScanQRCodeCommand { get; }
 
         private int activityId;
 
@@ -27,6 +28,7 @@ namespace VictuzMobile.App.ViewModels
             EditActivityCommand = new Command(EditActivity);
             RegistrationListCommand = new Command(RegistrationList);
             SendMessageCommand = new Command(SendMessage);
+            ScanQRCodeCommand = new Command(ScanQRCode);
 
             DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
             _navigation = navigation;
@@ -54,6 +56,11 @@ namespace VictuzMobile.App.ViewModels
             string message = await Application.Current.MainPage.DisplayPromptAsync("Verstuur bericht", "Vul hier je bericht in.");
 
             await Application.Current.MainPage.DisplayAlert("Bericht van organisator:", message, "OK");
+        }
+
+        private async void ScanQRCode()
+        {
+            await _navigation.PushAsync(new ActivityQRScanView(activityId));
         }
     }
 }
