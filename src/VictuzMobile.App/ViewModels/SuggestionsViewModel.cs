@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using VictuzMobile.App.Services;
+using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
 
 namespace VictuzMobile.App.ViewModels
@@ -28,6 +29,7 @@ namespace VictuzMobile.App.ViewModels
         public ICommand EditSuggestionCommand { get; }
         public ICommand CreateNewLocationCommand { get; }
         public ICommand LikeSuggestionCommand { get; }
+        public ICommand RefreshSuggestionCommand { get; }
 
         private readonly DatabaseContext? DatabaseContext;
         private readonly INavigation _navigation;
@@ -45,6 +47,7 @@ namespace VictuzMobile.App.ViewModels
             EditSuggestionCommand = new Command(EditSuggestion);
             CreateNewLocationCommand = new Command(CreateNewLocation);
             LikeSuggestionCommand = new Command(LikeSuggestion);
+            RefreshSuggestionCommand = new Command(RefreshSuggestion);
 
             GetSuggestion();
         }
@@ -87,18 +90,19 @@ namespace VictuzMobile.App.ViewModels
 
             DatabaseContext.Suggestions.Update(Suggestion);
             await DatabaseContext.SaveChangesAsync();
+            await _navigation.PopModalAsync();
+            OnPropertyChanged(nameof(Suggestion));
         }
 
         private async void EditSuggestion()
         {
-            var toast = Toast.Make("Editing a suggestion is currenlty not implemented", textSize: 20);
-            await toast.Show();
+            await _navigation.PushModalAsync(new SuggestionView(suggestionId, editmode: true));
             return;
         }
 
         private async void CreateNewLocation()
         {
-            var toast = Toast.Make("Creating a new location is currenlty not implemented", textSize: 20);
+            var toast = Toast.Make("Creating a new location is currently not implemented", textSize: 20);
             await toast.Show();
             return;
         }
@@ -148,12 +152,16 @@ namespace VictuzMobile.App.ViewModels
                 DatabaseContext.Suggestions.Update(Suggestion);
                 await DatabaseContext.SaveChangesAsync();
                 await toast.Show();
-                OnPropertyChanged(nameof(Suggestion));
                 return;
             }
 
             toast = Toast.Make("Failed to retrieve user id", textSize: 20);
             await toast.Show();
+        }
+
+        private void RefreshSuggestion()
+        {
+            OnPropertyChanged(nameof(Suggestion));
         }
 
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

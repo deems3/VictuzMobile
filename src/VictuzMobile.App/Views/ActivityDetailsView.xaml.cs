@@ -36,7 +36,7 @@ public partial class ActivityDetailsView : ContentPage
     private async void SetButtonsFormat()
     {
         int? userId = await SecureStorageService.GetCurrentUserId();
-        User? user = AuthService?.GetUser((int)userId);
+        User? user = await AuthService?.GetUser((int)userId);
 
         if (userId is null || user is null)
         {

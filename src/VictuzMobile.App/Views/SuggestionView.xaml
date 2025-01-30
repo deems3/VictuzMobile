@@ -21,7 +21,7 @@
         <Label x:Name="SuggestionMaxRegistrations" Text="{Binding Suggestion.MaxRegistrations, StringFormat='Maximaal {0} deelnemers'}"/>
         <Entry x:Name="SuggestionMaxRegistrationsEntry" Keyboard="Numeric" Text="{Binding Suggestion.MaxRegistrations}" IsVisible="False" />
 
-        <HorizontalStackLayout>
+        <HorizontalStackLayout x:Name="LikeStackLayout">
             <ImageButton Source="like_icon.svg"
                          HeightRequest="50"
                          WidthRequest="50"
@@ -33,7 +33,8 @@
                    Text="{Binding Suggestion.LikedByUsers.Count, StringFormat='{0} likes'}" />
         </HorizontalStackLayout>
        
-        <Button x:Name="EditSuggestionBtn" Text="Edit" Command="{Binding EditSuggestionCommand}"/>
+        <Button x:Name="EditSuggestionBtn" Text="Edit" Command="{Binding EditSuggestionCommand}" IsVisible="False"/>
         <Button x:Name="SaveSuggestionBtn" Text="Save" Command="{Binding SaveSuggestionCommand}" IsVisible="False"/>
+        <Button x:Name="RefreshSuggestionBtn" Text="Refresh" Command="{Binding RefreshSuggestionCommand}" IsVisible="False"/>
     </VerticalStackLayout>
 </ContentPage>

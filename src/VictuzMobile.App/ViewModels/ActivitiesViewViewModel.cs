@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Core;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace VictuzMobile.App.ViewModels
         public ICommand NavigateToActivityCommand { get; }
         public ICommand NavigateToSuggestionCommand { get; }
         public ICommand LikeSuggestionCommand { get; }
+        public ICommand AddNewSuggestionCommand { get; }
         private readonly INavigation _navigation;
         private readonly DatabaseContext _context;
         private readonly AuthService _authenticationService;
@@ -38,6 +40,7 @@ namespace VictuzMobile.App.ViewModels
             NavigateToActivityCommand = new Command<int>(NavigateToActivity);
             NavigateToSuggestionCommand = new Command<int>(NavigateToSuggestion);
             LikeSuggestionCommand = new Command<int>(LikeSuggestion);
+            AddNewSuggestionCommand = new Command(NavigateToNewSuggestion);
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
 
@@ -62,13 +65,12 @@ namespace VictuzMobile.App.ViewModels
                 return;
             }
 
-            var user = _authenticationService.GetUser((int)currentUserId);
+            var user = await _authenticationService.GetUser((int)currentUserId);
 
             if (user == null)
             {
                 return;
             }
-
 
             var suggestionToLike = Suggestions.First(s => s.Id == id);
 
@@ -122,6 +124,12 @@ namespace VictuzMobile.App.ViewModels
                 .Where(a => a.StartDate >= DateTime.Now && a.Registration.Any(r => r.UserId == userId))
                 .OrderBy(a => a.StartDate)
                 .ToListAsync());
+        }
+
+        private async void NavigateToNewSuggestion()
+        {
+            var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
+            await toast.Show();
         }
     }
 }

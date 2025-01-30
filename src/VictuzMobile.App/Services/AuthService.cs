@@ -23,9 +23,9 @@ namespace VictuzMobile.App.Services
             return passwordVerified ? user : null;
         }
 
-        public User? GetUser(int id)
+        public async Task<User?> GetUser(int id)
         {
-            return context.Users.Find(id);
+            return await context.Users.FindAsync(id);
         }
     }
 }
