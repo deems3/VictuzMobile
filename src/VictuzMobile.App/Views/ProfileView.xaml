@@ -7,53 +7,48 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <toolkit:AvatarView 
-                Text="PFP"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                HeightRequest="250"
-                WidthRequest="250"
-                Margin="0,5,0,0"
-                BackgroundColor="Black"
-                BorderColor="#D6B17D"
-                BorderWidth="7"
-                CornerRadius="1000"
+            <toolkit:AvatarView
+                x:Name="ProfileImageView"
+                Text = "Default Profile"
+                BackgroundColor = "Black"
+                BorderColor = "#0F8390"
+                BorderWidth = "7"
+                CornerRadius = "1000"
+                HeightRequest = "200"
+                WidthRequest = "200"
                 ImageSource="placeholderpfp.png"
             />
 
             <Button
               x:Name="QRButton"
-              Clicked="QRButton_Clicked"
+              Command="{Binding ShowQRCommand}"
               ImageSource="qr_code_icon"
               HorizontalOptions="Center"
               CornerRadius="20"
-              WidthRequest="80"
+              WidthRequest="60"
               Margin="0,20,0,0"
             />
 
-            <Grid ColumnDefinitions="*,Auto" WidthRequest="300">
-                <Label x:Name="VoornaamLabel" Text="{Binding User.Username}" TextColor="Black" VerticalOptions="Center"/>
-                <Entry x:Name="VoornaamEntry" Placeholder="User naam" IsVisible="False" WidthRequest="200"/>
-                <Button Text=":pencil2:" Clicked="ToggleVoornaam" Grid.Column="1" HorizontalOptions="End"/>
+            <Grid ColumnDefinitions="auto, *, auto" WidthRequest="300">
+                <Label Text="Naam: " VerticalOptions="Center" Grid.Column="0" />
+                <Label x:Name="DisplayNameLabel" Text="{Binding User.DisplayName}" VerticalOptions="Center" Grid.Column="1"/>
+                <Entry x:Name="DisplayNameEntry" Text="{Binding User.DisplayName}" IsVisible="False" Grid.Column="1"/>
+                <Button x:Name="EditDisplayNameBtn" Text="🖊" Clicked="ToggleDisplayName" Grid.Column="2" HorizontalOptions="End"/>
+                <Button x:Name="SaveDisplayNameBtn" Text="💾" Clicked="ToggleDisplayName" Command="{Binding SaveUserChangesCommand}" Grid.Column="2" HorizontalOptions="End" IsVisible="False"/>
             </Grid>
 
-
-            <Grid ColumnDefinitions="*,Auto" WidthRequest="300">
-                <Label x:Name="AchternaamLabel" Text="{Binding User.DisplayName}" TextColor="Black" VerticalOptions="Center"/>
-                <Entry x:Name="AchternaamEntry" Placeholder="Display naam" IsVisible="False" WidthRequest="200"/>
-                <Button Text=":pencil2:" Clicked="ToggleAchternaam" Grid.Column="1" HorizontalOptions="End"/>
+            <Grid ColumnDefinitions="auto, *, auto" WidthRequest="300">
+                <Label Text="Email: " VerticalOptions="Center" Grid.Column="0"/>
+                <Label x:Name="EmailLabel" Text="{Binding User.Email}" VerticalOptions="Center" Grid.Column="1"/>
+                <Entry x:Name="EmailEntry" Text="{Binding User.Email}" IsVisible="False" Grid.Column="1"/>
+                <Button x:Name="EditEmailBtn" Text="🖊" Clicked="ToggleEmail" Grid.Column="2" HorizontalOptions="End"/>
+                <Button x:Name="SaveEmailBtn" Text="💾" Clicked="ToggleEmail" Command="{Binding SaveUserChangesCommand}" Grid.Column="2" HorizontalOptions="End" IsVisible="False"/>
             </Grid>
 
-            <Grid ColumnDefinitions="*,Auto" WidthRequest="300">
-                <Label x:Name="EmailLabel" Text="{Binding User.Email}" TextColor="Black" VerticalOptions="Center"/>
-                <Entry x:Name="EmailEntry" Placeholder="E-mail adres" IsVisible="False" WidthRequest="200"/>
-                <Button Text=":pencil2:" Clicked="ToggleEmail" Grid.Column="1" HorizontalOptions="End"/>
-            </Grid>
+            <Button Command="{Binding ShowOwnSuggestionsCommand}" HorizontalOptions="Center" WidthRequest="225" CornerRadius="20" Margin="0,40,0,5" Text="Bekijk eigen suggesties"/>
+            <Button Command="{Binding ResetPasswordCommand}" HorizontalOptions="Center" WidthRequest="225" CornerRadius="20" Margin="0,5,0,5" Text="Wachtwoord resetten"/>
 
-            <Button HorizontalOptions="Center" WidthRequest="300" CornerRadius="20" Margin="0,40,0,5" Text="Bekijk voorgestelde activiteiten"/>
-            <Button HorizontalOptions="Center" WidthRequest="225" CornerRadius="20" Margin="0,5,0,5" Text="Wachtwoord resetten"/>
-
-            <Button Clicked="OnDeletion_Clicked"
+            <Button Command="{Binding DeleteAccountCommand}"
                 HorizontalOptions="Center"
                 BackgroundColor="#FF6B6B"
                 WidthRequest="225"
@@ -61,7 +56,7 @@
                 Margin="0,5,0,5"
                 Text="Account verwijderen"/>
 
-            <Button Clicked="LogoutBtn_Clicked"
+            <Button Command="{Binding LogoutCommand}"
                 HorizontalOptions="Center"
                 BackgroundColor="#FF6B6B"
                 WidthRequest="225"
