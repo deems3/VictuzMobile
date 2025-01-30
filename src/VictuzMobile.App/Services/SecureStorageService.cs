@@ -106,5 +106,16 @@ namespace VictuzMobile.App.Services
         {
             await SecureStorage.SetAsync(AppFingerprintKey, fingerprint.ToString());
         }
+
+        public static async Task<bool> GetFaceId()
+        {
+            var faceId = await SecureStorage.GetAsync(AppFaceIdKey);
+            return faceId is not null && bool.Parse(faceId);
+        }
+
+        public static async Task SetFaceId(bool faceId)
+        {
+            await SecureStorage.SetAsync(AppFaceIdKey, faceId.ToString());
+        }
     }
 }
