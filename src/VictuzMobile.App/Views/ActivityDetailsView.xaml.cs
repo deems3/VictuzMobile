@@ -14,11 +14,13 @@ public partial class ActivityDetailsView : ContentPage
     private readonly int activityId;
     ActivityDetailsViewModel ViewModel { get; set; }
 
+    private bool _editmode;
     public ActivityDetailsView(int id, bool editmode=false)
 	{
         AuthService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
         DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
         activityId = id;
+        _editmode = editmode;
 
         InitializeComponent();
 
@@ -75,6 +77,11 @@ public partial class ActivityDetailsView : ContentPage
                 ViewModel.RegisterBtnColor = Colors.Red;
             }
         }
+
+        if (_editmode) // extra check because for some fucking reason the manage button keeps showing up in edit mode
+        {
+            ManageActivityBtn.IsVisible = false;
+        }
     }
 
     private void EnableEditMode()
@@ -96,9 +103,7 @@ public partial class ActivityDetailsView : ContentPage
 
         ManageActivityBtn.IsVisible = false;
         SaveActivityBtn.IsVisible = true;
-
         RegisterForActivityBtn.IsVisible = false;
-        ManageActivityBtn.IsVisible = false;
     }
 
     private void OnRegisterClicked(object sender, EventArgs e)
