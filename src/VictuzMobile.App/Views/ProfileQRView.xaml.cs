@@ -6,24 +6,16 @@ using VictuzMobile.DatabaseConfig.Models;
 public partial class ProfileQRView : ContentPage
 {
     private string QrCodeString;
-    public ProfileQRView()
+    public ProfileQRView(int id)
 	{
         InitializeComponent();
-        SetQRCode();
+        QrCodeString = id.ToString();
+        SetQRCode(id);
 	}
 
 
-    private async void SetQRCode()
+    private void SetQRCode(int id)
     {
-        var user = SecureStorageService.GetCurrentUserId();
-        if (user != null)
-        {
-            QrCodeString = user.Id.ToString();
-            QrCodeGenerator.Value = QrCodeString;
-        }
-        else
-        {
-            await DisplayAlert("Not Logged In", "You need to log in before viewing your QR code.", "OK");
-        }
+        QrCodeGenerator.Value = QrCodeString;
     }
 }

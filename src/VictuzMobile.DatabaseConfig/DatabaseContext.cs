@@ -33,6 +33,8 @@ namespace VictuzMobile.DatabaseConfig
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasIndex(u => u.Username).IsUnique(); // Ensure that the username is unique
+
             modelBuilder.Entity<User>().HasData(
                 new User { Id = 1, Username = "demi", DisplayName = "Demi", Email = "demi@example.com", PhoneNumber = "123456789", StudentNumber = 1234567, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" },
                 new User { Id = 2, Username = "mees", DisplayName = "Mees", Email = "mees@example.com", PhoneNumber = "123456789", StudentNumber = 2345678, PasswordHash = "$2a$11$C/eNd9h0Ju/wRySYCJCyp.t.qh3pZzD0aEhUyNmc1murYt/G9J3Xq" },
