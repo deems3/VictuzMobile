@@ -36,9 +36,8 @@ namespace VictuzMobile.App.ViewModels
         public ICommand ShowQRCommand { get; }
         public ICommand ShowOwnSuggestionsCommand { get; }
         public ICommand ResetPasswordCommand { get; }
-
         public ICommand SaveUserChangesCommand { get; }
-
+        public ICommand TakeProfilePictureCommand { get; }
 
         private readonly DatabaseContext? DatabaseContext;
         private readonly INavigation _navigation;
@@ -50,17 +49,18 @@ namespace VictuzMobile.App.ViewModels
             DatabaseContext = IPlatformApplication.Current?.Services.GetRequiredService<DatabaseContext>();
             _navigation = navigation;
 
-            DeleteAccountCommand = new Command(DeleteAccount);
-            LogoutCommand = new Command(Logout);
-            ShowQRCommand = new Command(ShowQR);
-            ShowOwnSuggestionsCommand = new Command(ShowOwnSuggestions);
-            ResetPasswordCommand = new Command(ResetPassword);
-            SaveUserChangesCommand = new Command(SaveUserChanges);
+            DeleteAccountCommand = new Command(async () => await DeleteAccount());
+            LogoutCommand = new Command(async () => await Logout());
+            ShowQRCommand = new Command(async () => await ShowQR());
+            ShowOwnSuggestionsCommand = new Command(async () => await ShowOwnSuggestions());
+            ResetPasswordCommand = new Command(async () => await ResetPassword());
+            SaveUserChangesCommand = new Command(async () => await SaveUserChanges());
+            TakeProfilePictureCommand = new Command(async () => await TakeProfilePicture());
 
             GetUser();
         }
 
-        private async void GetUser()
+        private async Task GetUser()
         {
             if (DatabaseContext == null)
             {
@@ -88,7 +88,7 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
-        private async void DeleteAccount()
+        private async Task DeleteAccount()
         {
             bool confirm = await Application.Current?.MainPage.DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen? Je kan geen account registeren via de app.", "Ja", "Nee");
             if (confirm && DatabaseContext is not null && User is not null)
@@ -99,7 +99,7 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
-        private async void Logout()
+        private async Task Logout()
         {
             var auth0Client = IPlatformApplication.Current?.Services.GetRequiredService<Auth0Client>();
             var authService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>();
@@ -110,7 +110,7 @@ namespace VictuzMobile.App.ViewModels
             Application.Current.Windows[0].Page = new MainPage(auth0Client, authService);
         }
 
-        private async void ShowQR()
+        private async Task ShowQR()
         {
             if (userId == null)
             {
@@ -122,13 +122,13 @@ namespace VictuzMobile.App.ViewModels
             await _navigation.PushAsync(new ProfileQRView((int)userId));
         }
 
-        private async void ShowOwnSuggestions()
+        private async Task ShowOwnSuggestions()
         {
             var toast = Toast.Make("Not implemented yet", textSize: 20);
             await toast.Show();
         }
 
-        private async void ResetPassword()
+        private async Task ResetPassword()
         {
             var toast = Toast.Make("Not implemented yet", textSize: 20);
             await toast.Show();
@@ -139,7 +139,7 @@ namespace VictuzMobile.App.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async void SaveUserChanges()
+        private async Task SaveUserChanges()
         {
             IToast toast;
 
@@ -158,5 +158,35 @@ namespace VictuzMobile.App.ViewModels
             await toast.Show();
         }
 
+        private async Task TakeProfilePicture()
+        {
+            try
+            {
+                var photo = await MediaPicker.CapturePhotoAsync();
+                if (photo == null)
+                    return;
+
+                var filePath = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
+
+                using (var stream = await photo.OpenReadAsync())
+                using (var newStream = File.OpenWrite(filePath))
+                    await stream.CopyToAsync(newStream);
+
+                if (User == null)
+                {
+                    throw new Exception("User is null");
+                }
+
+                User.ProfileImage = filePath;
+                await SaveUserChanges();
+
+            }
+            catch (Exception ex)
+            {
+                var toast = Toast.Make("Failed to save picture", textSize: 20);
+                await toast.Show();
+            }
+
+        }
     }
 }

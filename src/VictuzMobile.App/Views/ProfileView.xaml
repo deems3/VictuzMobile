@@ -16,18 +16,27 @@
                 CornerRadius = "1000"
                 HeightRequest = "200"
                 WidthRequest = "200"
-                ImageSource="placeholderpfp.png"
+                ImageSource="{Binding User.ProfileImage}"
             />
 
-            <Button
-              x:Name="QRButton"
-              Command="{Binding ShowQRCommand}"
-              ImageSource="qr_code_icon"
-              HorizontalOptions="Center"
-              CornerRadius="20"
-              WidthRequest="60"
-              Margin="0,20,0,0"
-            />
+            <HorizontalStackLayout Margin="0,20" HorizontalOptions="Center" Spacing="15">
+                <Button
+                    x:Name="QRButton"
+                    Command="{Binding ShowQRCommand}"
+                    ImageSource="qr_code_icon"
+                    HorizontalOptions="Center"
+                    CornerRadius="20"
+                    WidthRequest="60" />
+
+                <Button
+                    x:Name="TakeProfilePictureBtn"
+                    Command="{Binding TakeProfilePictureCommand}"
+                    HorizontalOptions="Center"
+                    CornerRadius="20"
+                    WidthRequest="60"
+                    Text="📷" />
+            </HorizontalStackLayout>
+            
 
             <Grid ColumnDefinitions="auto, *, auto" WidthRequest="300">
                 <Label Text="Naam: " VerticalOptions="Center" Grid.Column="0" />
