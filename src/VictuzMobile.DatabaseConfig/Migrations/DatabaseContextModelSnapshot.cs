@@ -61,7 +61,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("OrganiserId");
 
-                    b.ToTable("Suggestions");
+                    b.ToTable("Suggestions", (string)null);
 
                     b.HasData(
                         new
@@ -151,7 +151,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("OrganiserId");
 
-                    b.ToTable("Activities");
+                    b.ToTable("Activities", (string)null);
 
                     b.HasData(
                         new
@@ -207,7 +207,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -267,7 +267,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
 
                     b.HasData(
                         new
@@ -311,7 +311,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Registrations", (string)null);
                 });
 
             modelBuilder.Entity("VictuzMobile.DatabaseConfig.Models.User", b =>
@@ -357,7 +357,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new

@@ -26,8 +26,20 @@ public partial class SuggestionView : ContentPage
         }
     }
 
+    public SuggestionView()
+    {
+        // this is the constructor for creating a new suggestion.
+        ViewModel = new SuggestionsViewModel(Navigation);
+        BindingContext = ViewModel;
+
+        InitializeComponent();
+
+        EnableCreateMode();
+    }
+
     private void EnableEditMode()
     {
+
         SuggestionNameLabel.Text = "Activiteit naam";
         SuggestionNameEntry.IsVisible = true;
 
@@ -48,6 +60,34 @@ public partial class SuggestionView : ContentPage
         EditSuggestionBtn.IsVisible = false;
         SaveSuggestionBtn.IsVisible = true;
         RefreshSuggestionBtn.IsVisible = false;
+    }
+
+    private void EnableCreateMode()
+    {
+
+        TakePictureBtn.IsVisible = true;
+
+        SuggestionNameLabel.Text = "Suggestie naam";
+        SuggestionNameEntry.IsVisible = true;
+
+        SuggestionDescriptionLabel.Text = "Beschrijving";
+        SuggestionDescriptionEntry.IsVisible = true;
+
+        SuggestionOrganiserLabel.IsVisible = false;
+
+        SuggestionLocationLabel.Text = "Locatie";
+        SuggestionLocationPicker.IsVisible = true;
+        CreateNewLocationBtn.IsVisible = true;
+
+        SuggestionMaxRegistrations.Text = "Max deelnemers";
+        SuggestionMaxRegistrationsEntry.IsVisible = true;
+
+        LikeStackLayout.IsVisible = false;
+
+        EditSuggestionBtn.IsVisible = false;
+        SaveSuggestionBtn.IsVisible = false;
+        RefreshSuggestionBtn.IsVisible = false;
+        CreateSuggestionBtn.IsVisible = true;
     }
 
     private async void ApplyUserPermissions()

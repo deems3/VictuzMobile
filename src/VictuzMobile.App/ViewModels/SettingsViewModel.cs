@@ -46,8 +46,21 @@ namespace VictuzMobile.App.ViewModels
             }
         }
 
+        public bool IsPushNotificationsEnabled
+        {
+            get => _IsPushNotificationsEnabled;
+            set
+            {
+                _IsPushNotificationsEnabled = value;
+                OnPropertyChanged();
+
+                Task.Run(() => SecureStorageService.SetPushNotifications(value));
+            }
+        }
+
         private bool _IsDarkModeEnabled;
         private bool _IsAutomaticThemeEnabled;
+        private bool _IsPushNotificationsEnabled;
 
         public SettingsViewModel()
         {
@@ -58,6 +71,7 @@ namespace VictuzMobile.App.ViewModels
         {
             IsAutomaticThemeEnabled = await SecureStorageService.GetAutomaticThemeMode();
             IsDarkModeEnabled = await SecureStorageService.GetDarkMode();
+            IsPushNotificationsEnabled = await SecureStorageService.GetPushNotifications();
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")

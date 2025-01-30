@@ -9,7 +9,7 @@
         <VerticalStackLayout>
             <toolkit:AvatarView
                 x:Name="ProfileImageView"
-                Text = "Default Profile"
+                Text = "No Profile Picture"
                 BackgroundColor = "Black"
                 BorderColor = "#0F8390"
                 BorderWidth = "7"
