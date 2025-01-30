@@ -14,7 +14,7 @@
         <zxing:BarcodeGeneratorView
             x:Name="QrCodeGenerator"
             Format="QrCode"
-            Value="username"
+            Value="Waiting..."
             HeightRequest="200"
             WidthRequest="200"/>
     </VerticalStackLayout>

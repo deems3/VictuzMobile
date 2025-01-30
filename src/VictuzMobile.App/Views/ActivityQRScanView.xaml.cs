@@ -3,7 +3,7 @@ using ZXing.Net.Maui.Controls;
 
 public partial class ActivityQRScanView : ContentPage
 {
-	public ActivityQRScanView()
+	public ActivityQRScanView(int id)
 	{
 		InitializeComponent();
         cameraBarcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions

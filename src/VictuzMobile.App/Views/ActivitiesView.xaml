@@ -21,9 +21,6 @@
             <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
 
             <StackLayout Grid.Row="1" Grid.ColumnSpan="2" >
-                <Button
-                    x:Name="QRScanBtn"
-                    Clicked="QRScanBtn_Clicked"/>
                 <CollectionView
                     ItemsSource="{Binding RegisteredActivities}"
                     HorizontalOptions="FillAndExpand" 
