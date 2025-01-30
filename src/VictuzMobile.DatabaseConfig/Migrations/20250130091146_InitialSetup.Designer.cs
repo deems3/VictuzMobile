@@ -11,8 +11,8 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250129173417_initialSetup")]
-    partial class initialSetup
+    [Migration("20250130091146_InitialSetup")]
+    partial class InitialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -293,6 +293,9 @@ namespace VictuzMobile.DatabaseConfig.Migrations
 
                     b.Property<int>("ActivityId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("ArrivalDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("TEXT");

@@ -7,7 +7,7 @@
     <VerticalStackLayout Spacing="15" Padding="15">
         <Grid
             ColumnDefinitions="*, auto"
-            RowDefinitions="*,*,*"
+            RowDefinitions="*,*,*,*"
             RowSpacing="20"
             ColumnSpacing="20">
 
@@ -25,14 +25,32 @@
                         VerticalTextAlignment="Center"/>
                     <Switch
                         Grid.Column="1"
-                        IsToggled="false" />
+                        IsToggled="{Binding IsDarkModeEnabled}" />
+                </Grid>
+            </Border>
+
+            <!-- Automatic Theme switch -->
+            <Border
+                Grid.ColumnSpan="2"
+                Grid.Row="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="*, auto">
+                    <Label
+                        Text="Automatisch Thema"
+                        FontSize="18"
+                        VerticalTextAlignment="Center"/>
+                    <Switch
+                        Grid.Column="1"
+                        IsToggled="{Binding IsAutomaticThemeEnabled}" />
                 </Grid>
             </Border>
 
             <!-- Push Notifications -->
             <Border
                 Grid.ColumnSpan="2"
-                Grid.Row="1">
+                Grid.Row="2">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10" />
                 </Border.StrokeShape>
@@ -50,7 +68,7 @@
             <!-- Face-ID Login -->
             <Border
                 Grid.ColumnSpan="2"
-                Grid.Row="2">
+                Grid.Row="3">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10" />
                 </Border.StrokeShape>

@@ -10,5 +10,6 @@
         public Activity Activity { get; set; } = null!;
 
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
+        public DateTime? ArrivalDate { get; set; } = null;
     }
 }

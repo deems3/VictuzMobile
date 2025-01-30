@@ -291,6 +291,9 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     b.Property<int>("ActivityId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("ArrivalDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("TEXT");
 

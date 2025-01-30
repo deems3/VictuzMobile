@@ -1,13 +1,18 @@
 using SQLiteBrowser;
 using VictuzMobile.App.Helpers;
+using VictuzMobile.App.ViewModels;
 
 namespace VictuzMobile.App.Views;
 
 public partial class SettingsView : ContentPage
 {
-	public SettingsView()
+    public SettingsViewModel ViewModel { get; set; }
+    public SettingsView()
 	{
-		InitializeComponent();
+        ViewModel = new SettingsViewModel();
+        BindingContext = ViewModel;
+
+        InitializeComponent();
 	}
 
     private async void OpenDbViewer(object sender, EventArgs e)

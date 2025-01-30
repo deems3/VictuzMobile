@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     /// <inheritdoc />
-    public partial class initialSetup : Migration
+    public partial class InitialSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -152,6 +152,7 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     ActivityId = table.Column<int>(type: "INTEGER", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ArrivalDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     SuggestionId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
