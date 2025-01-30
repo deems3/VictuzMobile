@@ -7,8 +7,8 @@ public partial class ActivityQRScanView : ContentPage
     private readonly ActivityQRScanViewModel _viewModel;
 
     public ActivityQRScanView(int activityId)
-    {
-        InitializeComponent();
+	{
+		InitializeComponent();
         _viewModel = new ActivityQRScanViewModel(Navigation, activityId);
         BindingContext = _viewModel;
 
@@ -20,15 +20,17 @@ public partial class ActivityQRScanView : ContentPage
 
     private void cameraBarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
     {
-        var first = e.Results?.FirstOrDefault();
-
-        if (first is null)
-            return;
-
-        Dispatcher.DispatchAsync(async () =>
         {
+            var first = e.Results?.FirstOrDefault();
+
+            if (first is null)
+                return;
+
+            Dispatcher.DispatchAsync(async () =>
+            {
             var qrCodeValue = first.Value;
             await _viewModel.HandleQRCodeScanAsync(qrCodeValue);
-        });
+            });
+        }
     }
 }
