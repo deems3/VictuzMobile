@@ -14,7 +14,7 @@
     <Color x:Key="Tertiary">#2B0B98</Color>
     <Color x:Key="IconSelected">#512BD4</Color>
     <Color x:Key="IconSelectedDark">#512BD4</Color>
-    <Color x:Key="IconUnselected">#C8C8C8</Color>
+    <Color x:Key="IconUnselected">Black</Color>
     <Color x:Key="IconUnselectedDark">White</Color>
 
     <Color x:Key="White">White</Color>
