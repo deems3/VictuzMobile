@@ -131,10 +131,10 @@ namespace VictuzMobile.App.ViewModels
 
         private async Task NavigateToNewSuggestion()
         {
-            //var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
-            //await toast.Show();
+            var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
+            await toast.Show();
 
-            await _navigation.PushAsync(new SuggestionView()); // Navigate to the SuggestionView without an id to create a new suggestion
+            //await _navigation.PushAsync(new SuggestionView()); // Navigate to the SuggestionView without an id to create a new suggestion
         }
     }
 }
