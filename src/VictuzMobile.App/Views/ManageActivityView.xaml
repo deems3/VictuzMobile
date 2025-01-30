@@ -12,5 +12,6 @@
         <Button x:Name="EditActivityBtn" Text="Aanpassen" Command="{Binding EditActivityCommand}" />
         <Button x:Name="RegistrationListBtn" Text="Deelnemers" Command="{Binding RegistrationListCommand}" />
         <Button x:Name="SendMessageBtn" Text="Push Bericht" Command="{Binding SendMessageCommand}" />
+        <Button x:Name="QRScanBtn" Text="QR Scan" Command="{Binding ScanQRCodeCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
