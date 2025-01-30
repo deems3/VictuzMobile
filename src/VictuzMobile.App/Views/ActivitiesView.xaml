@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:VictuzMobile.App.Views"
              x:Class="VictuzMobile.App.Views.ActivitiesView"
-             Title="ActivitiesView">
+             NavigationPage.HasNavigationBar="False">
     <ScrollView>
         <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, *" ColumnDefinitions="auto, *">
             <Label Grid.Row="0"
@@ -11,12 +11,23 @@
                    Text="Ingeschreven activiteiten"
                    FontSize="Large"
                    TextDecorations="Underline"/>
-            <ImageButton Source="filter_icon.svg"
-                         x:Name="YourActivityFilterButton"
-                         Grid.Column="1"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="YourActivityFilterButton_Clicked"/>
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton x:Name="YourActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="YourActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+            </HorizontalStackLayout>
 
             <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
 
@@ -45,7 +56,7 @@
                             CommandParameter="{Binding Id}" />
 
                                     <!-- Transparent Overlay -->
-                                    <BoxView Color="#60000000"/>
+                                    <BoxView Opacity="0.4"/>
 
                                     <!-- Centered Text -->
                                     <Label Text="{Binding Name}"
@@ -69,14 +80,24 @@
                    Text="Alle activiteiten"
                    FontSize="Large"
                    TextDecorations="Underline"/>
-            
-            <ImageButton Source="filter_icon.svg"
-                         x:Name="AllActivityFilterButton"
-                         Grid.Column="1"
-                         Grid.Row="2"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="AllActivityFilterButton_Clicked"/>
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton x:Name="AllActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="AllActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+            </HorizontalStackLayout>
 
             <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
                 <CollectionView x:Name="AllActivitiesCollectionView" 
@@ -103,7 +124,7 @@
                                         CommandParameter="{Binding Id}" />
 
                                     <!-- Transparent Overlay -->
-                                    <BoxView Color="#60000000"/>
+                                    <BoxView Opacity="0.4" />
 
                                         <!-- Centered Text -->
                                     <Label Text="{Binding Name}"
@@ -128,13 +149,33 @@
                    FontSize="Large"
                    TextDecorations="Underline"/>
 
-            <ImageButton Source="filter_icon.svg"
-                         x:Name="SuggestionActivityFilterButton"
-                         Grid.Column="1"
-                         Grid.Row="4"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="SuggestionActivityFilterButton_Clicked"/>
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Grid.Row="4"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton x:Name="AddSuggestionBtn"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Command="{Binding AddNewSuggestionCommand}">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="add_icon.svg" Dark="add_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <ImageButton x:Name="SuggestionActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="SuggestionActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+            </HorizontalStackLayout>
+
 
             <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                 <CollectionView x:Name="SuggestionsCollectionView" 
@@ -149,10 +190,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Stroke="#0F8390" StrokeThickness="2">
-                                <Grid HeightRequest="150">
+                                <Grid HeightRequest="100">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="100"/>
-                                        <RowDefinition Height="50"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -167,12 +207,14 @@
                                         Source="{Binding ImageURL}" 
                                         Aspect="AspectFill"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand"/>
+                                        VerticalOptions="FillAndExpand"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivitiesView}}, Path=BindingContext.NavigateToSuggestionCommand}"
+                                        CommandParameter="{Binding Id}"/>
 
-                                    <BoxView Color="#60000000" 
-                                             Grid.ColumnSpan="3"
+                                    <BoxView Grid.ColumnSpan="3"
                                              Grid.Row="0" 
-                                             Grid.Column="0"/>
+                                             Grid.Column="0"
+                                             Opacity="0.4"/>
 
                                     <Label Text="{Binding Name}"
                                            Grid.Row="0" 
@@ -185,19 +227,6 @@
                                            TextColor="White"
                                            HorizontalOptions="CenterAndExpand"
                                            VerticalOptions="CenterAndExpand" />
-
-                                    <ImageButton Source="like_icon.svg" 
-                                                 WidthRequest="50" 
-                                                 HorizontalOptions="End" 
-                                                 Grid.Row="1" Grid.Column="1"
-                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivitiesView}}, Path=BindingContext.LikeSuggestionCommand}"
-                                                 CommandParameter="{Binding Id}" 
-                                                 />
-                                    <Label Grid.Row="1" 
-                                           Grid.Column="0" 
-                                           HorizontalOptions="End" 
-                                           VerticalOptions="Center" 
-                                           Text="{Binding LikedByUsers.Count}"/>
                                 </Grid>
                             </Border>
                         </DataTemplate>
