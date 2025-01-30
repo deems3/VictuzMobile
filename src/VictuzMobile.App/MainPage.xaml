@@ -14,66 +14,54 @@
                 WidthRequest="250"/>
 
             <StackLayout
-                x:Name="LoginView">
-                <Button 
-                    x:Name="LoginBtn"
-                    Text="Log in or register with 0Auth"
-                    SemanticProperties.Hint="Click to log in"
-                    Clicked="OnLoginClicked"/>
-            </StackLayout>
-
-            <StackLayout
                 x:Name="HomeView"
                 IsVisible="false">
             </StackLayout>
 
-            <Grid 
-                ColumnDefinitions="*,Auto,*"
-                VerticalOptions="Center"
-                HorizontalOptions="Fill"
-                Margin="10">
-
-                <BoxView 
-                    Grid.Column="0"
-                    HeightRequest="1"
-                    VerticalOptions="Center"
-                    BackgroundColor="Gray" />
-
-
-                <Label 
-                    Grid.Column="1"
-                    Text="OR"
-                    FontSize="14"
-                    TextColor="Gray"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Margin="10,0" /> 
-
-                <BoxView 
-                    Grid.Column="2"
-                    HeightRequest="1"
-                    VerticalOptions="Center"
-                    BackgroundColor="Gray" />
-            </Grid>
-
             <Entry IsPassword="False" Text="{Binding Username}" x:Name="UsernameInput" Placeholder="Username" />
             <Entry IsPassword="True" Text="{Binding Password}" x:Name="PasswordInput" Placeholder="Password"/>
-
             <Button
                 x:Name="LoginButton"
                 Text="Login"
                 Clicked="LoginUsernamePassword"/>
+            
+			<Grid 
+	            ColumnDefinitions="*,Auto,*"
+	            VerticalOptions="Center"
+	            HorizontalOptions="Fill"
+	            Margin="10">
 
-            <Button
-                x:Name="TestButton"
-                Text="Continue logged out"
-                Clicked="TestButton_Clicked"/>
+				<BoxView 
+		            Grid.Column="0"
+		            HeightRequest="1"
+		            VerticalOptions="Center"
+		            BackgroundColor="Gray" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Open db browser" 
-                Clicked="OpenDbBrowser"
-                HorizontalOptions="Fill" />
+
+				<Label 
+		            Grid.Column="1"
+		            Text="OR"
+		            FontSize="14"
+		            TextColor="Gray"
+		            VerticalOptions="Center"
+		            HorizontalOptions="Center"
+		            Margin="10,0" />
+
+				<BoxView 
+		            Grid.Column="2"
+		            HeightRequest="1"
+		            VerticalOptions="Center"
+		            BackgroundColor="Gray" />
+			</Grid>
+
+            <StackLayout
+                x:Name="LoginView">
+                <Button 
+                    x:Name="LoginBtn"
+                    Text="Log in with a different provider"
+                    SemanticProperties.Hint="Click to log in"
+                    Clicked="OnLoginClicked"/>
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
