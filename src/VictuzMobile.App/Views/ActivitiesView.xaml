@@ -18,12 +18,15 @@
                 Margin="0,0,5,0"
                 Spacing="5">
 
-                <ImageButton Source="filter_icon.svg"
-                             x:Name="YourActivityFilterButton"
+                <ImageButton x:Name="YourActivityFilterButton"
                              MaximumHeightRequest="25"
                              MaximumWidthRequest="25"
-                             Clicked="YourActivityFilterButton_Clicked"/>
-                
+                             Clicked="YourActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
             </HorizontalStackLayout>
 
             <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
@@ -85,12 +88,15 @@
                 Margin="0,0,5,0"
                 Spacing="5">
 
-                <ImageButton Source="filter_icon.svg"
-                         x:Name="AllActivityFilterButton"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="AllActivityFilterButton_Clicked"/>
-                
+                <ImageButton x:Name="AllActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="AllActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
+
             </HorizontalStackLayout>
 
             <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
@@ -150,17 +156,23 @@
                 Margin="0,0,5,0"
                 Spacing="5">
 
-                <ImageButton Source="add_icon.svg"
-                             x:Name="AddSuggestionBtn"
+                <ImageButton x:Name="AddSuggestionBtn"
                              MaximumHeightRequest="25"
                              MaximumWidthRequest="25"
-                             Command="{Binding AddNewSuggestionCommand}"/>
+                             Command="{Binding AddNewSuggestionCommand}">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="add_icon.svg" Dark="add_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
 
-                <ImageButton Source="filter_icon.svg"
-                             x:Name="SuggestionActivityFilterButton"
+                <ImageButton x:Name="SuggestionActivityFilterButton"
                              MaximumHeightRequest="25"
                              MaximumWidthRequest="25"
-                             Clicked="SuggestionActivityFilterButton_Clicked"/>
+                             Clicked="SuggestionActivityFilterButton_Clicked">
+                    <ImageButton.Source>
+                        <AppThemeBinding Light="filter_icon.svg" Dark="filter_icon_dark.svg" />
+                    </ImageButton.Source>
+                </ImageButton>
 
             </HorizontalStackLayout>
 
