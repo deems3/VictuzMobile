@@ -11,8 +11,8 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250130092743_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20250130113516_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,13 +72,13 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             Id = 1,
                             CategoryId = 3,
                             Description = "Leer hoe jij je eigen netwerk kunt beveiligen",
-                            EndDate = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "cybersecurity.jpg",
                             LocationId = 1,
                             MaxRegistrations = 10,
                             Name = "Cybersecurity",
                             OrganiserId = 2,
-                            StartDate = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -162,39 +162,39 @@ namespace VictuzMobile.DatabaseConfig.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "Kom voetballen",
-                            EndDate = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg",
                             LocationId = 1,
                             MaxRegistrations = 22,
                             Name = "Voetbal Toernooi",
                             OrganiserId = 2,
-                            StartDate = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
                             Description = "Leer hoe jij je eigen AI kunt maken",
-                            EndDate = new DateTime(2026, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg",
                             LocationId = 1,
                             MaxRegistrations = 6,
                             Name = "Omgaan met AI",
                             OrganiserId = 1,
-                            StartDate = new DateTime(2026, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 3,
                             Description = "Klei je eigen technische tool",
-                            EndDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg",
                             LocationId = 1,
                             MaxRegistrations = 10,
                             Name = "Kleien",
                             OrganiserId = 3,
-                            StartDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
