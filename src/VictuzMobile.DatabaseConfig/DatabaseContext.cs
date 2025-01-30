@@ -1,5 +1,6 @@
 ﻿using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using VictuzMobile.DatabaseConfig.Models;
 
 namespace VictuzMobile.DatabaseConfig
@@ -12,6 +13,9 @@ namespace VictuzMobile.DatabaseConfig
         public DbSet<Registration> Registrations { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Suggestion> Suggestions { get; set; } = null!;
+
+        // Define the culture for DateTime parsing, this prevents the need for creating a new migration when someone has a different language installed on their computer.
+        private readonly CultureInfo culture = CultureInfo.CreateSpecificCulture("nl-NL");
 
         // Constructor with no argument is required and it is used when adding/removing migrations from class library
         public DatabaseContext()
@@ -51,9 +55,9 @@ namespace VictuzMobile.DatabaseConfig
             );
 
             modelBuilder.Entity<Activity>().HasData(
-                new Activity { Id = 1, CategoryId = 1, Name = "Voetbal Toernooi", Description = "Kom voetballen", LocationId = 1, StartDate = DateTime.Parse("01-04-2026"), EndDate = DateTime.Parse("01-04-2026"), OrganiserId = 2, MaxRegistrations = 22, ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg" },
-                new Activity { Id = 2, CategoryId = 2, Name = "Omgaan met AI", Description = "Leer hoe jij je eigen AI kunt maken", LocationId = 1, StartDate = DateTime.Parse("03-04-2026"), EndDate = DateTime.Parse("03-04-2026"), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg" },
-                new Activity { Id = 3, CategoryId = 3, Name = "Kleien", Description = "Klei je eigen technische tool", LocationId = 1, StartDate = DateTime.Parse("03-05-2026"), EndDate = DateTime.Parse("03-05-2026"), OrganiserId = 3, MaxRegistrations = 10, ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg" }
+                new Activity { Id = 1, CategoryId = 1, Name = "Voetbal Toernooi", Description = "Kom voetballen", LocationId = 1, StartDate = DateTime.Parse("01-04-2026", culture), EndDate = DateTime.Parse("01-04-2026", culture), OrganiserId = 2, MaxRegistrations = 22, ImageURL = "https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_640.jpg" },
+                new Activity { Id = 2, CategoryId = 2, Name = "Omgaan met AI", Description = "Leer hoe jij je eigen AI kunt maken", LocationId = 1, StartDate = DateTime.Parse("03-04-2026", culture), EndDate = DateTime.Parse("03-04-2026", culture), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "https://img.freepik.com/free-photo/ai-human-technology-background_1409-5588.jpg" },
+                new Activity { Id = 3, CategoryId = 3, Name = "Kleien", Description = "Klei je eigen technische tool", LocationId = 1, StartDate = DateTime.Parse("03-05-2026", culture), EndDate = DateTime.Parse("03-05-2026", culture), OrganiserId = 3, MaxRegistrations = 10, ImageURL = "https://cdn.pixabay.com/photo/2016/03/27/17/10/pottery-1283146_1280.jpg" }
             );
 
             // Manually define relationship with the Users table
@@ -69,8 +73,8 @@ namespace VictuzMobile.DatabaseConfig
                 .UsingEntity(j => j.ToTable("SuggestionLikes"));
 
             modelBuilder.Entity<Suggestion>().HasData(
-                new Suggestion { Id = 1, CategoryId = 3, Name = "Cybersecurity", Description = "Leer hoe jij je eigen netwerk kunt beveiligen", LocationId = 1, StartDate = DateTime.Parse("01-03-2026"), EndDate = DateTime.Parse("01-03-2026"), OrganiserId = 2, MaxRegistrations = 10, ImageURL = "cybersecurity.jpg" },
-                new Suggestion { Id = 2, CategoryId = 4 , Name = "Robots programmeren", Description = "Programmeer je eigen robot", LocationId = 1, StartDate = DateTime.Parse("03-03-2026"), EndDate = DateTime.Parse("03-03-2026"), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "robot_suggestion.jpg" }
+                new Suggestion { Id = 1, CategoryId = 3, Name = "Cybersecurity", Description = "Leer hoe jij je eigen netwerk kunt beveiligen", LocationId = 1, StartDate = DateTime.Parse("01-03-2026", culture), EndDate = DateTime.Parse("01-03-2026", culture), OrganiserId = 2, MaxRegistrations = 10, ImageURL = "cybersecurity.jpg" },
+                new Suggestion { Id = 2, CategoryId = 4 , Name = "Robots programmeren", Description = "Programmeer je eigen robot", LocationId = 1, StartDate = DateTime.Parse("03-03-2026", culture), EndDate = DateTime.Parse("03-03-2026", culture), OrganiserId = 1, MaxRegistrations = 6, ImageURL = "robot_suggestion.jpg" }
             );
 
             base.OnModelCreating(modelBuilder);
