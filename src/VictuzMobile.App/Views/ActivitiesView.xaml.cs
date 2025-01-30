@@ -20,7 +20,7 @@ public partial class ActivitiesView : ContentPage
         base.OnAppearing();
         await ViewModel.PopulateRegisteredActivities();
 
-        NoRegisteredActivitiesLabel.IsVisible = ViewModel.RegisteredActivities.Count > 0;
+        NoRegisteredActivitiesLabel.IsVisible = ViewModel.RegisteredActivities.Count == 0;
         RegisteredActivitiesSection.IsVisible = ViewModel.RegisteredActivities.Count > 0;
     }
 
