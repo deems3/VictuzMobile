@@ -167,7 +167,9 @@
                                         Source="{Binding ImageURL}" 
                                         Aspect="AspectFill"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand"/>
+                                        VerticalOptions="FillAndExpand"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type views:ActivitiesView}}, Path=BindingContext.NavigateToActivityCommand}"
+                                        CommandParameter="{Binding Id}"/>
 
                                     <BoxView Color="#60000000" 
                                              Grid.ColumnSpan="3"
@@ -186,7 +188,7 @@
                                            HorizontalOptions="CenterAndExpand"
                                            VerticalOptions="CenterAndExpand" />
 
-                                    <ImageButton Source="like_icon.svg" 
+                                    <!--<ImageButton Source="like_icon.svg" 
                                                  WidthRequest="50" 
                                                  HorizontalOptions="End" 
                                                  Grid.Row="1" Grid.Column="1"
@@ -197,7 +199,7 @@
                                            Grid.Column="0" 
                                            HorizontalOptions="End" 
                                            VerticalOptions="Center" 
-                                           Text="{Binding LikedByUsers.Count}"/>
+                                           Text="{Binding LikedByUsers.Count}"/>-->
                                 </Grid>
                             </Border>
                         </DataTemplate>

@@ -4,9 +4,35 @@
              x:Class="VictuzMobile.App.Views.SuggestionView"
              Title="SuggestionView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Image x:Name="SuggestionImage" Source="{Binding Suggestion.ImageURL}" />
+
+        <Label x:Name="SuggestionNameLabel" Text="{Binding Suggestion.Name}" />
+        <Entry x:Name="SuggestionNameEntry" Text="{Binding Suggestion.Name}" IsVisible="False"/>
+
+        <Label x:Name="SuggestionDescriptionLabel" Text="{Binding Suggestion.Description}" />
+        <Entry x:Name="SuggestionDescriptionEntry" Text="{Binding Suggestion.Description}" IsVisible="False" />
+
+        <Label x:Name="SuggestionOrganiserLabel" Text="{Binding Suggestion.Organiser.DisplayName}" />
+
+        <Label x:Name="SuggestionLocationLabel" Text="{Binding Suggestion.Location}"/>
+        <Picker x:Name="SuggestionLocationPicker" Title="Locatie" ItemsSource="{Binding SuggestionLocations}" IsVisible="False" />
+        <Button x:Name="CreateNewLocationBtn" Text="Nieuwe locatie" Command="{Binding CreateNewLocationCommand}" IsVisible="False" />
+
+        <Label x:Name="SuggestionMaxRegistrations" Text="{Binding Suggestion.MaxRegistrations, StringFormat='Maximaal {0} deelnemers'}"/>
+        <Entry x:Name="SuggestionMaxRegistrationsEntry" Keyboard="Numeric" Text="{Binding Suggestion.MaxRegistrations}" IsVisible="False" />
+
+        <HorizontalStackLayout>
+            <ImageButton Source="like_icon.svg" 
+                         WidthRequest="50"
+                         VerticalOptions="Center"
+                         Command="{Binding LikeSuggestionCommand}"/>
+
+            <Label HorizontalOptions="End" 
+                   VerticalOptions="Center" 
+                   Text="{Binding Suggestion.LikedByUsers.Count}" />
+        </HorizontalStackLayout>
+       
+        <Button x:Name="EditSuggestionBtn" Text="Edit" Command="{Binding EditSuggestionCommand}"/>
+        <Button x:Name="SaveSuggestionBtn" Text="Save" Command="{Binding SaveSuggestionCommand}" IsVisible="False"/>
     </VerticalStackLayout>
 </ContentPage>
