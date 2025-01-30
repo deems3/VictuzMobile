@@ -23,17 +23,17 @@ public partial class ProfileView : ContentPage
 
         InitializeComponent();
     }
-    
+
     private async void OnDeletion_Clicked(object sender, EventArgs e)
     {
-       bool confirm = await DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
+        bool confirm = await DisplayAlert("Bevestig account verwijdering", "Weet je zeker dat je je account wilt verwijderen?", "Ja", "Nee");
 
-       if (confirm)
+        if (confirm)
         {
             await DisplayAlert("ERROR", "Functionality not implemented yet", "OK");
         }
     }
-    
+
     private void LogoutBtn_Clicked(object sender, EventArgs e)
     {
         var auth0Client = IPlatformApplication.Current?.Services.GetRequiredService<Auth0Client>();
@@ -50,4 +50,50 @@ public partial class ProfileView : ContentPage
     {
         await Navigation.PushAsync(new ProfileQRView());
     }
+    private void ToggleVoornaam(object sender, EventArgs e)
+    {
+        VoornaamLabel.IsVisible = !VoornaamLabel.IsVisible;
+        VoornaamEntry.IsVisible = !VoornaamEntry.IsVisible;
+
+        if (!VoornaamLabel.IsVisible)
+        {
+            VoornaamEntry.Text = VoornaamLabel.Text; // Vul entry met bestaande tekst
+        }
+        else
+        {
+            VoornaamLabel.Text = VoornaamEntry.Text; // Update label na edit
+        }
+    }
+
+    private void ToggleAchternaam(object sender, EventArgs e)
+    {
+        AchternaamLabel.IsVisible = !AchternaamLabel.IsVisible;
+        AchternaamEntry.IsVisible = !AchternaamEntry.IsVisible;
+
+        if (!AchternaamLabel.IsVisible)
+        {
+            AchternaamEntry.Text = AchternaamLabel.Text;
+        }
+        else
+        {
+            AchternaamLabel.Text = AchternaamEntry.Text;
+        }
+    }
+
+    private void ToggleEmail(object sender, EventArgs e)
+    {
+        EmailLabel.IsVisible = !EmailLabel.IsVisible;
+        EmailEntry.IsVisible = !EmailEntry.IsVisible;
+
+        if (!EmailLabel.IsVisible)
+        {
+            EmailEntry.Text = EmailLabel.Text;
+        }
+        else
+        {
+            EmailLabel.Text = EmailEntry.Text;
+        }
+    }
+
+
 }
