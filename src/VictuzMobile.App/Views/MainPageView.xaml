@@ -14,26 +14,87 @@
                 Grid.ColumnSpan="2" 
                 Stroke="#0F8390" 
                 StrokeThickness="2">
-                <ImageButton 
-                    x:Name="firstActivity" 
-                    Source="test.png"
-                    MinimumHeightRequest="100" 
-                    MinimumWidthRequest="100" 
-                    Aspect="AspectFill"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        x:Name="firstActivity"
+                        Aspect="AspectFill"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        />
+
+                    <BoxView Grid.ColumnSpan="3"
+                              Grid.Row="0" 
+                              Grid.Column="0" Opacity="0.4"/>
+
+                    <Label x:Name="firstActivityTitle"
+                           Grid.Row="0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+                </Grid>
             </Border>
 
             <Border 
                 Margin="5" 
                 Grid.Row="1" 
-                Grid.Column="0" 
+                Grid.Column="0"
                 Stroke="#0F8390" 
                 StrokeThickness="2">
-                <ImageButton 
-                    x:Name="secondActivity" 
-                    Source="test_twee.png"
-                    MinimumHeightRequest="100"
-                    MinimumWidthRequest="100" 
-                    Aspect="AspectFill"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        x:Name="secondActivity"
+                        Aspect="AspectFill"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        />
+
+                    
+                    <BoxView Grid.ColumnSpan="3"
+                              Grid.Row="0" 
+                              Grid.Column="0" Opacity="0.4"/>
+
+                    <Label x:Name="secondActivityTitle"
+                           Grid.Row="0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+                </Grid>
             </Border>
 
             <Border 
@@ -42,12 +103,45 @@
                 Grid.Column="1" 
                 Stroke="#0F8390" 
                 StrokeThickness="2">
-                <ImageButton 
-                    x:Name="thirdActivity" 
-                    Source="test_drie.png"
-                    MinimumHeightRequest="100"
-                    MinimumWidthRequest="100" 
-                    Aspect="AspectFill"/>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        x:Name="thirdActivity"
+                        Aspect="AspectFill"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        />
+
+                    
+                    <BoxView Grid.ColumnSpan="3"
+                              Grid.Row="0" 
+                              Grid.Column="0" Opacity="0.4"/>
+
+                    <Label x:Name="thirdActivityTitle"
+                           Grid.Row="0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+                </Grid>
+
             </Border>
         </Grid>
 

@@ -29,6 +29,11 @@ public partial class MainPageView : ContentPage
         BindingContext = ViewModel;
     }
 
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        InitializeActivities();
+    }
+
     private async void GenerateFact()
     {
         ViewModel.Fact = await FactAPIVM.GetRandomFact();
@@ -41,7 +46,10 @@ public partial class MainPageView : ContentPage
         var third = ViewModel.UpcomingActivities.ElementAtOrDefault(2);
 
         firstActivity.Source = first?.ImageURL ?? ImageNotFoundUrl;
+        firstActivityTitle.Text = first?.Name ?? "No activity found";
         secondActivity.Source = second?.ImageURL ?? ImageNotFoundUrl;
+        secondActivityTitle.Text = second?.Name ?? "No activity found";
         thirdActivity.Source = third?.ImageURL ?? ImageNotFoundUrl;
+        thirdActivityTitle.Text = third?.Name ?? "No activity found";
     }
 }

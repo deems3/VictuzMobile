@@ -7,6 +7,7 @@ using VictuzMobile.App.Services;
 using VictuzMobile.App.Views;
 using VictuzMobile.DatabaseConfig;
 using ZXing.Net.Maui.Controls;
+using Plugin.LocalNotification;
 
 namespace VictuzMobile.App
 {
@@ -19,6 +20,7 @@ namespace VictuzMobile.App
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
                 .UseBarcodeReader()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -61,7 +63,7 @@ namespace VictuzMobile.App
 
                 if (pendingMigrations.Any())
                 {
-                        db.Database.Migrate();
+                    db.Database.Migrate();
                 }
             }
 

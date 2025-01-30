@@ -4,9 +4,7 @@ using VictuzMobile.App.ViewModels;
 
 public partial class ActivityQRScanView : ContentPage
 {
-    private readonly ActivityQRScanViewModel _viewModel;
-
-    public ActivityQRScanView(int activityId)
+	public ActivityQRScanView()
     {
         InitializeComponent();
         _viewModel = new ActivityQRScanViewModel(Navigation, activityId);
@@ -31,4 +29,5 @@ public partial class ActivityQRScanView : ContentPage
             await _viewModel.HandleQRCodeScanAsync(qrCodeValue);
         });
     }
+}
 }

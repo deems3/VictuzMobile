@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using DatabaseConfig.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,7 +27,9 @@ namespace VictuzMobile.App.ViewModels
         public ObservableCollection<Suggestion> suggestions = [];
 
         public ICommand NavigateToActivityCommand { get; }
+        public ICommand NavigateToSuggestionCommand { get; }
         public ICommand LikeSuggestionCommand { get; }
+        public ICommand AddNewSuggestionCommand { get; }
         private readonly INavigation _navigation;
         private readonly DatabaseContext _context;
         private readonly AuthService _authenticationService;
@@ -34,11 +38,16 @@ namespace VictuzMobile.App.ViewModels
         {
             _navigation = navigation;
             NavigateToActivityCommand = new Command<int>(NavigateToActivity);
+            NavigateToSuggestionCommand = new Command<int>(NavigateToSuggestion);
             LikeSuggestionCommand = new Command<int>(LikeSuggestion);
+            AddNewSuggestionCommand = new Command(NavigateToNewSuggestion);
             _context = IPlatformApplication.Current.Services.GetRequiredService<DatabaseContext>();
             _authenticationService = IPlatformApplication.Current.Services.GetRequiredService<AuthService>();
 
-            PopulateCollections();
+            Task.Run(async () =>
+            {
+                await PopulateCollections();
+            });
         }
 
         private async void NavigateToActivity(int id)
@@ -46,22 +55,25 @@ namespace VictuzMobile.App.ViewModels
             await _navigation.PushAsync(new ActivityDetailsView(id));
         }
 
+        private async void NavigateToSuggestion(int id)
+        {
+            await _navigation.PushAsync(new SuggestionView(id));
+        }
+
         private async void LikeSuggestion(int id)
         {
             var currentUserId = await SecureStorageService.GetCurrentUserId();
-
             if (currentUserId == null)
             {
                 return;
             }
 
-            var user = _authenticationService.GetUser((int)currentUserId);
+            var user = await _authenticationService.GetUser((int)currentUserId);
 
             if (user == null)
             {
                 return;
             }
-
 
             var suggestionToLike = Suggestions.First(s => s.Id == id);
 
@@ -69,6 +81,7 @@ namespace VictuzMobile.App.ViewModels
             {
                 // Suggestion already liked, remove the like
                 suggestionToLike.LikedByUsers.Remove(user);
+
             }
             else
             {
@@ -99,7 +112,7 @@ namespace VictuzMobile.App.ViewModels
                 .ToListAsync());
 
             Suggestions = new ObservableCollection<Suggestion>(await _context.Suggestions
-                .Where(s => s.StartDate >= DateTime.Now)
+                .Where(s => s.StartDate.Date >= DateTime.Now.Date)
                 .OrderBy(s => s.StartDate)
                 .Include(s => s.LikedByUsers)
                 .ToListAsync());
@@ -114,6 +127,12 @@ namespace VictuzMobile.App.ViewModels
                 .Where(a => a.StartDate >= DateTime.Now && a.Registration.Any(r => r.UserId == userId))
                 .OrderBy(a => a.StartDate)
                 .ToListAsync());
+        }
+
+        private async void NavigateToNewSuggestion()
+        {
+            var toast = Toast.Make("This feature is not implemented at the moment", textSize: 20);
+            await toast.Show();
         }
     }
 }
