@@ -11,12 +11,20 @@
                    Text="Ingeschreven activiteiten"
                    FontSize="Large"
                    TextDecorations="Underline"/>
-            <ImageButton Source="filter_icon.svg"
-                         x:Name="YourActivityFilterButton"
-                         Grid.Column="1"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="YourActivityFilterButton_Clicked"/>
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton Source="filter_icon.svg"
+                             x:Name="YourActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="YourActivityFilterButton_Clicked"/>
+                
+            </HorizontalStackLayout>
 
             <Label Grid.Row="1" x:Name="NoRegisteredActivitiesLabel" Text="Geen ingeschreven activiteiten" IsVisible="False"/>
 
@@ -69,14 +77,21 @@
                    Text="Alle activiteiten"
                    FontSize="Large"
                    TextDecorations="Underline"/>
-            
-            <ImageButton Source="filter_icon.svg"
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton Source="filter_icon.svg"
                          x:Name="AllActivityFilterButton"
-                         Grid.Column="1"
-                         Grid.Row="2"
                          MaximumHeightRequest="25"
                          MaximumWidthRequest="25"
                          Clicked="AllActivityFilterButton_Clicked"/>
+                
+            </HorizontalStackLayout>
 
             <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
                 <CollectionView x:Name="AllActivitiesCollectionView" 
@@ -128,13 +143,27 @@
                    FontSize="Large"
                    TextDecorations="Underline"/>
 
-            <ImageButton Source="filter_icon.svg"
-                         x:Name="SuggestionActivityFilterButton"
-                         Grid.Column="1"
-                         Grid.Row="4"
-                         MaximumHeightRequest="25"
-                         MaximumWidthRequest="25"
-                         Clicked="SuggestionActivityFilterButton_Clicked"/>
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Grid.Row="4"
+                HorizontalOptions="End"
+                Margin="0,0,5,0"
+                Spacing="5">
+
+                <ImageButton Source="add_icon.svg"
+                             x:Name="AddSuggestionBtn"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Command="{Binding AddNewSuggestionCommand}"/>
+
+                <ImageButton Source="filter_icon.svg"
+                             x:Name="SuggestionActivityFilterButton"
+                             MaximumHeightRequest="25"
+                             MaximumWidthRequest="25"
+                             Clicked="SuggestionActivityFilterButton_Clicked"/>
+
+            </HorizontalStackLayout>
+
 
             <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                 <CollectionView x:Name="SuggestionsCollectionView" 
