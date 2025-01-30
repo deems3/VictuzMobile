@@ -11,8 +11,8 @@ using VictuzMobile.DatabaseConfig;
 namespace VictuzMobile.DatabaseConfig.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250130091146_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20250130095018_InitialSetup_Culture_nl-NL")]
+    partial class InitialSetup_Culture_nlNL
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
