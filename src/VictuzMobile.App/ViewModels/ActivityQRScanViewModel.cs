@@ -11,7 +11,7 @@ namespace VictuzMobile.App.ViewModels
     public class ActivityQRScanViewModel : INotifyPropertyChanged
     {
         private readonly INavigation _navigation;
-        private readonly DatabaseContext _context;
+        private readonly DatabaseContext? _context;
         private readonly int _activityId;
 
 
@@ -29,6 +29,7 @@ namespace VictuzMobile.App.ViewModels
             if (!int.TryParse(qrCodeValue, out var userId))
             {
                 await ShowAlert("Error", "Invalid QR code. Please scan a valid user ID.");
+                await _navigation.PopAsync();
                 return;
             }
 
@@ -38,12 +39,14 @@ namespace VictuzMobile.App.ViewModels
             if (registration == null)
             {
                 await ShowAlert("Error", "User is not registered for this activity.");
+                await _navigation.PopAsync();
                 return;
             }
 
             if (registration.ArrivalDate != null)
             {
                 await ShowAlert("Info", "User has already checked in.");
+                await _navigation.PopAsync();
                 return;
             }
 
@@ -53,6 +56,7 @@ namespace VictuzMobile.App.ViewModels
             await _context.SaveChangesAsync();
 
             await ShowAlert("Success", "User checked in successfully.");
+            await _navigation.PopAsync();
         }
 
 
