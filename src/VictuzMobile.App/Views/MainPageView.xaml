@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -6,77 +5,95 @@
              x:Class="VictuzMobile.App.Views.MainPageView"
              x:DataType="vm:MainPageViewModel">
 
-    <VerticalStackLayout
-        Margin="15"
-        Spacing="15">
-        <Grid RowDefinitions="auto, auto, auto, auto, *" ColumnDefinitions="*, *">
-            <Border
-                    Margin="5"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
-                    Stroke="#0F8390"
-                    StrokeThickness="2">
-
-                <ImageButton x:Name="firstActivity" 
-                             Source="test.png"
-                             MinimumHeightRequest="100"
-                             MinimumWidthRequest="100"
-                             Aspect="AspectFill"/>
+    <Grid RowDefinitions="auto, auto, auto, *, auto" ColumnDefinitions="*">
+        <!-- Activities in grid -->
+        <Grid Grid.Row="0" RowDefinitions="auto, auto" ColumnDefinitions="*, *">
+            <Border 
+                Margin="5" 
+                Grid.Row="0" 
+                Grid.ColumnSpan="2" 
+                Stroke="#0F8390" 
+                StrokeThickness="2">
+                <ImageButton 
+                    x:Name="firstActivity" 
+                    Source="test.png"
+                    MinimumHeightRequest="100" 
+                    MinimumWidthRequest="100" 
+                    Aspect="AspectFill"/>
             </Border>
 
-            <Border
-                    Margin="5"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Stroke="#0F8390"
-                    StrokeThickness="2">
-
-                <ImageButton x:Name="secondActivity" Source="test_twee.png"
-                               MinimumHeightRequest="100"
-                                MinimumWidthRequest="100"
-                                Aspect="AspectFill"/>
+            <Border 
+                Margin="5" 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Stroke="#0F8390" 
+                StrokeThickness="2">
+                <ImageButton 
+                    x:Name="secondActivity" 
+                    Source="test_twee.png"
+                    MinimumHeightRequest="100"
+                    MinimumWidthRequest="100" 
+                    Aspect="AspectFill"/>
             </Border>
 
-            <Border
-                    Margin="5"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Stroke="#0F8390"
-                    StrokeThickness="2">
-
-                <ImageButton x:Name="thirdActivity" Source="test_drie.png"
-                            MinimumHeightRequest="100"
-                            MinimumWidthRequest="100"
-                            Aspect="AspectFill"/>
+            <Border 
+                Margin="5" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Stroke="#0F8390" 
+                StrokeThickness="2">
+                <ImageButton 
+                    x:Name="thirdActivity" 
+                    Source="test_drie.png"
+                    MinimumHeightRequest="100"
+                    MinimumWidthRequest="100" 
+                    Aspect="AspectFill"/>
             </Border>
-
-            <Border
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    Stroke="Black"
-                    StrokeThickness="1.5"
-                    Margin="0,10"
-                    Padding="0">
-            </Border>
-
-            <Label
-                    Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    Text="Toon hier alle mededelingen"/>
         </Grid>
 
+        <!-- Divider -->
+        <Border 
+            Grid.Row="1" 
+            Stroke="#0F8390"
+            StrokeThickness="1.5"
+            Margin="15,10"/>
 
-        <!-- Fun fact labels -->
-        <Label
-            Text="Random fun fact:"
-            FontAttributes="Bold"/>
+        <!-- Scroll Mededeling(en?) -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="10">
+                <Label FontSize="Large" 
+                       FontAttributes="Bold" 
+                       Text="Titel medeling"/>
+                <Label FontSize="Small" 
+                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut arbeid en dolore magna aliqua."/>
+            </VerticalStackLayout>
+        </ScrollView>
 
-        <Label 
-            x:Name="FactLabel"
-            Margin="0,-5,0,10"
-            FontAttributes="Italic" 
-            Text="{Binding Fact}"/>
 
-    </VerticalStackLayout>
+        <!-- Fun Fact api-->
+
+        <VerticalStackLayout 
+            Grid.Row="3" 
+            VerticalOptions="EndAndExpand" 
+            Padding="0,10">
+
+            <Border 
+            Grid.Row="1" 
+            Stroke="#0F8390"
+            StrokeThickness="1.5"
+            Margin="15,5"/>
+
+            <Label 
+                HorizontalOptions="Center"
+                FontAttributes="Bold" 
+                Text="Random fun fact:"/>
+            <Label 
+                Margin="0,0,0,20"
+                x:Name="FactLabel" 
+                FontAttributes="Italic"
+                Text="{Binding Fact}"
+                HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>
