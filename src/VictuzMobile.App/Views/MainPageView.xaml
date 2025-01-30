@@ -5,7 +5,7 @@
              x:Class="VictuzMobile.App.Views.MainPageView"
              x:DataType="vm:MainPageViewModel">
 
-    <Grid RowDefinitions="auto, auto, auto, *, auto" ColumnDefinitions="*">
+    <Grid RowDefinitions="auto, auto, auto, auto, *" ColumnDefinitions="*">
         <!-- Activities in grid -->
         <Grid Grid.Row="0" RowDefinitions="auto, auto" ColumnDefinitions="*, *">
             <Border 
@@ -71,28 +71,31 @@
 
 
         <!-- Fun Fact api-->
-
-        <VerticalStackLayout 
-            Grid.Row="3" 
-            VerticalOptions="EndAndExpand" 
-            Padding="0,10">
-
-            <Border 
-            Grid.Row="1" 
+        <Border
+            Grid.Row="3"
             Stroke="#0F8390"
             StrokeThickness="1.5"
             Margin="15,5"/>
+
+
+        <VerticalStackLayout
+            Grid.Row="4"
+            VerticalOptions="EndAndExpand" 
+            Padding="0,10">
 
             <Label 
                 HorizontalOptions="Center"
                 FontAttributes="Bold" 
                 Text="Random fun fact:"/>
-            <Label 
-                Margin="0,0,0,20"
-                x:Name="FactLabel" 
-                FontAttributes="Italic"
-                Text="{Binding Fact}"
-                HorizontalOptions="Center"/>
+            
+            <ScrollView>
+                <Label 
+                    Margin="0,0,0,20"
+                    x:Name="FactLabel" 
+                    FontAttributes="Italic"
+                    Text="{Binding Fact}"
+                    HorizontalOptions="Center"/>
+            </ScrollView>
         </VerticalStackLayout>
     </Grid>
 
