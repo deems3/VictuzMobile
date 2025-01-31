@@ -84,7 +84,5 @@
             </Border>
         </Grid>
 
-        <Button Text="Open database viewer" Clicked="OpenDbViewer"/>
-
     </VerticalStackLayout>
 </ContentPage>
