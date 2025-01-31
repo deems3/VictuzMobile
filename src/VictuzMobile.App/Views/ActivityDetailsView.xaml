@@ -16,9 +16,12 @@
         <Label x:Name="ActivityDescriptionLabel" Text="{Binding Activity.Description}" />
         <Entry x:Name="ActivityDescriptionEntry" Text="{Binding Activity.Description}" IsVisible="False" />
 
+        <Label x:Name="ActivityStartDateLabel" Text="{Binding Activity.StartDate, StringFormat='Start {0}' }" />
+        <Label x:Name="ActivityEndDateLabel" Text="{Binding Activity.EndDate, StringFormat='Eind: {0}'}" />
+
         <Label x:Name="ActivityOrganiserLabel" Text="{Binding Activity.Organiser.DisplayName}" />
         
-        <Label x:Name="ActivityLocationLabel" Text="{Binding Activity.Location}"/>
+        <Label x:Name="ActivityLocationLabel" Text="{Binding Activity.Location}" />
         <Picker x:Name="ActivityLocationPicker" Title="Locatie" ItemsSource="{Binding ActivityLocations}" IsVisible="False" />
         <Button x:Name="CreateNewLocationBtn" Text="Nieuwe locatie" Command="{Binding CreateNewLocationCommand}" IsVisible="False" />
 

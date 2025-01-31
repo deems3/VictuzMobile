@@ -113,7 +113,7 @@ public partial class ActivityDetailsView : ContentPage
             NotificationId = 100,
             Title = "Je bent ingeschreven.",
             Subtitle = "Victuz",
-            Description = "Je hebt je succesvol ingeschreven voor een activiteit!",
+            Description = $"Je hebt je succesvol ingeschreven voor {ViewModel.Activity?.Name}!",
             BadgeNumber = 1,
             Schedule = new NotificationRequestSchedule
             {

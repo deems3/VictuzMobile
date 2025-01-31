@@ -17,6 +17,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -28,15 +29,19 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
+                        Grid.RowSpan="2"
                         x:Name="firstActivity"
                         Aspect="AspectFill"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
+                        Clicked="firstActivity_Clicked"
                         />
 
                     <BoxView Grid.ColumnSpan="3"
-                              Grid.Row="0" 
-                              Grid.Column="0" Opacity="0.4"/>
+                             Grid.Row="0" 
+                             Grid.Column="0"
+                             Grid.RowSpan="2"
+                             Opacity="0.4"/>
 
                     <Label x:Name="firstActivityTitle"
                            Grid.Row="0" 
@@ -49,6 +54,19 @@
                            TextColor="White"
                            HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" />
+
+                    <Label x:Name="firstActivityStartDate"
+                           Grid.Row="1" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+
                 </Grid>
             </Border>
 
@@ -61,6 +79,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -72,19 +91,35 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
+                        Grid.RowSpan="2"
                         x:Name="secondActivity"
                         Aspect="AspectFill"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
+                        Clicked="secondActivity_Clicked"
                         />
 
                     
                     <BoxView Grid.ColumnSpan="3"
-                              Grid.Row="0" 
-                              Grid.Column="0" Opacity="0.4"/>
+                             Grid.Row="0" 
+                             Grid.RowSpan="2"
+                             Grid.Column="0"
+                             Opacity="0.4"/>
 
                     <Label x:Name="secondActivityTitle"
                            Grid.Row="0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+
+                    <Label x:Name="secondActivityStartDate"
+                           Grid.Row="1" 
                            Grid.Column="0"
                            Grid.ColumnSpan="3"
                            FontAttributes="Bold"
@@ -107,6 +142,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -116,21 +152,37 @@
 
                     <ImageButton
                         Grid.Row="0"
+                        Grid.RowSpan="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
                         x:Name="thirdActivity"
                         Aspect="AspectFill"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
+                        Clicked="thirdActivity_Clicked"
                         />
 
                     
                     <BoxView Grid.ColumnSpan="3"
-                              Grid.Row="0" 
-                              Grid.Column="0" Opacity="0.4"/>
+                             Grid.Row="0" 
+                             Grid.Column="0"
+                             Grid.RowSpan="2"
+                             Opacity="0.4"/>
 
                     <Label x:Name="thirdActivityTitle"
                            Grid.Row="0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" />
+
+                    <Label x:Name="thirdActivityStartDate"
+                           Grid.Row="1" 
                            Grid.Column="0"
                            Grid.ColumnSpan="3"
                            FontAttributes="Bold"
